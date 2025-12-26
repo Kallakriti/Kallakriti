@@ -10,9 +10,6 @@ button{background:#9c7c38;color:white;border:none;}
 </head>
 <body>
 
-<h2>Admin Login</h2>
-<input id="adminpass" type="password" placeholder="Admin Password">
-<button onclick="adminLogin()">Login</button>
 
 <div id="panel" style="display:none;">
 <h3>Add Product</h3>
@@ -23,13 +20,6 @@ button{background:#9c7c38;color:white;border:none;}
 </div>
 
 <script>
-const ADMIN_PASSWORD="kallakriti123";
-
-function adminLogin(){
- if(adminpass.value===ADMIN_PASSWORD){
-  panel.style.display="block";
- } else alert("Wrong password");
-}
 
 function add(){
  let items=JSON.parse(localStorage.getItem("items")||"[]");
