@@ -89,8 +89,9 @@ header{
   margin:8px 0;
 }
 
+/* WHATSAPP BUTTON */
 .order{
-  background:#c13584;
+  background:#25D366;
   color:white;
   border:none;
   padding:7px;
@@ -98,6 +99,9 @@ header{
   border-radius:20px;
   cursor:pointer;
   font-size:13px;
+}
+.order:hover{
+  background:#1ebe5d;
 }
 </style>
 </head>
@@ -119,7 +123,7 @@ header{
 <div id="products" class="products"></div>
 
 <script>
-const instagram = "https://instagram.com/YOUR_INSTAGRAM_USERNAME";
+const phone = "8209995152";
 
 const products = [
   {name:"Crochet Rose", price:"₹299", cat:"flowers"},
@@ -142,8 +146,9 @@ function render(list, compact){
       <img src="https://picsum.photos/300/200?random=${i}">
       <h3>${p.name}</h3>
       <div class="price">${p.price}</div>
-      <button class="order" onclick="window.open('${instagram}','_blank')">
-        Order on Instagram
+      <button class="order"
+        onclick="window.open('https://wa.me/${phone}?text=I want to order ${p.name}','_blank')">
+        Order on WhatsApp
       </button>
     </div>`;
   });
