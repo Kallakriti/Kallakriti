@@ -36,28 +36,52 @@ header{
   cursor:pointer;
 }
 
+/* NORMAL VIEW */
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
   padding:20px;
 }
 
+/* COMPACT VIEW */
 .products.compact{
   grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:12px;
 }
 
 .card{
   background:white;
   border-radius:16px;
   box-shadow:0 6px 14px rgba(0,0,0,0.15);
-  padding:12px;
+  padding:14px;
   text-align:center;
 }
 
+/* NORMAL IMAGE */
 .card img{
   width:100%;
+  height:200px;
+  object-fit:cover;
   border-radius:12px;
+}
+
+/* COMPACT CARD */
+.products.compact .card{
+  padding:8px;
+}
+
+.products.compact img{
+  height:120px;
+}
+
+.products.compact h3{
+  font-size:14px;
+  margin:6px 0;
+}
+
+.products.compact .price{
+  font-size:13px;
 }
 
 .price{
@@ -69,10 +93,11 @@ header{
   background:#c13584;
   color:white;
   border:none;
-  padding:8px;
+  padding:7px;
   width:100%;
   border-radius:20px;
   cursor:pointer;
+  font-size:13px;
 }
 </style>
 </head>
@@ -94,7 +119,7 @@ header{
 <div id="products" class="products"></div>
 
 <script>
-const instagram = "https://instagram.com/_bansal.rishabh_";
+const instagram = "https://instagram.com/YOUR_INSTAGRAM_USERNAME";
 
 const products = [
   {name:"Crochet Rose", price:"₹299", cat:"flowers"},
@@ -109,10 +134,10 @@ const products = [
 function render(list, compact){
   const box=document.getElementById("products");
   box.innerHTML="";
-  box.className=compact?"products compact":"products";
+  box.className = compact ? "products compact" : "products";
 
   list.forEach((p,i)=>{
-    box.innerHTML+=`
+    box.innerHTML += `
     <div class="card">
       <img src="https://picsum.photos/300/200?random=${i}">
       <h3>${p.name}</h3>
