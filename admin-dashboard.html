@@ -1254,3 +1254,1216 @@ body {
             <div id="password" class="section">
                 <h2><i class="fas fa-key"></i> Change Admin Password</h2>
                 <p>Update your admin login password for security.</
+                        </p>
+                    <form id="passwordForm" class="password-form" onsubmit="changePassword(event)">
+                        <div class="form-group">
+                            <label for="currentPassword">Current Password *</label>
+                            <input type="password" id="currentPassword" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="newPassword">New Password *</label>
+                            <input type="password" id="newPassword" required onkeyup="checkPasswordStrength()">
+                            <div class="password-strength">
+                                <div class="strength-bar" id="passwordStrength"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm New Password *</label>
+                            <input type="password" id="confirmPassword" required onkeyup="checkPasswordMatch()">
+                            <small id="passwordMatchMessage" style="display: none;"></small>
+                        </div>
+                        
+                        <div class="password-requirements">
+                            <strong>Password Requirements:</strong>
+                            <ul>
+                                <li>At least 8 characters long</li>
+                                <li>Contains at least one uppercase letter</li>
+                                <li>Contains at least one lowercase letter</li>
+                                <li>Contains at least one number</li>
+                                <li>Contains at least one special character</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="form-buttons">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-key"></i> Change Password
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Settings Section -->
+                <div id="settings" class="section">
+                    <h2><i class="fas fa-cog"></i> Admin Settings</h2>
+                    <p>Configure your admin dashboard preferences.</p>
+                    
+                    <div class="settings-grid">
+                        <div class="setting-card">
+                            <h3><i class="fas fa-bell"></i> Notifications</h3>
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" id="emailNotifications" checked>
+                                    Email notifications for new orders
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" id="complaintNotifications" checked>
+                                    Notify on new complaints
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" id="lowStockNotifications" checked>
+                                    Low stock alerts
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="setting-card">
+                            <h3><i class="fas fa-palette"></i> Theme</h3>
+                            <div class="form-group">
+                                <label>Dashboard Theme</label>
+                                <select id="themeSelect">
+                                    <option value="default">Default Theme</option>
+                                    <option value="dark">Dark Mode</option>
+                                    <option value="light">Light Mode</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="setting-card">
+                            <h3><i class="fas fa-database"></i> Data Management</h3>
+                            <button class="btn btn-secondary" onclick="exportData()" style="margin-bottom: 10px;">
+                                <i class="fas fa-download"></i> Export All Data
+                            </button>
+                            <button class="btn btn-danger" onclick="resetData()">
+                                <i class="fas fa-trash"></i> Reset All Data
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Material Modal -->
+        <div id="addMaterialModal" class="material-modal">
+            <div class="material-modal-content">
+                <div class="material-modal-header">
+                    <h3><i class="fas fa-plus"></i> Add New Material</h3>
+                    <button class="close-modal" onclick="closeAddMaterialModal()">&times;</button>
+                </div>
+                
+                <form id="addMaterialForm" onsubmit="saveNewMaterial(event)">
+                    <div class="product-form">
+                        <div class="form-group">
+                            <label for="materialName">Material Name *</label>
+                            <input type="text" id="materialName" required placeholder="e.g., Red Cotton Yarn">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="materialType">Type *</label>
+                            <select id="materialType" required>
+                                <option value="">Select Type</option>
+                                <option value="yarn">Yarn</option>
+                                <option value="thread">Thread</option>
+                                <option value="hook">Crochet Hook</option>
+                                <option value="needle">Needle</option>
+                                <option value="accessory">Accessory</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="materialColor">Color</label>
+                            <div class="color-options" id="colorOptions">
+                                <!-- Color options will be generated here -->
+                            </div>
+                            <input type="color" id="materialColorPicker" style="margin-top: 10px; width: 100%;" onchange="updateSelectedColor(this.value)">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="materialStock">Current Stock *</label>
+                            <input type="number" id="materialStock" required min="0" placeholder="e.g., 50">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="materialUnit">Unit</label>
+                            <select id="materialUnit">
+                                <option value="grams">Grams</option>
+                                <option value="meters">Meters</option>
+                                <option value="pcs">Pieces</option>
+                                <option value="sets">Sets</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="materialNotes">Notes</label>
+                            <textarea id="materialNotes" rows="3" placeholder="Any additional notes about this material..."></textarea>
+                        </div>
+                        
+                        <div class="form-buttons">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Save Material
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="closeAddMaterialModal()">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Alert Container -->
+        <div id="alertContainer" style="position: fixed; top: 20px; right: 20px; z-index: 1000;"></div>
+
+        <script>
+            // Dashboard Data
+            let dashboardData = {
+                totalProducts: 12,
+                totalComplaints: 3,
+                materialStock: 24,
+                customOrders: 8,
+                lowStockCount: 2,
+                yarnCount: 15,
+                accessoryCount: 9,
+                totalMaterials: 24
+            };
+
+            // Sample Products Data
+            let products = [
+                {
+                    id: 1,
+                    name: "Crochet Rose Bouquet",
+                    category: "flowers",
+                    price: 299,
+                    image: "https://images.unsplash.com/photo-1566438480895-9f7bf5b05e86?w=200&h=200&fit=crop"
+                },
+                {
+                    id: 2,
+                    name: "Teddy Bear",
+                    category: "toys",
+                    price: 399,
+                    image: "https://images.unsplash.com/photo-1560743173-567a3b5658b1?w=200&h=200&fit=crop"
+                },
+                {
+                    id: 3,
+                    name: "Baby Booties",
+                    category: "baby",
+                    price: 199,
+                    image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=200&h=200&fit=crop"
+                }
+            ];
+
+            // Sample Complaints Data
+            let complaints = [
+                {
+                    id: 1,
+                    name: "Rahul Sharma",
+                    phone: "9876543210",
+                    type: "Delivery Delay",
+                    date: "2024-01-15",
+                    status: "pending"
+                },
+                {
+                    id: 2,
+                    name: "Priya Patel",
+                    phone: "9876543211",
+                    type: "Product Quality",
+                    date: "2024-01-14",
+                    status: "resolved"
+                },
+                {
+                    id: 3,
+                    name: "Amit Kumar",
+                    phone: "9876543212",
+                    type: "Wrong Item",
+                    date: "2024-01-13",
+                    status: "pending"
+                }
+            ];
+
+            // Sample Materials Data
+            let materials = [
+                {
+                    id: 1,
+                    name: "Red Cotton Yarn",
+                    type: "yarn",
+                    color: "#ff0000",
+                    stock: 45,
+                    unit: "grams",
+                    notes: "For rose patterns",
+                    minStock: 20
+                },
+                {
+                    id: 2,
+                    name: "Blue Acrylic Yarn",
+                    type: "yarn",
+                    color: "#0000ff",
+                    stock: 15,
+                    unit: "grams",
+                    notes: "Running low",
+                    minStock: 20
+                },
+                {
+                    id: 3,
+                    name: "Crochet Hook 4mm",
+                    type: "hook",
+                    color: "#000000",
+                    stock: 5,
+                    unit: "pcs",
+                    notes: "",
+                    minStock: 3
+                }
+            ];
+
+            // Sample Design Ideas
+            let designIdeas = [
+                {
+                    id: 1,
+                    title: "Floral Pattern",
+                    type: "flowers",
+                    description: "New rose and lily combination"
+                },
+                {
+                    id: 2,
+                    title: "Animal Toys",
+                    type: "toys",
+                    description: "Collection of farm animals"
+                }
+            ];
+
+            // Initialize Dashboard
+            document.addEventListener('DOMContentLoaded', function() {
+                initializeDashboard();
+                loadProducts();
+                loadComplaints();
+                loadMaterials();
+                loadDesignIdeas();
+                generateColorOptions();
+            });
+
+            // Initialize Dashboard
+            function initializeDashboard() {
+                updateStats();
+                setupEventListeners();
+            }
+
+            // Update Dashboard Stats
+            function updateStats() {
+                document.getElementById('totalProducts').textContent = dashboardData.totalProducts;
+                document.getElementById('totalComplaints').textContent = dashboardData.totalComplaints;
+                document.getElementById('materialStock').textContent = dashboardData.materialStock;
+                document.getElementById('customOrders').textContent = dashboardData.customOrders;
+                document.getElementById('lowStockCount').textContent = dashboardData.lowStockCount;
+                document.getElementById('yarnCount').textContent = dashboardData.yarnCount;
+                document.getElementById('accessoryCount').textContent = dashboardData.accessoryCount;
+                document.getElementById('totalMaterials').textContent = dashboardData.totalMaterials;
+            }
+
+            // Setup Event Listeners
+            function setupEventListeners() {
+                // Image preview for product form
+                const imageUrlInput = document.getElementById('productImageUrl');
+                const previewImage = document.getElementById('previewImage');
+                const imagePreview = document.getElementById('imagePreview');
+                
+                if (imageUrlInput) {
+                    imageUrlInput.addEventListener('input', function() {
+                        if (this.value) {
+                            previewImage.src = this.value;
+                            previewImage.style.display = 'block';
+                            imagePreview.querySelector('span').style.display = 'none';
+                        } else {
+                            previewImage.style.display = 'none';
+                            imagePreview.querySelector('span').style.display = 'block';
+                        }
+                    });
+                }
+
+                // Theme selector
+                const themeSelect = document.getElementById('themeSelect');
+                if (themeSelect) {
+                    themeSelect.addEventListener('change', function() {
+                        changeTheme(this.value);
+                    });
+                }
+
+                // Material search
+                const materialSearch = document.getElementById('materialSearch');
+                if (materialSearch) {
+                    materialSearch.addEventListener('keyup', searchMaterials);
+                }
+            }
+
+            // Show Section Function
+            function showSection(sectionId) {
+                // Hide all sections
+                const sections = document.querySelectorAll('.section');
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+
+                // Show selected section
+                const targetSection = document.getElementById(sectionId);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                }
+
+                // Update active menu item
+                const menuItems = document.querySelectorAll('.sidebar-menu li');
+                menuItems.forEach(item => {
+                    item.classList.remove('active');
+                });
+
+                // Find and activate the corresponding menu item
+                const activeMenuItem = Array.from(menuItems).find(item => {
+                    return item.getAttribute('onclick')?.includes(sectionId);
+                });
+                
+                if (activeMenuItem) {
+                    activeMenuItem.classList.add('active');
+                } else {
+                    // If no specific menu item found, activate dashboard
+                    menuItems[0].classList.add('active');
+                }
+
+                // Load section-specific data
+                switch(sectionId) {
+                    case 'dashboard':
+                        updateStats();
+                        break;
+                    case 'products':
+                        loadProducts();
+                        break;
+                    case 'complaints':
+                        loadComplaints();
+                        break;
+                    case 'materials':
+                        loadMaterials();
+                        break;
+                    case 'designs':
+                        loadDesignIdeas();
+                        break;
+                }
+
+                showAlert(`Switched to ${getSectionName(sectionId)}`, 'success');
+            }
+
+            function getSectionName(sectionId) {
+                const sectionNames = {
+                    'dashboard': 'Dashboard',
+                    'products': 'Products',
+                    'addProduct': 'Add Product',
+                    'complaints': 'Complaints',
+                    'materials': 'Materials',
+                    'designs': 'Designs',
+                    'password': 'Password',
+                    'settings': 'Settings'
+                };
+                return sectionNames[sectionId] || sectionId;
+            }
+
+            // Load Products
+            function loadProducts() {
+                const tableBody = document.getElementById('productsTableBody');
+                if (!tableBody) return;
+
+                tableBody.innerHTML = '';
+                
+                products.forEach(product => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>
+                            <img src="${product.image}" alt="${product.name}" class="product-image" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1560743173-567a3b5658b1?w=200&h=200&fit=crop'">
+                        </td>
+                        <td>${product.name}</td>
+                        <td>${product.category}</td>
+                        <td>₹${product.price}</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn edit-btn" onclick="editProduct(${product.id})">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                                <button class="action-btn delete-btn" onclick="deleteProduct(${product.id})">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </div>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+
+            // Load Complaints
+            function loadComplaints() {
+                const tableBody = document.getElementById('complaintsTableBody');
+                if (!tableBody) return;
+
+                tableBody.innerHTML = '';
+                
+                complaints.forEach(complaint => {
+                    const row = document.createElement('tr');
+                    const statusClass = complaint.status === 'pending' ? 'status-pending' : 'status-resolved';
+                    const statusText = complaint.status === 'pending' ? 'Pending' : 'Resolved';
+                    
+                    row.innerHTML = `
+                        <td>#${complaint.id}</td>
+                        <td>${complaint.name}</td>
+                        <td>${complaint.phone}</td>
+                        <td>${complaint.type}</td>
+                        <td>${complaint.date}</td>
+                        <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                        <td>
+                            <button class="action-btn edit-btn" onclick="viewComplaint(${complaint.id})">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                            ${complaint.status === 'pending' ? 
+                                `<button class="action-btn btn-primary" onclick="resolveComplaint(${complaint.id})">
+                                    <i class="fas fa-check"></i> Resolve
+                                </button>` : ''
+                            }
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+
+            // Load Materials
+            function loadMaterials() {
+                const materialsGrid = document.getElementById('materialsGrid');
+                const emptyState = document.getElementById('emptyMaterials');
+                
+                if (!materialsGrid) return;
+
+                materialsGrid.innerHTML = '';
+                
+                if (materials.length === 0) {
+                    emptyState.style.display = 'block';
+                    materialsGrid.style.display = 'none';
+                    return;
+                }
+
+                emptyState.style.display = 'none';
+                materialsGrid.style.display = 'grid';
+
+                materials.forEach(material => {
+                    const stockLevel = getStockLevel(material.stock, material.minStock || 20);
+                    const stockClass = `stock-${stockLevel}`;
+                    const cardClass = `${stockLevel}-stock`;
+                    
+                    const card = document.createElement('div');
+                    card.className = `material-card ${cardClass}`;
+                    card.innerHTML = `
+                        <div class="material-header">
+                            <div>
+                                <div class="material-name">${material.name}</div>
+                                <span class="material-type">${material.type}</span>
+                            </div>
+                            <span class="stock-indicator ${stockClass}">
+                                <i class="fas fa-${stockLevel === 'low' ? 'exclamation-triangle' : 'check'}"></i>
+                                ${stockLevel.toUpperCase()}
+                            </span>
+                        </div>
+                        
+                        <div class="material-details">
+                            <div class="detail-row">
+                                <span class="detail-label">Color:</span>
+                                <span class="detail-value">
+                                    <span class="color-preview" style="background-color: ${material.color}"></span>
+                                    ${material.color}
+                                </span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Stock:</span>
+                                <span class="detail-value">${material.stock} ${material.unit}</span>
+                            </div>
+                            ${material.notes ? `
+                            <div class="detail-row">
+                                <span class="detail-label">Notes:</span>
+                                <span class="detail-value">${material.notes}</span>
+                            </div>` : ''}
+                        </div>
+                        
+                        <div class="material-actions">
+                            <button class="material-btn btn-primary" onclick="editMaterial(${material.id})">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="material-btn btn-danger" onclick="deleteMaterial(${material.id})">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </div>
+                    `;
+                    materialsGrid.appendChild(card);
+                });
+            }
+
+            function getStockLevel(stock, minStock) {
+                if (stock <= minStock * 0.3) return 'low';
+                if (stock <= minStock * 0.6) return 'medium';
+                return 'high';
+            }
+
+            // Load Design Ideas
+            function loadDesignIdeas() {
+                const ideasList = document.getElementById('ideasList');
+                if (!ideasList) return;
+
+                ideasList.innerHTML = '';
+                
+                designIdeas.forEach(idea => {
+                    const ideaItem = document.createElement('div');
+                    ideaItem.className = 'idea-item';
+                    ideaItem.innerHTML = `
+                        <h4><i class="fas fa-lightbulb"></i> ${idea.title}</h4>
+                        <p>${idea.description}</p>
+                        <small>Type: ${idea.type}</small>
+                    `;
+                    ideasList.appendChild(ideaItem);
+                });
+            }
+
+            // Add New Product
+            function addNewProduct(event) {
+                event.preventDefault();
+                
+                const name = document.getElementById('productName').value;
+                const price = document.getElementById('productPrice').value;
+                const category = document.getElementById('productCategory').value;
+                const imageUrl = document.getElementById('productImageUrl').value || 
+                                'https://images.unsplash.com/photo-1560743173-567a3b5658b1?w=200&h=200&fit=crop';
+
+                const newProduct = {
+                    id: products.length + 1,
+                    name: name,
+                    price: parseInt(price),
+                    category: category,
+                    image: imageUrl
+                };
+
+                products.push(newProduct);
+                dashboardData.totalProducts++;
+                
+                showAlert('Product added successfully!', 'success');
+                clearForm();
+                loadProducts();
+                updateStats();
+            }
+
+            // Clear Form
+            function clearForm() {
+                document.getElementById('addProductForm').reset();
+                document.getElementById('previewImage').style.display = 'none';
+                document.getElementById('imagePreview').querySelector('span').style.display = 'block';
+            }
+
+            // Edit Product
+            function editProduct(id) {
+                const product = products.find(p => p.id === id);
+                if (product) {
+                    // Populate form with product data
+                    document.getElementById('productName').value = product.name;
+                    document.getElementById('productPrice').value = product.price;
+                    document.getElementById('productCategory').value = product.category;
+                    document.getElementById('productImageUrl').value = product.image;
+                    
+                    // Show image preview
+                    const previewImage = document.getElementById('previewImage');
+                    previewImage.src = product.image;
+                    previewImage.style.display = 'block';
+                    document.getElementById('imagePreview').querySelector('span').style.display = 'none';
+                    
+                    // Switch to add product section
+                    showSection('addProduct');
+                    
+                    // Change form to edit mode
+                    const form = document.getElementById('addProductForm');
+                    form.onsubmit = function(e) {
+                        e.preventDefault();
+                        updateProduct(id);
+                    };
+                    
+                    const submitBtn = form.querySelector('.btn-primary');
+                    submitBtn.innerHTML = '<i class="fas fa-save"></i> Update Product';
+                    
+                    showAlert('Edit product: ' + product.name, 'info');
+                }
+            }
+
+            function updateProduct(id) {
+                const name = document.getElementById('productName').value;
+                const price = document.getElementById('productPrice').value;
+                const category = document.getElementById('productCategory').value;
+                const imageUrl = document.getElementById('productImageUrl').value;
+
+                const index = products.findIndex(p => p.id === id);
+                if (index !== -1) {
+                    products[index] = {
+                        ...products[index],
+                        name: name,
+                        price: parseInt(price),
+                        category: category,
+                        image: imageUrl
+                    };
+                    
+                    showAlert('Product updated successfully!', 'success');
+                    loadProducts();
+                    resetProductForm();
+                }
+            }
+
+            function resetProductForm() {
+                clearForm();
+                const form = document.getElementById('addProductForm');
+                form.onsubmit = addNewProduct;
+                const submitBtn = form.querySelector('.btn-primary');
+                submitBtn.innerHTML = '<i class="fas fa-save"></i> Add Product';
+            }
+
+            // Delete Product
+            function deleteProduct(id) {
+                if (confirm('Are you sure you want to delete this product?')) {
+                    products = products.filter(p => p.id !== id);
+                    dashboardData.totalProducts = Math.max(0, dashboardData.totalProducts - 1);
+                    
+                    showAlert('Product deleted successfully!', 'success');
+                    loadProducts();
+                    updateStats();
+                }
+            }
+
+            // View Complaint
+            function viewComplaint(id) {
+                const complaint = complaints.find(c => c.id === id);
+                if (complaint) {
+                    alert(`Complaint Details:\n\nID: #${complaint.id}\nName: ${complaint.name}\nPhone: ${complaint.phone}\nType: ${complaint.type}\nDate: ${complaint.date}\nStatus: ${complaint.status}`);
+                }
+            }
+
+            // Resolve Complaint
+            function resolveComplaint(id) {
+                const index = complaints.findIndex(c => c.id === id);
+                if (index !== -1) {
+                    complaints[index].status = 'resolved';
+                    dashboardData.totalComplaints = Math.max(0, dashboardData.totalComplaints - 1);
+                    
+                    showAlert('Complaint marked as resolved!', 'success');
+                    loadComplaints();
+                    updateStats();
+                }
+            }
+
+            // Generate Color Options
+            function generateColorOptions() {
+                const colorOptions = document.getElementById('colorOptions');
+                if (!colorOptions) return;
+
+                const colors = [
+                    '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff',
+                    '#ff9999', '#99ff99', '#9999ff', '#ffcc00', '#ff66cc', '#66ccff',
+                    '#ff3300', '#33cc33', '#3333cc', '#996633', '#663399', '#339966'
+                ];
+
+                colorOptions.innerHTML = '';
+                
+                colors.forEach(color => {
+                    const colorOption = document.createElement('div');
+                    colorOption.className = 'color-option';
+                    colorOption.style.backgroundColor = color;
+                    colorOption.setAttribute('data-color', color);
+                    colorOption.onclick = function() {
+                        selectColor(color);
+                    };
+                    colorOptions.appendChild(colorOption);
+                });
+            }
+
+            function selectColor(color) {
+                // Remove selected class from all color options
+                document.querySelectorAll('.color-option').forEach(option => {
+                    option.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked color
+                event.target.classList.add('selected');
+                
+                // Update color picker
+                document.getElementById('materialColorPicker').value = color;
+            }
+
+            function updateSelectedColor(color) {
+                // Update selected color in color options
+                document.querySelectorAll('.color-option').forEach(option => {
+                    if (option.getAttribute('data-color') === color) {
+                        option.classList.add('selected');
+                    } else {
+                        option.classList.remove('selected');
+                    }
+                });
+            }
+
+            // Material Modal Functions
+            function openAddMaterialModal() {
+                document.getElementById('addMaterialModal').style.display = 'flex';
+            }
+
+            function closeAddMaterialModal() {
+                document.getElementById('addMaterialModal').style.display = 'none';
+                document.getElementById('addMaterialForm').reset();
+            }
+
+            function saveNewMaterial(event) {
+                event.preventDefault();
+                
+                const name = document.getElementById('materialName').value;
+                const type = document.getElementById('materialType').value;
+                const color = document.getElementById('materialColorPicker').value;
+                const stock = parseInt(document.getElementById('materialStock').value);
+                const unit = document.getElementById('materialUnit').value;
+                const notes = document.getElementById('materialNotes').value;
+
+                const newMaterial = {
+                    id: materials.length + 1,
+                    name: name,
+                    type: type,
+                    color: color,
+                    stock: stock,
+                    unit: unit,
+                    notes: notes,
+                    minStock: 20
+                };
+
+                materials.push(newMaterial);
+                dashboardData.totalMaterials++;
+                
+                if (type === 'yarn') dashboardData.yarnCount++;
+                if (type === 'accessory') dashboardData.accessoryCount++;
+                
+                // Check if low stock
+                if (stock <= 20) {
+                    dashboardData.lowStockCount++;
+                }
+                
+                showAlert('Material added successfully!', 'success');
+                closeAddMaterialModal();
+                loadMaterials();
+                updateStats();
+            }
+
+            function editMaterial(id) {
+                const material = materials.find(m => m.id === id);
+                if (material) {
+                    // Populate modal with material data
+                    document.getElementById('materialName').value = material.name;
+                    document.getElementById('materialType').value = material.type;
+                    document.getElementById('materialColorPicker').value = material.color;
+                    document.getElementById('materialStock').value = material.stock;
+                    document.getElementById('materialUnit').value = material.unit;
+                    document.getElementById('materialNotes').value = material.notes;
+                    
+                    // Update selected color
+                    selectColor(material.color);
+                    
+                    // Open modal in edit mode
+                    openAddMaterialModal();
+                    
+                    // Change form to edit mode
+                    const form = document.getElementById('addMaterialForm');
+                    form.onsubmit = function(e) {
+                        e.preventDefault();
+                        updateMaterial(id);
+                    };
+                    
+                    const submitBtn = form.querySelector('.btn-primary');
+                    submitBtn.innerHTML = '<i class="fas fa-save"></i> Update Material';
+                    submitBtn.onclick = function() { updateMaterial(id); };
+                }
+            }
+
+            function updateMaterial(id) {
+                const name = document.getElementById('materialName').value;
+                const type = document.getElementById('materialType').value;
+                const color = document.getElementById('materialColorPicker').value;
+                const stock = parseInt(document.getElementById('materialStock').value);
+                const unit = document.getElementById('materialUnit').value;
+                const notes = document.getElementById('materialNotes').value;
+
+                const index = materials.findIndex(m => m.id === id);
+                if (index !== -1) {
+                    materials[index] = {
+                        ...materials[index],
+                        name: name,
+                        type: type,
+                        color: color,
+                        stock: stock,
+                        unit: unit,
+                        notes: notes
+                    };
+                    
+                    showAlert('Material updated successfully!', 'success');
+                    closeAddMaterialModal();
+                    loadMaterials();
+                    resetMaterialForm();
+                }
+            }
+
+            function resetMaterialForm() {
+                document.getElementById('addMaterialForm').reset();
+                const form = document.getElementById('addMaterialForm');
+                form.onsubmit = saveNewMaterial;
+                const submitBtn = form.querySelector('.btn-primary');
+                submitBtn.innerHTML = '<i class="fas fa-save"></i> Save Material';
+            }
+
+            function deleteMaterial(id) {
+                if (confirm('Are you sure you want to delete this material?')) {
+                    const material = materials.find(m => m.id === id);
+                    materials = materials.filter(m => m.id !== id);
+                    
+                    dashboardData.totalMaterials = Math.max(0, dashboardData.totalMaterials - 1);
+                    
+                    if (material.type === 'yarn') dashboardData.yarnCount = Math.max(0, dashboardData.yarnCount - 1);
+                    if (material.type === 'accessory') dashboardData.accessoryCount = Math.max(0, dashboardData.accessoryCount - 1);
+                    
+                    if (material.stock <= 20) {
+                        dashboardData.lowStockCount = Math.max(0, dashboardData.lowStockCount - 1);
+                    }
+                    
+                    showAlert('Material deleted successfully!', 'success');
+                    loadMaterials();
+                    updateStats();
+                }
+            }
+
+            // Search Materials
+            function searchMaterials() {
+                const searchTerm = document.getElementById('materialSearch').value.toLowerCase();
+                const filteredMaterials = materials.filter(material => 
+                    material.name.toLowerCase().includes(searchTerm) ||
+                    material.type.toLowerCase().includes(searchTerm) ||
+                    material.color.toLowerCase().includes(searchTerm)
+                );
+                
+                // Temporarily replace materials array for display
+                const originalMaterials = [...materials];
+                materials = filteredMaterials;
+                loadMaterials();
+                materials = originalMaterials; // Restore original array
+            }
+
+            // Filter Materials
+            function filterMaterials(filterType) {
+                // Update active filter button
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                event.target.classList.add('active');
+                
+                let filteredMaterials = [];
+                
+                switch(filterType) {
+                    case 'all':
+                        filteredMaterials = materials;
+                        break;
+                    case 'yarn':
+                        filteredMaterials = materials.filter(m => m.type === 'yarn');
+                        break;
+                    case 'thread':
+                        filteredMaterials = materials.filter(m => m.type === 'thread');
+                        break;
+                    case 'accessory':
+                        filteredMaterials = materials.filter(m => m.type === 'accessory');
+                        break;
+                    case 'low':
+                        filteredMaterials = materials.filter(m => m.stock <= 20);
+                        break;
+                }
+                
+                // Temporarily replace materials array for display
+                const originalMaterials = [...materials];
+                materials = filteredMaterials;
+                loadMaterials();
+                materials = originalMaterials; // Restore original array
+            }
+
+            // Add New Design Idea
+            function addNewDesign() {
+                const title = prompt('Enter design title:');
+                if (!title) return;
+                
+                const description = prompt('Enter design description:');
+                if (!description) return;
+                
+                const type = prompt('Enter design type (flowers, toys, accessories, etc.):');
+                if (!type) return;
+                
+                const newDesign = {
+                    id: designIdeas.length + 1,
+                    title: title,
+                    description: description,
+                    type: type
+                };
+                
+                designIdeas.push(newDesign);
+                showAlert('Design idea added successfully!', 'success');
+                loadDesignIdeas();
+            }
+
+            // Password Strength Checker
+            function checkPasswordStrength() {
+                const password = document.getElementById('newPassword').value;
+                const strengthBar = document.getElementById('passwordStrength');
+                
+                let strength = 0;
+                
+                // Length check
+                if (password.length >= 8) strength++;
+                
+                // Contains uppercase
+                if (/[A-Z]/.test(password)) strength++;
+                
+                // Contains lowercase
+                if (/[a-z]/.test(password)) strength++;
+                
+                // Contains numbers
+                if (/[0-9]/.test(password)) strength++;
+                
+                // Contains special characters
+                if (/[^A-Za-z0-9]/.test(password)) strength++;
+                
+                // Update strength bar
+                strengthBar.className = 'strength-bar';
+                if (strength <= 2) {
+                    strengthBar.classList.add('strength-weak');
+                } else if (strength <= 4) {
+                    strengthBar.classList.add('strength-medium');
+                } else {
+                    strengthBar.classList.add('strength-strong');
+                }
+            }
+
+            function checkPasswordMatch() {
+                const newPassword = document.getElementById('newPassword').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                const message = document.getElementById('passwordMatchMessage');
+                
+                if (!newPassword || !confirmPassword) {
+                    message.style.display = 'none';
+                    return;
+                }
+                
+                if (newPassword === confirmPassword) {
+                    message.textContent = '✓ Passwords match';
+                    message.style.color = 'green';
+                } else {
+                    message.textContent = '✗ Passwords do not match';
+                    message.style.color = 'red';
+                }
+                message.style.display = 'block';
+            }
+
+            // Change Password
+            function changePassword(event) {
+                event.preventDefault();
+                
+                const currentPassword = document.getElementById('currentPassword').value;
+                const newPassword = document.getElementById('newPassword').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                
+                // Simple validation - in real app, you'd verify current password with backend
+                if (newPassword !== confirmPassword) {
+                    showAlert('Passwords do not match!', 'error');
+                    return;
+                }
+                
+                // Check password strength
+                if (newPassword.length < 8) {
+                    showAlert('Password must be at least 8 characters long!', 'error');
+                    return;
+                }
+                
+                showAlert('Password changed successfully!', 'success');
+                document.getElementById('passwordForm').reset();
+                document.getElementById('passwordStrength').className = 'strength-bar';
+                document.getElementById('passwordMatchMessage').style.display = 'none';
+            }
+
+            // Change Theme
+            function changeTheme(theme) {
+                switch(theme) {
+                    case 'dark':
+                        document.body.style.backgroundColor = '#1a1a1a';
+                        document.body.style.color = '#ffffff';
+                        break;
+                    case 'light':
+                        document.body.style.backgroundColor = '#ffffff';
+                        document.body.style.color = '#333333';
+                        break;
+                    default:
+                        document.body.style.backgroundColor = '#f5f5f5';
+                        document.body.style.color = '#333333';
+                        break;
+                }
+                showAlert(`Theme changed to ${theme} mode`, 'info');
+            }
+
+            // Export Data
+            function exportData() {
+                const data = {
+                    products: products,
+                    complaints: complaints,
+                    materials: materials,
+                    designIdeas: designIdeas,
+                    dashboardData: dashboardData
+                };
+                
+                const dataStr = JSON.stringify(data, null, 2);
+                const dataBlob = new Blob([dataStr], { type: 'application/json' });
+                const url = URL.createObjectURL(dataBlob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'kallakriti-data-backup.json';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                showAlert('Data exported successfully!', 'success');
+            }
+
+            // Reset Data
+            function resetData() {
+                if (confirm('Are you sure you want to reset all data? This cannot be undone!')) {
+                    products = [];
+                    complaints = [];
+                    materials = [];
+                    designIdeas = [];
+                    dashboardData = {
+                        totalProducts: 0,
+                        totalComplaints: 0,
+                        materialStock: 0,
+                        customOrders: 0,
+                        lowStockCount: 0,
+                        yarnCount: 0,
+                        accessoryCount: 0,
+                        totalMaterials: 0
+                    };
+                    
+                    loadProducts();
+                    loadComplaints();
+                    loadMaterials();
+                    loadDesignIdeas();
+                    updateStats();
+                    
+                    showAlert('All data has been reset!', 'success');
+                }
+            }
+
+            // Business Tools Functions
+            function openPricingCalculator() {
+                alert('Pricing Calculator:\n\nThis feature calculates product pricing based on:\n• Material cost\n• Time required\n• Complexity\n• Overhead costs\n\nComing soon!');
+            }
+
+            function viewOrderTimeline() {
+                alert('Order Timeline:\n\nTrack all custom orders with deadlines and delivery dates.\n\nComing soon!');
+            }
+
+            function viewSalesAnalytics() {
+                alert('Sales Analytics:\n\nView product popularity, sales trends, and revenue reports.\n\nComing soon!');
+            }
+
+            function backupData() {
+                exportData();
+            }
+
+            function checkReorderList() {
+                const lowStockMaterials = materials.filter(m => m.stock <= 20);
+                if (lowStockMaterials.length === 0) {
+                    alert('No items need reordering!');
+                    return;
+                }
+                
+                let message = 'Items to reorder:\n\n';
+                lowStockMaterials.forEach(m => {
+                    message += `• ${m.name}: ${m.stock} ${m.unit} (Min: 20)\n`;
+                });
+                
+                alert(message);
+            }
+
+            function exportMaterialsList() {
+                let csvContent = "data:text/csv;charset=utf-8,";
+                csvContent += "Name,Type,Color,Stock,Unit,Notes\n";
+                
+                materials.forEach(m => {
+                    csvContent += `"${m.name}","${m.type}","${m.color}",${m.stock},"${m.unit}","${m.notes}"\n`;
+                });
+                
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", "materials_inventory.csv");
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                showAlert('Materials list exported as CSV!', 'success');
+            }
+
+            // Logout
+            function logout() {
+                if (confirm('Are you sure you want to logout?')) {
+                    showAlert('Logging out...', 'info');
+                    // In a real app, you would redirect to login page
+                    // window.location.href = 'login.html';
+                    setTimeout(() => {
+                        alert('You have been logged out. In a real app, you would be redirected to login page.');
+                    }, 1000);
+                }
+            }
+
+            // Show Alert
+            function showAlert(message, type = 'info') {
+                const alertContainer = document.getElementById('alertContainer');
+                const alertDiv = document.createElement('div');
+                
+                alertDiv.className = `alert alert-${type === 'error' ? 'error' : 'success'}`;
+                alertDiv.innerHTML = `
+                    <i class="fas fa-${type === 'error' ? 'exclamation-triangle' : 'check-circle'}"></i>
+                    <span>${message}</span>
+                `;
+                
+                alertContainer.appendChild(alertDiv);
+                
+                // Remove alert after 3 seconds
+                setTimeout(() => {
+                    alertDiv.remove();
+                }, 3000);
+            }
+
+            // Additional Utility Functions
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+
+            function formatDate(date) {
+                return new Date(date).toLocaleDateString('en-IN', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric'
+                });
+            }
+
+            function formatCurrency(amount) {
+                return new Intl.NumberFormat('en-IN', {
+                    style: 'currency',
+                    currency: 'INR'
+                }).format(amount);
+            }
+        </script>
+    </body>
+</html>
