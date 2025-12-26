@@ -48,12 +48,19 @@
       background: #1a2a44;
     }
 
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      padding: 25px;
-    }
+   .products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 25px;
+}
+
+/* smaller layout for single category */
+.products.compact {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+}
+  
 
     .card {
       background: white;
@@ -147,7 +154,19 @@
 
   function show(cat) {
     const box = document.getElementById("products");
-    box.innerHTML = "";
+   function show(cat) {
+  const box = document.getElementById("products");
+
+  // reset content
+  box.innerHTML = "";
+
+  // toggle compact view
+  if (cat === "all") {
+    box.classList.remove("compact");
+  } else {
+    box.classList.add("compact");
+  }
+
 
     items
       .filter(i => cat === "all" || i.cat === cat)
