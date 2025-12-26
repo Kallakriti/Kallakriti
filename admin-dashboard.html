@@ -197,8 +197,7 @@ body {
 }
 
 .form-group input,
-.form-group select,
-.form-group textarea {
+.form-group select {
     width: 100%;
     padding: 12px;
     border: 2px solid #ddd;
@@ -209,8 +208,7 @@ body {
 }
 
 .form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
+.form-group select:focus {
     outline: none;
     border-color: #9c7c38;
 }
@@ -263,24 +261,6 @@ body {
 
 .btn-danger:hover {
     background: #c0392b;
-}
-
-.btn-success {
-    background: #2ecc71;
-    color: white;
-}
-
-.btn-success:hover {
-    background: #27ae60;
-}
-
-.btn-warning {
-    background: #f39c12;
-    color: white;
-}
-
-.btn-warning:hover {
-    background: #d68910;
 }
 
 /* Products Table */
@@ -401,21 +381,12 @@ body {
     font-size: 14px;
 }
 
-/* ============= ENHANCED MATERIALS SECTION ============= */
-.materials-section {
-    background: #f9f9f9;
-    padding: 25px;
-    border-radius: 10px;
-    margin-bottom: 25px;
-}
-
 /* Materials Search & Filter */
 .materials-toolbar {
     display: flex;
     gap: 15px;
     margin-bottom: 25px;
     flex-wrap: wrap;
-    align-items: center;
 }
 
 .search-box {
@@ -467,7 +438,7 @@ body {
     border-color: #9c7c38;
 }
 
-/* Materials Grid View */
+/* Materials Grid */
 .materials-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -480,13 +451,12 @@ body {
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s;
     border-left: 4px solid;
 }
 
 .material-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
 
 .material-card.high-stock { border-left-color: #2ecc71; }
@@ -504,7 +474,6 @@ body {
     font-size: 18px;
     font-weight: 600;
     color: #1f2a44;
-    margin-bottom: 5px;
 }
 
 .material-type {
@@ -514,6 +483,7 @@ body {
     padding: 4px 10px;
     border-radius: 20px;
     display: inline-block;
+    margin-top: 5px;
 }
 
 .stock-indicator {
@@ -544,7 +514,6 @@ body {
 
 .detail-label {
     color: #666;
-    font-weight: 500;
 }
 
 .detail-value {
@@ -553,10 +522,13 @@ body {
 }
 
 .color-preview {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     border: 2px solid #eee;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
 }
 
 .material-actions {
@@ -577,14 +549,9 @@ body {
     align-items: center;
     justify-content: center;
     gap: 5px;
-    transition: opacity 0.3s;
 }
 
-.material-btn:hover {
-    opacity: 0.9;
-}
-
-/* Quick Actions Row */
+/* Quick Actions */
 .quick-actions-row {
     display: flex;
     gap: 15px;
@@ -687,17 +654,11 @@ body {
     color: #666;
 }
 
-.color-picker {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-top: 10px;
-}
-
 .color-options {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
+    margin-top: 10px;
 }
 
 .color-option {
@@ -718,7 +679,7 @@ body {
     transform: scale(1.1);
 }
 
-/* CROCHET SPECIFIC SECTIONS */
+/* Design Ideas */
 .design-ideas-section {
     background: #f9f9f9;
     padding: 25px;
@@ -726,7 +687,7 @@ body {
     margin-bottom: 25px;
 }
 
-.materials-list, .ideas-list {
+.ideas-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 15px;
@@ -756,7 +717,7 @@ body {
     margin-bottom: 10px;
 }
 
-/* Password Change Section */
+/* Password Change */
 .password-form {
     max-width: 500px;
     margin: 0 auto;
@@ -819,10 +780,6 @@ body {
     .sidebar-menu li {
         white-space: nowrap;
     }
-    
-    .materials-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    }
 }
 
 @media (max-width: 768px) {
@@ -842,23 +799,14 @@ body {
     
     .materials-toolbar {
         flex-direction: column;
-        align-items: stretch;
     }
     
     .search-box {
         min-width: 100%;
     }
     
-    .filter-buttons {
-        justify-content: center;
-    }
-    
     .materials-grid {
         grid-template-columns: 1fr;
-    }
-    
-    .quick-actions-row {
-        flex-direction: column;
     }
 }
 
@@ -882,12 +830,6 @@ body {
     background: #f8d7da;
     color: #721c24;
     border: 1px solid #f5c6cb;
-}
-
-.alert-info {
-    background: #d1ecf1;
-    color: #0c5460;
-    border: 1px solid #bee5eb;
 }
 
 /* Quick Actions */
@@ -961,6 +903,7 @@ body {
     text-align: center;
     padding: 50px 20px;
     color: #666;
+    display: none;
 }
 
 .empty-state i {
@@ -1023,28 +966,192 @@ body {
         <div class="main-content">
             <!-- Dashboard Section -->
             <div id="dashboard" class="section active">
-                <!-- ... (dashboard content same as before) ... -->
+                <h2><i class="fas fa-tachometer-alt"></i> Dashboard Overview</h2>
+                
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card products">
+                        <i class="fas fa-box"></i>
+                        <div class="stat-number" id="totalProducts">0</div>
+                        <div class="stat-label">Active Products</div>
+                    </div>
+                    
+                    <div class="stat-card complaints">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div class="stat-number" id="totalComplaints">0</div>
+                        <div class="stat-label">Pending Complaints</div>
+                    </div>
+                    
+                    <div class="stat-card materials">
+                        <i class="fas fa-spool"></i>
+                        <div class="stat-number" id="materialStock">0</div>
+                        <div class="stat-label">Yarn Colors</div>
+                    </div>
+                    
+                    <div class="stat-card custom">
+                        <i class="fas fa-star"></i>
+                        <div class="stat-number" id="customOrders">0</div>
+                        <div class="stat-label">Custom Orders</div>
+                    </div>
+                </div>
+
+                <!-- Business Tools -->
+                <h3><i class="fas fa-tools"></i> Business Tools</h3>
+                <div class="business-tools">
+                    <div class="tool-card">
+                        <i class="fas fa-calculator"></i>
+                        <h3>Pricing Calculator</h3>
+                        <p>Calculate product pricing based on material cost and time</p>
+                        <button class="btn btn-primary" onclick="openPricingCalculator()">
+                            <i class="fas fa-calculator"></i> Open Calculator
+                        </button>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>Order Timeline</h3>
+                        <p>Track custom order deadlines and delivery dates</p>
+                        <button class="btn btn-primary" onclick="viewOrderTimeline()">
+                            <i class="fas fa-calendar"></i> View Timeline
+                        </button>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Sales Analytics</h3>
+                        <p>View product popularity and sales trends</p>
+                        <button class="btn btn-primary" onclick="viewSalesAnalytics()">
+                            <i class="fas fa-chart-bar"></i> View Analytics
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                <div class="quick-actions">
+                    <div class="action-card" onclick="showSection('addProduct')">
+                        <i class="fas fa-plus"></i>
+                        <div>Add Product</div>
+                    </div>
+                    <div class="action-card" onclick="showSection('materials')">
+                        <i class="fas fa-spool"></i>
+                        <div>Check Stock</div>
+                    </div>
+                    <div class="action-card" onclick="showSection('complaints')">
+                        <i class="fas fa-comments"></i>
+                        <div>View Complaints</div>
+                    </div>
+                    <div class="action-card" onclick="backupData()">
+                        <i class="fas fa-save"></i>
+                        <div>Backup Data</div>
+                    </div>
+                </div>
             </div>
 
             <!-- Product Management Section -->
             <div id="products" class="section">
-                <!-- ... (product management content same as before) ... -->
+                <h2><i class="fas fa-box"></i> Product Management</h2>
+                <p>Edit or delete existing products. Click "Edit" to modify product details.</p>
+                
+                <div id="productsTableContainer">
+                    <table class="products-table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                            <!-- Products will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <!-- Add Product Section -->
             <div id="addProduct" class="section">
-                <!-- ... (add product content same as before) ... -->
+                <h2><i class="fas fa-plus-circle"></i> Add New Product</h2>
+                
+                <form id="addProductForm" class="product-form" onsubmit="addNewProduct(event)">
+                    <div class="form-group">
+                        <label for="productName">Product Name *</label>
+                        <input type="text" id="productName" required placeholder="e.g., Crochet Rose Bouquet">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productPrice">Price (₹) *</label>
+                        <input type="number" id="productPrice" required placeholder="e.g., 299" min="1">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productCategory">Category *</label>
+                        <select id="productCategory" required>
+                            <option value="">Select Category</option>
+                            <option value="flowers">Crochet Flowers</option>
+                            <option value="toys">Crochet Toys</option>
+                            <option value="accessories">Accessories</option>
+                            <option value="baby">Baby Items</option>
+                            <option value="custom">Custom Orders</option>
+                            <option value="money">Money Bouquets</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productImageUrl">Image URL</label>
+                        <input type="url" id="productImageUrl" placeholder="https://example.com/image.jpg">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label>Image Preview</label>
+                        <div class="image-preview" id="imagePreview">
+                            <span>Preview will appear here</span>
+                            <img id="previewImage" src="" alt="Preview">
+                        </div>
+                        <small>You can use free image hosting services like ImgBB or Unsplash for images</small>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Add Product
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="clearForm()">
+                            <i class="fas fa-redo"></i> Clear Form
+                        </button>
+                    </div>
+                </form>
             </div>
 
             <!-- Complaints Section -->
             <div id="complaints" class="section">
-                <!-- ... (complaints content same as before) ... -->
+                <h2><i class="fas fa-exclamation-triangle"></i> Customer Complaints</h2>
+                
+                <div class="complaints-table-container">
+                    <table class="complaints-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Type</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="complaintsTableBody">
+                            <!-- Complaints will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <!-- ============= ENHANCED MATERIALS STOCK SECTION ============= -->
+            <!-- Materials Stock Section -->
             <div id="materials" class="section">
                 <h2><i class="fas fa-spool"></i> Materials Stock Management</h2>
-                <p>Track your yarn, threads, and crochet materials inventory.</p>
+                <p>Track your yarn and material inventory for crochet projects.</p>
                 
                 <!-- Materials Summary -->
                 <div class="materials-summary">
@@ -1106,9 +1213,6 @@ body {
                     <button class="quick-action-btn" onclick="exportMaterialsList()">
                         <i class="fas fa-download"></i> Export List
                     </button>
-                    <button class="quick-action-btn" onclick="printMaterialsReport()">
-                        <i class="fas fa-print"></i> Print Report
-                    </button>
                 </div>
 
                 <!-- Materials Grid -->
@@ -1116,8 +1220,8 @@ body {
                     <!-- Materials will be loaded here -->
                 </div>
 
-                <!-- Empty State (shown when no materials) -->
-                <div id="emptyMaterials" class="empty-state" style="display: none;">
+                <!-- Empty State -->
+                <div id="emptyMaterials" class="empty-state">
                     <i class="fas fa-spool"></i>
                     <h3>No materials found</h3>
                     <p>Add your first material to start tracking inventory</p>
@@ -1129,751 +1233,24 @@ body {
 
             <!-- Design Ideas Section -->
             <div id="designs" class="section">
-                <!-- ... (design ideas content same as before) ... -->
+                <h2><i class="fas fa-palette"></i> Design Ideas & Inspiration</h2>
+                <p>Save and organize your crochet design ideas and patterns.</p>
+                
+                <div class="design-ideas-section">
+                    <h3><i class="fas fa-lightbulb"></i> Design Collection</h3>
+                    <div class="ideas-list" id="ideasList">
+                        <!-- Design ideas will be loaded here -->
+                    </div>
+                    
+                    <div class="form-buttons" style="margin-top: 20px;">
+                        <button class="btn btn-success" onclick="addNewDesign()">
+                            <i class="fas fa-plus"></i> Add New Design Idea
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <!-- Change Password Section -->
             <div id="password" class="section">
-                <!-- ... (password change content same as before) ... -->
-            </div>
-
-            <!-- Settings Section -->
-            <div id="settings" class="section">
-                <!-- ... (settings content same as before) ... -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Add Material Modal -->
-    <div class="material-modal" id="addMaterialModal">
-        <div class="material-modal-content">
-            <div class="material-modal-header">
-                <h3><i class="fas fa-plus"></i> Add New Material</h3>
-                <button class="close-modal" onclick="closeAddMaterialModal()">×</button>
-            </div>
-            
-            <form id="addMaterialForm" onsubmit="saveNewMaterial(event)">
-                <div class="form-group">
-                    <label for="materialName">Material Name *</label>
-                    <input type="text" id="materialName" required placeholder="e.g., Cotton Yarn - Pink">
-                </div>
-                
-                <div class="form-group">
-                    <label for="materialType">Material Type *</label>
-                    <select id="materialType" required>
-                        <option value="">Select Type</option>
-                        <option value="yarn">Yarn</option>
-                        <option value="thread">Thread</option>
-                        <option value="hook">Crochet Hook</option>
-                        <option value="needle">Knitting Needle</option>
-                        <option value="accessory">Accessory</option>
-                        <option value="stuffing">Stuffing</option>
-                        <option value="eyes">Safety Eyes</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="materialColor">Color</label>
-                    <div class="color-picker">
-                        <input type="text" id="materialColor" placeholder="#FFC0CB or Pink">
-                        <div class="color-options">
-                            <div class="color-option" style="background: #FFC0CB;" onclick="selectColor('#FFC0CB', 'Pink')"></div>
-                            <div class="color-option" style="background: #FFFFFF;" onclick="selectColor('#FFFFFF', 'White')"></div>
-                            <div class="color-option" style="background: #000000;" onclick="selectColor('#000000', 'Black')"></div>
-                            <div class="color-option" style="background: #FF0000;" onclick="selectColor('#FF0000', 'Red')"></div>
-                            <div class="color-option" style="background: #0000FF;" onclick="selectColor('#0000FF', 'Blue')"></div>
-                            <div class="color-option" style="background: #008000;" onclick="selectColor('#008000', 'Green')"></div>
-                            <div class="color-option" style="background: #FFFF00;" onclick="selectColor('#FFFF00', 'Yellow')"></div>
-                            <div class="color-option" style="background: #800080;" onclick="selectColor('#800080', 'Purple')"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="materialBrand">Brand (Optional)</label>
-                    <input type="text" id="materialBrand" placeholder="e.g., Himalaya, Red Heart">
-                </div>
-                
-                <div class="form-group">
-                    <label for="materialWeight">Weight/Size</label>
-                    <input type="text" id="materialWeight" placeholder="e.g., 50g, 4mm, Size 8">
-                </div>
-                
-                <div class="form-group">
-                    <label for="materialQuantity">Current Quantity *</label>
-                    <input type="number" id="materialQuantity" required min="0" placeholder="e.g., 5">
-                </div>
-                
-                <div class="form-group">
-                    <label for="materialUnit">Unit</label>
-                    <select id="materialUnit">
-                        <option value="skeins">Skeins</option>
-                        <option value="balls">Balls</option>
-                        <option value="pieces">Pieces</option>
-                        <option value="meters">Meters</option>
-                        <option value="grams">Grams</option>
-                        <option value="packs">Packs</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="materialLocation">Storage Location</label>
-                    <input type="text" id="materialLocation" placeholder="e.g., Shelf A, Box 3">
-                </div>
-                
-                <div class="form-group">
-                    <label for="materialReorder">Reorder Level</label>
-                    <input type="number" id="materialReorder" min="0" placeholder="Alert when below this number">
-                </div>
-                
-                <div class="form-group">
-                    <label for="materialNotes">Notes (Optional)</label>
-                    <textarea id="materialNotes" rows="3" placeholder="Any additional notes..."></textarea>
-                </div>
-                
-                <div class="form-buttons">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i> Save Material
-                    </button>
-                    <button type="button" class="btn btn-secondary" onclick="closeAddMaterialModal()">
-                        <i class="fas fa-times"></i> Cancel
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <script>
-    // Check if admin is logged in
-    if (localStorage.getItem('adminLoggedIn') !== 'true') {
-        window.location.href = "admin-login.html";
-    }
-    
-    // Check session timeout (8 hours)
-    const loginTime = localStorage.getItem('loginTime');
-    const currentTime = Date.now();
-    const eightHours = 8 * 60 * 60 * 1000;
-    
-    if (currentTime - loginTime > eightHours) {
-        logout();
-    }
-
-    // ============= ENHANCED MATERIALS MANAGEMENT =============
-    let materials = JSON.parse(localStorage.getItem('kallakritiMaterials') || '[]');
-    let currentFilter = 'all';
-    let currentSearch = '';
-
-    // Initialize default materials if empty
-    if (materials.length === 0) {
-        materials = [
-            {
-                id: 1,
-                name: "Cotton Yarn - White",
-                type: "yarn",
-                color: "#FFFFFF",
-                brand: "Himalaya",
-                weight: "50g",
-                quantity: 15,
-                unit: "skeins",
-                location: "Shelf A",
-                reorder: 5,
-                notes: "Good for baby items",
-                lastUpdated: new Date().toISOString()
-            },
-            {
-                id: 2,
-                name: "Acrylic Yarn - Red",
-                type: "yarn",
-                color: "#FF0000",
-                brand: "Red Heart",
-                weight: "100g",
-                quantity: 8,
-                unit: "skeins",
-                location: "Shelf B",
-                reorder: 3,
-                notes: "Bright color for flowers",
-                lastUpdated: new Date().toISOString()
-            },
-            {
-                id: 3,
-                name: "Wool Blend - Beige",
-                type: "yarn",
-                color: "#F5F5DC",
-                brand: "Lion Brand",
-                weight: "100g",
-                quantity: 3,
-                unit: "skeins",
-                location: "Shelf A",
-                reorder: 5,
-                notes: "Running low",
-                lastUpdated: new Date().toISOString()
-            },
-            {
-                id: 4,
-                name: "Metallic Thread - Gold",
-                type: "thread",
-                color: "#FFD700",
-                brand: "DMC",
-                weight: "20m",
-                quantity: 12,
-                unit: "spools",
-                location: "Box 1",
-                reorder: 5,
-                notes: "For special designs",
-                lastUpdated: new Date().toISOString()
-            },
-            {
-                id: 5,
-                name: "Safety Eyes - Black",
-                type: "eyes",
-                color: "#000000",
-                brand: "",
-                weight: "10mm",
-                quantity: 2,
-                unit: "pairs",
-                location: "Box 2",
-                reorder: 10,
-                notes: "Need to reorder soon",
-                lastUpdated: new Date().toISOString()
-            },
-            {
-                id: 6,
-                name: "Polyfill Stuffing",
-                type: "stuffing",
-                color: "#FFFFFF",
-                brand: "Fairfield",
-                weight: "500g",
-                quantity: 1,
-                unit: "bags",
-                location: "Shelf C",
-                reorder: 2,
-                notes: "For toys and amigurumi",
-                lastUpdated: new Date().toISOString()
-            },
-            {
-                id: 7,
-                name: "Crochet Hook Set",
-                type: "hook",
-                color: "#808080",
-                brand: "Clover",
-                weight: "2mm-6mm",
-                quantity: 1,
-                unit: "sets",
-                location: "Tool Box",
-                reorder: 0,
-                notes: "Complete set",
-                lastUpdated: new Date().toISOString()
-            },
-            {
-                id: 8,
-                name: "Yarn Needles",
-                type: "accessory",
-                color: "#808080",
-                brand: "",
-                weight: "",
-                quantity: 5,
-                unit: "pieces",
-                location: "Tool Box",
-                reorder: 3,
-                notes: "For weaving ends",
-                lastUpdated: new Date().toISOString()
-            }
-        ];
-        localStorage.setItem('kallakritiMaterials', JSON.stringify(materials));
-    }
-
-    // Load materials section
-    function loadMaterialsSection() {
-        updateMaterialsSummary();
-        filterMaterials(currentFilter);
-    }
-
-    // Update materials summary statistics
-    function updateMaterialsSummary() {
-        const totalMaterials = materials.length;
-        const lowStock = materials.filter(m => m.quantity <= (m.reorder || 0)).length;
-        const yarnCount = materials.filter(m => m.type === 'yarn').length;
-        const accessoryCount = materials.filter(m => ['hook', 'needle', 'eyes', 'accessory'].includes(m.type)).length;
-        
-        document.getElementById('totalMaterials').textContent = totalMaterials;
-        document.getElementById('lowStockCount').textContent = lowStock;
-        document.getElementById('yarnCount').textContent = yarnCount;
-        document.getElementById('accessoryCount').textContent = accessoryCount;
-    }
-
-    // Search materials function
-    function searchMaterials() {
-        currentSearch = document.getElementById('materialSearch').value.toLowerCase();
-        filterMaterials(currentFilter);
-    }
-
-    // Filter materials function
-    function filterMaterials(filterType) {
-        currentFilter = filterType;
-        
-        // Update active filter button
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        event?.target?.classList?.add('active');
-        
-        // Filter materials
-        let filteredMaterials = materials;
-        
-        // Apply search filter
-        if (currentSearch) {
-            filteredMaterials = filteredMaterials.filter(material => 
-                material.name.toLowerCase().includes(currentSearch) ||
-                material.type.toLowerCase().includes(currentSearch) ||
-                material.brand?.toLowerCase().includes(currentSearch) ||
-                material.color?.toLowerCase().includes(currentSearch)
-            );
-        }
-        
-        // Apply type filter
-        if (filterType !== 'all') {
-            if (filterType === 'low') {
-                filteredMaterials = filteredMaterials.filter(material => 
-                    material.quantity <= (material.reorder || 0)
-                );
-            } else {
-                filteredMaterials = filteredMaterials.filter(material => 
-                    material.type === filterType
-                );
-            }
-        }
-        
-        // Display filtered materials
-        displayMaterials(filteredMaterials);
-    }
-
-    // Display materials in grid
-    function displayMaterials(materialsList) {
-        const materialsGrid = document.getElementById('materialsGrid');
-        const emptyState = document.getElementById('emptyMaterials');
-        
-        if (materialsList.length === 0) {
-            materialsGrid.innerHTML = '';
-            emptyState.style.display = 'block';
-            return;
-        }
-        
-        emptyState.style.display = 'none';
-        materialsGrid.innerHTML = '';
-        
-        materialsList.forEach(material => {
-            const stockLevel = getStockLevel(material);
-            const stockClass = stockLevel === 'low' ? 'low-stock' : stockLevel === 'medium' ? 'medium-stock' : 'high-stock';
-            const stockLabel = stockLevel === 'low' ? 'Low Stock' : stockLevel === 'medium' ? 'Medium Stock' : 'High Stock';
-            const stockColor = stockLevel === 'low' ? '#e74c3c' : stockLevel === 'medium' ? '#f39c12' : '#2ecc71';
-            
-            const materialCard = document.createElement('div');
-            materialCard.className = `material-card ${stockClass}`;
-            materialCard.innerHTML = `
-                <div class="material-header">
-                    <div>
-                        <div class="material-name">${material.name}</div>
-                        <span class="material-type">${getTypeName(material.type)}</span>
-                    </div>
-                    <span class="stock-indicator stock-${stockLevel}" style="background: ${stockColor}">
-                        <i class="fas fa-${stockLevel === 'low' ? 'exclamation-triangle' : 'check-circle'}"></i>
-                        ${stockLabel}
-                    </span>
-                </div>
-                
-                <div class="material-details">
-                    <div class="detail-row">
-                        <span class="detail-label">Color:</span>
-                        <span class="detail-value">
-                            <div class="color-preview" style="background: ${material.color}; display: inline-block; vertical-align: middle; margin-right: 5px;"></div>
-                            ${getColorName(material.color)}
-                        </span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Brand:</span>
-                        <span class="detail-value">${material.brand || 'N/A'}</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Quantity:</span>
-                        <span class="detail-value">${material.quantity} ${material.unit}</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Location:</span>
-                        <span class="detail-value">${material.location || 'Not specified'}</span>
-                    </div>
-                    ${material.reorder ? `
-                    <div class="detail-row">
-                        <span class="detail-label">Reorder at:</span>
-                        <span class="detail-value">${material.reorder} ${material.unit}</span>
-                    </div>
-                    ` : ''}
-                </div>
-                
-                <div class="material-actions">
-                    <button class="material-btn" style="background: #3498db; color: white;" onclick="editMaterial(${material.id})">
-                        <i class="fas fa-edit"></i> Edit
-                    </button>
-                    <button class="material-btn" style="background: #2ecc71; color: white;" onclick="useMaterial(${material.id})">
-                        <i class="fas fa-minus"></i> Use
-                    </button>
-                    <button class="material-btn" style="background: #9b59b6; color: white;" onclick="restockMaterial(${material.id})">
-                        <i class="fas fa-plus"></i> Restock
-                    </button>
-                    <button class="material-btn" style="background: #e74c3c; color: white;" onclick="deleteMaterial(${material.id})">
-                        <i class="fas fa-trash"></i> Delete
-                    </button>
-                </div>
-            `;
-            
-            materialsGrid.appendChild(materialCard);
-        });
-    }
-
-    // Get stock level
-    function getStockLevel(material) {
-        if (material.quantity <= (material.reorder || 0)) {
-            return 'low';
-        } else if (material.quantity <= (material.reorder || 0) * 2) {
-            return 'medium';
-        } else {
-            return 'high';
-        }
-    }
-
-    // Get type name
-    function getTypeName(type) {
-        const typeNames = {
-            'yarn': 'Yarn',
-            'thread': 'Thread',
-            'hook': 'Crochet Hook',
-            'needle': 'Knitting Needle',
-            'accessory': 'Accessory',
-            'stuffing': 'Stuffing',
-            'eyes': 'Safety Eyes',
-            'other': 'Other'
-        };
-        return typeNames[type] || type;
-    }
-
-    // Get color name from hex
-    function getColorName(hex) {
-        const colorMap = {
-            '#FFC0CB': 'Pink',
-            '#FFFFFF': 'White',
-            '#000000': 'Black',
-            '#FF0000': 'Red',
-            '#0000FF': 'Blue',
-            '#008000': 'Green',
-            '#FFFF00': 'Yellow',
-            '#800080': 'Purple',
-            '#F5F5DC': 'Beige',
-            '#FFD700': 'Gold',
-            '#808080': 'Gray'
-        };
-        return colorMap[hex] || hex;
-    }
-
-    // Open add material modal
-    function openAddMaterialModal() {
-        document.getElementById('addMaterialModal').style.display = 'flex';
-        document.getElementById('materialName').focus();
-    }
-
-    // Close add material modal
-    function closeAddMaterialModal() {
-        document.getElementById('addMaterialModal').style.display = 'none';
-        document.getElementById('addMaterialForm').reset();
-    }
-
-    // Select color in modal
-    function selectColor(hex, name) {
-        document.getElementById('materialColor').value = name;
-        
-        // Update selected color
-        document.querySelectorAll('.color-option').forEach(option => {
-            option.classList.remove('selected');
-        });
-        event.target.classList.add('selected');
-    }
-
-    // Save new material
-    function saveNewMaterial(event) {
-        event.preventDefault();
-        
-        const newMaterial = {
-            id: Date.now(),
-            name: document.getElementById('materialName').value,
-            type: document.getElementById('materialType').value,
-            color: document.getElementById('materialColor').value,
-            brand: document.getElementById('materialBrand').value,
-            weight: document.getElementById('materialWeight').value,
-            quantity: parseInt(document.getElementById('materialQuantity').value) || 0,
-            unit: document.getElementById('materialUnit').value,
-            location: document.getElementById('materialLocation').value,
-            reorder: parseInt(document.getElementById('materialReorder').value) || 0,
-            notes: document.getElementById('materialNotes').value,
-            lastUpdated: new Date().toISOString()
-        };
-        
-        materials.push(newMaterial);
-        localStorage.setItem('kallakritiMaterials', JSON.stringify(materials));
-        
-        alert('✅ Material added successfully!');
-        closeAddMaterialModal();
-        loadMaterialsSection();
-    }
-
-    // Edit material
-    function editMaterial(id) {
-        const materialIndex = materials.findIndex(m => m.id === id);
-        if (materialIndex === -1) return;
-        
-        const material = materials[materialIndex];
-        
-        const newName = prompt('Edit material name:', material.name);
-        if (newName === null) return;
-        
-        const newQuantity = prompt('Edit quantity:', material.quantity);
-        if (newQuantity === null) return;
-        
-        const newLocation = prompt('Edit storage location:', material.location || '');
-        if (newLocation === null) return;
-        
-        materials[materialIndex] = {
-            ...material,
-            name: newName,
-            quantity: parseInt(newQuantity) || 0,
-            location: newLocation,
-            lastUpdated: new Date().toISOString()
-        };
-        
-        localStorage.setItem('kallakritiMaterials', JSON.stringify(materials));
-        loadMaterialsSection();
-        alert('✅ Material updated successfully!');
-    }
-
-    // Use material (decrease quantity)
-    function useMaterial(id) {
-        const materialIndex = materials.findIndex(m => m.id === id);
-        if (materialIndex === -1) return;
-        
-        const material = materials[materialIndex];
-        
-        const amount = prompt(`How much ${material.name} did you use? (Current: ${material.quantity} ${material.unit})`, '1');
-        if (amount === null) return;
-        
-        const useAmount = parseInt(amount) || 0;
-        if (useAmount > material.quantity) {
-            alert('❌ Cannot use more than available stock!');
-            return;
-        }
-        
-        materials[materialIndex].quantity -= useAmount;
-        materials[materialIndex].lastUpdated = new Date().toISOString();
-        
-        localStorage.setItem('kallakritiMaterials', JSON.stringify(materials));
-        loadMaterialsSection();
-        
-        // Check if stock is low after use
-        if (materials[materialIndex].quantity <= (materials[materialIndex].reorder || 0)) {
-            alert(`⚠️ Low stock alert for ${material.name}! Consider reordering soon.`);
-        }
-        
-        alert(`✅ Used ${useAmount} ${material.unit} of ${material.name}`);
-    }
-
-    // Restock material (increase quantity)
-    function restockMaterial(id) {
-        const materialIndex = materials.findIndex(m => m.id === id);
-        if (materialIndex === -1) return;
-        
-        const material = materials[materialIndex];
-        
-        const amount = prompt(`How much ${material.name} did you restock? (Current: ${material.quantity} ${material.unit})`, '1');
-        if (amount === null) return;
-        
-        const restockAmount = parseInt(amount) || 0;
-        materials[materialIndex].quantity += restockAmount;
-        materials[materialIndex].lastUpdated = new Date().toISOString();
-        
-        localStorage.setItem('kallakritiMaterials', JSON.stringify(materials));
-        loadMaterialsSection();
-        alert(`✅ Restocked ${restockAmount} ${material.unit} of ${material.name}`);
-    }
-
-    // Delete material
-    function deleteMaterial(id) {
-        if (!confirm('Are you sure you want to delete this material?')) return;
-        
-        materials = materials.filter(m => m.id !== id);
-        localStorage.setItem('kallakritiMaterials', JSON.stringify(materials));
-        loadMaterialsSection();
-        alert('✅ Material deleted successfully!');
-    }
-
-    // Check reorder list
-    function checkReorderList() {
-        const lowStockMaterials = materials.filter(m => m.quantity <= (m.reorder || 0));
-        
-        if (lowStockMaterials.length === 0) {
-            alert('✅ All materials are sufficiently stocked!');
-            return;
-        }
-        
-        let reorderList = '📋 REORDER LIST - Low Stock Items:\n\n';
-        
-        lowStockMaterials.forEach((material, index) => {
-            reorderList += `${index + 1}. ${material.name}\n`;
-            reorderList += `   Current: ${material.quantity} ${material.unit}\n`;
-            reorderList += `   Reorder at: ${material.reorder || 0} ${material.unit}\n`;
-            reorderList += `   Type: ${getTypeName(material.type)}\n`;
-            reorderList += `   Brand: ${material.brand || 'N/A'}\n`;
-            reorderList += `   Location: ${material.location || 'Not specified'}\n\n`;
-        });
-        
-        alert(reorderList);
-    }
-
-    // Export materials list
-    function exportMaterialsList() {
-        const exportData = {
-            materials: materials,
-            exportDate: new Date().toISOString(),
-            summary: {
-                total: materials.length,
-                lowStock: materials.filter(m => m.quantity <= (m.reorder || 0)).length,
-                yarnCount: materials.filter(m => m.type === 'yarn').length,
-                threadCount: materials.filter(m => m.type === 'thread').length
-            }
-        };
-        
-        const dataStr = JSON.stringify(exportData, null, 2);
-        const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
-        const fileName = `kallakriti-materials-${Date.now()}.json`;
-        
-        const link = document.createElement('a');
-        link.setAttribute('href', dataUri);
-        link.setAttribute('download', fileName);
-        link.click();
-        
-        alert('✅ Materials list exported successfully!');
-    }
-
-    // Print materials report
-    function printMaterialsReport() {
-        const printWindow = window.open('', '_blank');
-        printWindow.document.write(`
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <title>Kallakriti Materials Report</title>
-                <style>
-                    body { font-family: Arial, sans-serif; margin: 40px; }
-                    h1 { color: #1f2a44; border-bottom: 2px solid #9c7c38; padding-bottom: 10px; }
-                    .summary { background: #f5f5f5; padding: 20px; border-radius: 10px; margin: 20px 0; }
-                    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-                    th { background: #1f2a44; color: white; padding: 12px; text-align: left; }
-                    td { padding: 10px; border-bottom: 1px solid #ddd; }
-                    .low { background: #ffeaea; }
-                    .print-date { color: #666; margin-bottom: 30px; }
-                </style>
-            </head>
-            <body>
-                <h1>🧶 Kallakriti Materials Inventory Report</h1>
-                <div class="print-date">Generated on: ${new Date().toLocaleString()}</div>
-                
-                <div class="summary">
-                    <h3>📊 Summary</h3>
-                    <p>Total Materials: ${materials.length}</p>
-                    <p>Low Stock Items: ${materials.filter(m => m.quantity <= (m.reorder || 0)).length}</p>
-                    <p>Yarn Types: ${materials.filter(m => m.type === 'yarn').length}</p>
-                    <p>Accessories: ${materials.filter(m => ['hook', 'needle', 'eyes', 'accessory'].includes(m.type)).length}</p>
-                </div>
-                
-                <h3>📋 Materials List</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>Color</th>
-                            <th>Quantity</th>
-                            <th>Location</th>
-                            <th>Stock Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${materials.map(material => `
-                            <tr class="${material.quantity <= (material.reorder || 0) ? 'low' : ''}">
-                                <td>${material.name}</td>
-                                <td>${getTypeName(material.type)}</td>
-                                <td>${getColorName(material.color)}</td>
-                                <td>${material.quantity} ${material.unit}</td>
-                                <td>${material.location || 'N/A'}</td>
-                                <td>${material.quantity <= (material.reorder || 0) ? '⚠️ Low' : '✅ Good'}</td>
-                            </tr>
-                        `).join('')}
-                    </tbody>
-                </table>
-                
-                <div style="margin-top: 50px; color: #666; font-size: 12px; text-align: center;">
-                    <p>Kallakriti Handmade Crochet & Craft</p>
-                    <p>Generated from Admin Dashboard</p>
-                </div>
-                
-                <script>
-                    window.onload = function() {
-                        window.print();
-                        setTimeout(() => window.close(), 1000);
-                    }
-                </script>
-            </body>
-            </html>
-        `);
-    }
-
-    // ============= REST OF THE CODE (same as before) =============
-    // ... (rest of the JavaScript code remains the same as previous version) ...
-
-    // Initialize on load
-    document.addEventListener('DOMContentLoaded', function() {
-        // Load materials section when showing materials tab
-        const originalShowSection = window.showSection;
-        window.showSection = function(sectionId) {
-            // Call original function
-            if (typeof originalShowSection === 'function') {
-                originalShowSection(sectionId);
-            }
-            
-            // Load materials if materials section is shown
-            if (sectionId === 'materials') {
-                loadMaterialsSection();
-            }
-        };
-        
-        // Initialize dashboard
-        updateDashboardStats();
-        loadProductsTable();
-        loadComplaintsTable();
-        loadSettingsForm();
-        
-        // Auto logout after 8 hours
-        setInterval(() => {
-            const loginTime = localStorage.getItem('loginTime');
-            const currentTime = Date.now();
-            if (currentTime - loginTime > eightHours) {
-                logout();
-            }
-        }, 60000);
-    });
-
-    // Logout function
-    function logout() {
-        localStorage.removeItem('adminLoggedIn');
-        localStorage.removeItem('loginTime');
-        window.location.href = "admin-login.html";
-    }
-    </script>
-</body>
-</html>
+                <h2><i class="fas fa-key"></i> Change Admin Password</h2>
+                <p>Update your admin login password for security.</
