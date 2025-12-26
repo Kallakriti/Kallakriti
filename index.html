@@ -146,4 +146,83 @@ input,textarea{
 <button onclick="show('baby')">Baby Items</button>
 <button onclick="show('gifts')">Gifts</button>
 <button onclick="show('festive')">Festive</button>
-<bu
+<button onclick="show('custom')">Custom</button>
+</div>
+
+<div id="products" class="products"></div>
+
+<div class="section">
+<h2>About Kallakriti</h2>
+<p>
+Kallakriti is a handmade crochet & craft brand where every piece is thoughtfully
+crafted with love. From flowers and toys to baby items, gifts and festive décor,
+we create elegant and customized products for every occasion.
+</p>
+</div>
+
+<div class="section">
+<h2>Pay via UPI</h2>
+<p style="text-align:center;">
+<strong>UPI ID:</strong> yourupi@bank<br><br>
+<img src="images/qr.png" style="max-width:200px;">
+</p>
+</div>
+
+<div class="section">
+<h2>Place Order (Without WhatsApp)</h2>
+<form onsubmit="sendOrder();return false;">
+<input id="name" placeholder="Your Name" required>
+<input id="phone" placeholder="Phone Number" required>
+<textarea id="msg" placeholder="Product & message"></textarea>
+<button class="submit">Send Order on WhatsApp</button>
+</form>
+</div>
+
+<a class="insta" href="https://instagram.com/YOUR_INSTAGRAM_USERNAME" target="_blank">
+📸 Instagram
+</a>
+
+<script>
+const phone="7002341920";
+
+const items=[
+{name:"Crochet Rose",price:299,cat:"flowers",img:"images/rose.jpg"},
+{name:"Sunflower",price:349,cat:"flowers",img:"images/sunflower.jpg"},
+{name:"Crochet Teddy",price:899,cat:"toys",img:"images/teddy.jpg"},
+{name:"Handbag",price:1499,cat:"accessories",img:"images/handbag.jpg"},
+{name:"Wall Hanging",price:1799,cat:"homedecor",img:"images/wall.jpg"},
+{name:"Baby Booties",price:499,cat:"baby",img:"images/booties.jpg"},
+{name:"Gift Hamper",price:1999,cat:"gifts",img:"images/gift.jpg"},
+{name:"Festive Toran",price:1299,cat:"festive",img:"images/toran.jpg"},
+{name:"Custom Crochet Order",price:"As per design",cat:"custom",img:"images/custom.jpg"}
+];
+
+function show(cat){
+const box=document.getElementById("products");
+box.innerHTML="";
+box.className=(cat==="all")?"products":"products compact";
+items.filter(i=>cat==="all"||i.cat===cat).forEach(i=>{
+box.innerHTML+=`
+<div class="card">
+<img src="${i.img}">
+<h3>${i.name}</h3>
+<div class="price">₹${i.price}</div>
+<button class="wa"
+onclick="window.open('https://wa.me/${phone}?text=Hello Kallakriti, I want to order ${i.name}')">
+Order on WhatsApp
+</button>
+</div>`;
+});
+}
+show("all");
+
+function sendOrder(){
+const n=document.getElementById("name").value;
+const p=document.getElementById("phone").value;
+const m=document.getElementById("msg").value;
+window.open(`https://wa.me/${phone}?text=Order from Website:%0AName:${n}%0APhone:${p}%0AMessage:${m}`);
+}
+</script>
+
+</body>
+</html>
