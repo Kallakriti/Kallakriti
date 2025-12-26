@@ -7,7 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-/* (Keep ALL the CSS from previous admin-dashboard.html - same as before) */
 * {
     margin: 0;
     padding: 0;
@@ -198,8 +197,7 @@ body {
 }
 
 .form-group input,
-.form-group select,
-.form-group textarea {
+.form-group select {
     width: 100%;
     padding: 12px;
     border: 2px solid #ddd;
@@ -210,8 +208,7 @@ body {
 }
 
 .form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
+.form-group select:focus {
     outline: none;
     border-color: #9c7c38;
 }
@@ -384,6 +381,21 @@ body {
     font-size: 14px;
 }
 
+.image-upload-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #3498db;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.image-upload-btn:hover {
+    background: #2980b9;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .dashboard-container {
@@ -502,9 +514,6 @@ body {
                 <li onclick="showSection('complaints')">
                     <i class="fas fa-exclamation-triangle"></i> Customer Complaints
                 </li>
-                <li onclick="showSection('orders')">
-                    <i class="fas fa-shopping-cart"></i> Order Management
-                </li>
                 <li onclick="showSection('settings')">
                     <i class="fas fa-cog"></i> Settings
                 </li>
@@ -534,13 +543,13 @@ body {
                     <div class="stat-card orders">
                         <i class="fas fa-shopping-cart"></i>
                         <div class="stat-number" id="totalOrders">0</div>
-                        <div class="stat-label">Cart Items</div>
+                        <div class="stat-label">Total Orders</div>
                     </div>
                     
                     <div class="stat-card revenue">
                         <i class="fas fa-rupee-sign"></i>
-                        <div class="stat-number" id="cartValue">₹0</div>
-                        <div class="stat-label">Cart Value</div>
+                        <div class="stat-number">₹<span id="totalRevenue">0</span></div>
+                        <div class="stat-label">Total Revenue</div>
                     </div>
                 </div>
 
@@ -666,15 +675,6 @@ body {
                 </div>
             </div>
 
-            <!-- Order Management Section -->
-            <div id="orders" class="section">
-                <h2><i class="fas fa-shopping-cart"></i> Cart Management</h2>
-                <p>View customer cart items.</p>
-                <div id="cartItemsAdmin">
-                    <!-- Cart items will appear here -->
-                </div>
-            </div>
-
             <!-- Settings Section -->
             <div id="settings" class="section">
                 <h2><i class="fas fa-cog"></i> Settings</h2>
@@ -683,12 +683,13 @@ body {
                     <div class="form-group">
                         <label for="whatsappNumber">WhatsApp Number *</label>
                         <input type="tel" id="whatsappNumber" value="7002341920" required>
-                        <small style="color: #666; font-size: 12px;">Changing this will update WhatsApp link on customer website</small>
+                        <small>When you change this, customer website will update automatically</small>
                     </div>
                     
                     <div class="form-group">
                         <label for="adminEmail">Admin Email *</label>
                         <input type="email" id="adminEmail" value="kallakriti.craft@gmail.com" required>
+                        <small>This email will show on customer website footer</small>
                     </div>
                     
                     <div class="form-group">
@@ -699,6 +700,9 @@ body {
                     <div class="form-buttons">
                         <button class="btn btn-primary" onclick="saveSettings()">
                             <i class="fas fa-save"></i> Save Settings
+                        </button>
+                        <button class="btn btn-secondary" onclick="resetSettings()">
+                            <i class="fas fa-redo"></i> Reset to Default
                         </button>
                     </div>
                 </div>
@@ -721,35 +725,25 @@ body {
         logout();
     }
 
-    // Load data
+    // Product data structure (REMOVED description field)
     let products = JSON.parse(localStorage.getItem('kallakritiProducts') || '[]');
     let complaints = JSON.parse(localStorage.getItem('kallakritiComplaints') || '[]');
-    let cart = JSON.parse(localStorage.getItem('kallakritiCart') || '[]');
-    let settings = JSON.parse(localStorage.getItem('kallakritiSettings') || '{}');
-
-    // Initialize settings if empty
-    if (!settings.whatsappNumber) {
-        settings = {
-            whatsappNumber: "7002341920",
-            adminEmail: "kallakriti.craft@gmail.com"
-        };
-        localStorage.setItem('kallakritiSettings', JSON.stringify(settings));
-    }
+    let orders = JSON.parse(localStorage.getItem('kallakritiOrders') || '[]');
 
     // Update dashboard stats
     function updateDashboardStats() {
         document.getElementById('totalProducts').textContent = products.length;
         document.getElementById('totalComplaints').textContent = complaints.length;
+        document.getElementById('totalOrders').textContent = orders.length;
         
-        // Cart stats
-        const totalCartItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        const cartValue = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        
-        document.getElementById('totalOrders').textContent = totalCartItems;
-        document.getElementById('cartValue').textContent = `₹${cartValue}`;
-        
-        // Load cart items in orders section
-        loadCartItems();
+        // Calculate total revenue
+        let totalRevenue = 0;
+        orders.forEach(order => {
+            if (order.price && typeof order.price === 'number') {
+                totalRevenue += order.price;
+            }
+        });
+        document.getElementById('totalRevenue').textContent = totalRevenue;
     }
 
     // Show section
@@ -770,7 +764,7 @@ body {
         // Add active class to clicked menu item
         const menuItems = document.querySelectorAll('.sidebar-menu li');
         menuItems.forEach((item, index) => {
-            const sections = ['dashboard', 'products', 'addProduct', 'complaints', 'orders', 'settings'];
+            const sections = ['dashboard', 'products', 'addProduct', 'complaints', 'settings'];
             if (sections[index] === sectionId) {
                 item.classList.add('active');
             }
@@ -781,10 +775,8 @@ body {
             loadProductsTable();
         } else if (sectionId === 'complaints') {
             loadComplaintsTable();
-        } else if (sectionId === 'orders') {
-            loadCartItems();
         } else if (sectionId === 'settings') {
-            loadSettings();
+            loadSettingsForm();
         }
         
         updateDashboardStats();
@@ -798,8 +790,7 @@ body {
         products.forEach((product, index) => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td><img src="${product.img || 'https://via.placeholder.com/60x60/ffffff/9c7c38?text=Product'}" 
-                         alt="${product.name}" class="product-image"></td>
+                <td><img src="${product.img}" alt="${product.name}" class="product-image" onerror="this.src='https://via.placeholder.com/60x60/ffffff/9c7c38?text=Product'"></td>
                 <td>${product.name}</td>
                 <td>${getCategoryName(product.cat)}</td>
                 <td>₹${product.price}</td>
@@ -816,57 +807,6 @@ body {
             `;
             tableBody.appendChild(row);
         });
-    }
-
-    // Load cart items
-    function loadCartItems() {
-        const cartContainer = document.getElementById('cartItemsAdmin');
-        
-        if (cart.length === 0) {
-            cartContainer.innerHTML = `
-                <div class="alert">
-                    <i class="fas fa-info-circle"></i>
-                    <div>No items in customer carts yet.</div>
-                </div>
-            `;
-            return;
-        }
-        
-        let html = '<div style="overflow-x: auto;"><table class="products-table">';
-        html += `
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>
-        `;
-        
-        let grandTotal = 0;
-        cart.forEach(item => {
-            const itemTotal = item.price * item.quantity;
-            grandTotal += itemTotal;
-            
-            html += `
-                <tr>
-                    <td><img src="${item.image}" alt="${item.name}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px;"></td>
-                    <td>${item.name}</td>
-                    <td>₹${item.price}</td>
-                    <td>${item.quantity}</td>
-                    <td>₹${itemTotal}</td>
-                </tr>
-            `;
-        });
-        
-        html += `</tbody></table>`;
-        html += `<div style="text-align: right; margin-top: 20px; font-size: 1.2rem; font-weight: 600;">Grand Total: ₹${grandTotal}</div>`;
-        html += `</div>`;
-        
-        cartContainer.innerHTML = html;
     }
 
     // Get category name
@@ -911,16 +851,22 @@ body {
         });
     }
 
-    // Add new product (NO DESCRIPTION)
+    // Load settings form
+    function loadSettingsForm() {
+        const settings = JSON.parse(localStorage.getItem('kallakritiSettings') || '{}');
+        document.getElementById('whatsappNumber').value = settings.whatsappNumber || "7002341920";
+        document.getElementById('adminEmail').value = settings.adminEmail || "kallakriti.craft@gmail.com";
+    }
+
+    // Add new product (REMOVED description field)
     function addNewProduct(event) {
         event.preventDefault();
         
         const newProduct = {
-            id: Date.now(), // Generate unique ID
             name: document.getElementById('productName').value,
             price: parseInt(document.getElementById('productPrice').value),
             cat: document.getElementById('productCategory').value,
-            img: document.getElementById('productImageUrl').value || 'https://via.placeholder.com/300x200/ffffff/9c7c38?text=Kallakriti'
+            img: document.getElementById('productImageUrl').value || 'https://via.placeholder.com/300x300/ffffff/9c7c38?text=Kallakriti+Product'
         };
         
         products.push(newProduct);
@@ -932,14 +878,17 @@ body {
         // Clear form
         clearForm();
         
+        // Update customer website
+        updateCustomerWebsite();
+        
         // Update dashboard
         updateDashboardStats();
         
-        // Load products table
+        // Reload products table
         loadProductsTable();
     }
 
-    // Edit product
+    // Edit product (REMOVED description field)
     function editProduct(index) {
         const product = products[index];
         
@@ -964,14 +913,13 @@ body {
         showSection('addProduct');
     }
 
-    // Save product edit (NO DESCRIPTION)
+    // Save product edit (REMOVED description field)
     function saveProductEdit(index) {
         products[index] = {
-            id: products[index].id, // Keep same ID
             name: document.getElementById('productName').value,
             price: parseInt(document.getElementById('productPrice').value),
             cat: document.getElementById('productCategory').value,
-            img: document.getElementById('productImageUrl').value || 'https://via.placeholder.com/300x200/ffffff/9c7c38?text=Kallakriti'
+            img: document.getElementById('productImageUrl').value || 'https://via.placeholder.com/300x300/ffffff/9c7c38?text=Kallakriti+Product'
         };
         
         localStorage.setItem('kallakritiProducts', JSON.stringify(products));
@@ -980,6 +928,9 @@ body {
         clearForm();
         showSection('products');
         loadProductsTable();
+        
+        // Update customer website
+        updateCustomerWebsite();
     }
 
     // Delete product
@@ -989,6 +940,9 @@ body {
             localStorage.setItem('kallakritiProducts', JSON.stringify(products));
             loadProductsTable();
             updateDashboardStats();
+            
+            // Update customer website
+            updateCustomerWebsite();
         }
     }
 
@@ -1054,44 +1008,55 @@ body {
         }
     }
 
-    // Load settings
-    function loadSettings() {
-        document.getElementById('whatsappNumber').value = settings.whatsappNumber;
-        document.getElementById('adminEmail').value = settings.adminEmail;
+    // Update customer website
+    function updateCustomerWebsite() {
+        // Save products to localStorage (customer website reads from here)
+        localStorage.setItem('kallakritiProducts', JSON.stringify(products));
+        
+        console.log('✅ Customer website updated with new products!');
+        alert('✅ Changes saved! Customer website has been updated.');
     }
 
-    // Save settings
+    // Save settings (NOW CONNECTED TO CUSTOMER WEBSITE)
     function saveSettings() {
-        const whatsappNumber = document.getElementById('whatsappNumber').value.trim();
-        const adminEmail = document.getElementById('adminEmail').value.trim();
-        const newPassword = document.getElementById('changePassword').value.trim();
+        const whatsappNumber = document.getElementById('whatsappNumber').value;
+        const adminEmail = document.getElementById('adminEmail').value;
+        const newPassword = document.getElementById('changePassword').value;
         
-        if (!whatsappNumber) {
-            alert('Please enter WhatsApp number!');
+        if (!whatsappNumber || !adminEmail) {
+            alert('❌ WhatsApp Number and Email are required!');
             return;
         }
         
-        if (!adminEmail) {
-            alert('Please enter admin email!');
-            return;
-        }
-        
-        // Save settings
-        settings = {
+        // Save settings to localStorage
+        const settings = {
             whatsappNumber: whatsappNumber,
-            adminEmail: adminEmail
+            adminEmail: adminEmail,
+            lastUpdated: new Date().toISOString()
         };
-        
         localStorage.setItem('kallakritiSettings', JSON.stringify(settings));
         
         // Update password if provided
         if (newPassword) {
-            // Note: In real app, hash this password
-            alert('Password changed successfully!');
+            // In a real app, you would hash this password
+            localStorage.setItem('adminPassword', newPassword);
             document.getElementById('changePassword').value = '';
         }
         
-        alert('Settings saved successfully! Customer website will update automatically.');
+        alert('✅ Settings saved successfully!\n\nCustomer website will update automatically with:\n📱 WhatsApp: ' + whatsappNumber + '\n📧 Email: ' + adminEmail);
+    }
+
+    // Reset settings to default
+    function resetSettings() {
+        if (confirm('Reset to default settings?')) {
+            const defaultSettings = {
+                whatsappNumber: "7002341920",
+                adminEmail: "kallakriti.craft@gmail.com"
+            };
+            localStorage.setItem('kallakritiSettings', JSON.stringify(defaultSettings));
+            loadSettingsForm();
+            alert('✅ Settings reset to default!');
+        }
     }
 
     // Export data
@@ -1099,8 +1064,8 @@ body {
         const data = {
             products: products,
             complaints: complaints,
-            cart: cart,
-            settings: settings,
+            orders: orders,
+            settings: JSON.parse(localStorage.getItem('kallakritiSettings') || '{}'),
             exportDate: new Date().toISOString()
         };
         
@@ -1127,7 +1092,7 @@ body {
         updateDashboardStats();
         loadProductsTable();
         loadComplaintsTable();
-        loadSettings();
+        loadSettingsForm();
         
         // Auto logout after 8 hours
         setInterval(() => {
@@ -1136,10 +1101,7 @@ body {
             if (currentTime - loginTime > eightHours) {
                 logout();
             }
-        }, 60000);
-        
-        // Auto refresh dashboard every 10 seconds
-        setInterval(updateDashboardStats, 10000);
+        }, 60000); // Check every minute
     });
     </script>
 </body>
