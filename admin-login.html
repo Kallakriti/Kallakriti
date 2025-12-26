@@ -111,6 +111,21 @@ body {
     color: #9c7c38;
     text-decoration: none;
 }
+
+.forgot-password {
+    text-align: right;
+    margin-top: 10px;
+}
+
+.forgot-password a {
+    color: #666;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    color: #9c7c38;
+}
 </style>
 </head>
 <body>
@@ -131,6 +146,10 @@ body {
                 <input type="password" id="password" placeholder="Enter password" required>
             </div>
             
+            <div class="forgot-password">
+                <a href="#" onclick="resetPassword()">Forgot Password?</a>
+            </div>
+            
             <button type="submit" class="login-btn">Login to Dashboard</button>
             
             <div id="errorMessage" class="error-message">
@@ -139,15 +158,21 @@ body {
         </form>
         
         <div class="admin-note">
-            <p>For security, please log out after completing admin tasks.</p>
-            <p><a href="index.html">← Back to Main Website</a></p>
+            <p>Default: Username: <strong>kallakriti_admin</strong></p>
+            <p>Change your password in the admin dashboard for security.</p>
+            <p><a href="../index.html">← Back to Main Website</a></p>
         </div>
     </div>
 
     <script>
-    // Default admin credentials (you should change these!)
+    // Admin credentials - Now checks localStorage for updated password
     const ADMIN_USERNAME = "kallakriti_admin";
-    const ADMIN_PASSWORD = "kallakriti@123";
+    const DEFAULT_ADMIN_PASSWORD = "kallakriti@123";
+    
+    // Function to get current admin password
+    function getCurrentAdminPassword() {
+        return localStorage.getItem('adminPassword') || DEFAULT_ADMIN_PASSWORD;
+    }
     
     document.getElementById('loginForm').addEventListener('submit', function(e) {
         e.preventDefault();
@@ -155,7 +180,10 @@ body {
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         
-        if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+        // Get current password (either default or changed)
+        const currentPassword = getCurrentAdminPassword();
+        
+        if (username === ADMIN_USERNAME && password === currentPassword) {
             // Save login session
             localStorage.setItem('adminLoggedIn', 'true');
             localStorage.setItem('loginTime', Date.now());
@@ -170,6 +198,17 @@ body {
     // Check if already logged in
     if (localStorage.getItem('adminLoggedIn') === 'true') {
         window.location.href = "admin-dashboard.html";
+    }
+    
+    // Forgot password function
+    function resetPassword() {
+        alert('Password Reset Instructions:\n\n1. If you forgot your password, you need to:\n2. Clear browser data for this site\n3. Default password will be restored: "kallakriti@123"\n4. Login and change your password immediately');
+        
+        // Option to clear localStorage (for development/testing)
+        if (confirm('Clear stored password and reset to default? (For testing only)')) {
+            localStorage.removeItem('adminPassword');
+            alert('✅ Password reset to default: "kallakriti@123"');
+        }
     }
     </script>
 </body>
