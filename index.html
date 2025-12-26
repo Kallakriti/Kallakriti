@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kallakriti – Crochet & Craft</title>
 
@@ -20,28 +19,86 @@ body{
 header{
   background:linear-gradient(135deg,#1f2a44,#2f4670);
   color:#f5e6c8;
-  text-align:center;
-  padding:30px 15px;
+  padding:20px 15px;
+  position:relative;
 }
-header img{max-width:90px;margin-bottom:10px;}
-header h1{
+.header-content{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  max-width:1200px;
+  margin:0 auto;
+}
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+header img{
+  max-width:70px;
+  height:auto;
+}
+.header-text h1{
   margin:0;
   font-family:'Playfair Display',serif;
-  letter-spacing:2px;
+  letter-spacing:1px;
+  font-size:1.5rem;
 }
-header p{font-size:14px;margin-top:6px;}
+.header-text p{
+  font-size:0.8rem;
+  margin:4px 0 0 0;
+}
 
-/* DROPDOWN */
-.filter{
-  text-align:center;
-  margin:20px;
+/* CATEGORY SELECTOR - TOP LEFT */
+.category-selector{
+  position:absolute;
+  top:15px;
+  left:15px;
+  z-index:10;
 }
-select{
-  padding:10px 18px;
-  border-radius:25px;
-  border:1px solid #ccc;
-  font-family:'Poppins',sans-serif;
-  font-size:14px;
+.category-btn{
+  background:#9c7c38;
+  color:white;
+  border:none;
+  padding:8px 15px;
+  border-radius:20px;
+  cursor:pointer;
+  font-size:0.9rem;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.category-dropdown{
+  position:absolute;
+  top:100%;
+  left:0;
+  background:white;
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+  padding:10px;
+  min-width:180px;
+  display:none;
+  z-index:100;
+}
+.category-dropdown.show{
+  display:block;
+}
+.category-dropdown button{
+  display:block;
+  width:100%;
+  padding:10px;
+  text-align:left;
+  background:none;
+  border:none;
+  border-bottom:1px solid #eee;
+  cursor:pointer;
+  color:#1f2a44;
+}
+.category-dropdown button:last-child{
+  border-bottom:none;
+}
+.category-dropdown button:hover{
+  background:#f4efe8;
 }
 
 /* PRODUCTS */
@@ -50,6 +107,8 @@ select{
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:20px;
   padding:20px;
+  max-width:1200px;
+  margin:0 auto;
 }
 .products.compact{
   grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
@@ -61,25 +120,42 @@ select{
   padding:14px;
   box-shadow:0 8px 18px rgba(0,0,0,.15);
   text-align:center;
+  transition:transform 0.3s ease;
 }
-.products.compact .card{padding:10px;}
+.card:hover{
+  transform:translateY(-5px);
+}
+.products.compact .card{
+  padding:10px;
+}
 .card img{
   width:100%;
   height:180px;
   object-fit:cover;
   border-radius:14px;
 }
-.products.compact img{height:120px;}
-.price{font-weight:600;margin:8px 0;}
+.products.compact img{
+  height:120px;
+}
+.price{
+  font-weight:600;
+  margin:8px 0;
+  color:#9c7c38;
+}
 
 .order{
   background:#9c7c38;
   color:white;
   border:none;
   width:100%;
-  padding:9px;
+  padding:10px;
   border-radius:25px;
   cursor:pointer;
+  font-weight:500;
+  transition:background 0.3s ease;
+}
+.order:hover{
+  background:#7a612d;
 }
 
 /* SECTIONS */
@@ -89,10 +165,14 @@ select{
   padding:25px;
   border-radius:20px;
   box-shadow:0 6px 14px rgba(0,0,0,.1);
+  max-width:1200px;
+  margin-left:auto;
+  margin-right:auto;
 }
 .section h2{
   font-family:'Playfair Display',serif;
   text-align:center;
+  color:#1f2a44;
 }
 
 /* CHAT BUTTON */
@@ -107,80 +187,213 @@ select{
   text-decoration:none;
   font-size:14px;
   box-shadow:0 6px 12px rgba(0,0,0,.3);
+  display:flex;
+  align-items:center;
+  gap:8px;
+  z-index:50;
+}
+
+/* FOOTER */
+footer{
+  background:#1f2a44;
+  color:#f5e6c8;
+  text-align:center;
+  padding:25px;
+  margin-top:30px;
+}
+footer a{
+  color:#9c7c38;
+  text-decoration:none;
+}
+
+/* OVERLAY FOR DROPDOWN */
+.overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background:rgba(0,0,0,0.3);
+  display:none;
+  z-index:99;
+}
+.overlay.show{
+  display:block;
+}
+
+/* RESPONSIVE */
+@media (max-width:768px){
+  .header-content{
+    flex-direction:column;
+    text-align:center;
+    gap:15px;
+  }
+  .header-left{
+    flex-direction:column;
+    gap:10px;
+  }
+  .category-selector{
+    position:static;
+    margin-top:10px;
+  }
+  .products{
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    padding:15px;
+  }
+  .section{
+    margin:15px;
+    padding:20px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<img src="images/logo.png">
-<h1>Kallakriti</h1>
-<p>Handmade Crochet & Craft • Custom Creations</p>
-</header>
+<!-- OVERLAY FOR DROPDOWN -->
+<div class="overlay" id="overlay" onclick="closeCategoryDropdown()"></div>
 
-<!-- CATEGORY DROPDOWN -->
-<div class="filter">
-<select onchange="show(this.value)">
-<option value="all">All Categories</option>
-<option value="flowers">Crochet – Flowers</option>
-<option value="toys">Crochet – Toys</option>
-<option value="accessories">Crochet – Accessories</option>
-<option value="baby">Crochet – Baby Items</option>
-<option value="custom">Custom Crochet</option>
-<option value="money">Money Bouquet</option>
-</select>
-</div>
+<header>
+  <div class="header-content">
+    <div class="header-left">
+      <img src="images/logo.png" alt="Kallakriti Logo">
+      <div class="header-text">
+        <h1>Kallakriti</h1>
+        <p>Handmade Crochet & Craft • Custom Creations</p>
+      </div>
+    </div>
+    
+    <!-- CATEGORY SELECTOR - TOP LEFT -->
+    <div class="category-selector">
+      <button class="category-btn" onclick="toggleCategoryDropdown()">
+        <span>☰ Categories</span>
+      </button>
+      <div class="category-dropdown" id="categoryDropdown">
+        <button onclick="showCategory('all')">All Products</button>
+        <button onclick="showCategory('flowers')">Crochet Flowers</button>
+        <button onclick="showCategory('toys')">Crochet Toys</button>
+        <button onclick="showCategory('accessories')">Accessories</button>
+        <button onclick="showCategory('baby')">Baby Items</button>
+        <button onclick="showCategory('custom')">Custom Orders</button>
+        <button onclick="showCategory('money')">Money Bouquets</button>
+      </div>
+    </div>
+  </div>
+</header>
 
 <div id="products" class="products"></div>
 
 <div class="section">
-<h2>About Kallakriti</h2>
-<p>
-Kallakriti is a handmade crochet & craft brand where every piece is thoughtfully
-crafted with love. From flowers and toys to baby items and money bouquets,
-we create elegant and customized products for every occasion.
-</p>
+  <h2>About Kallakriti</h2>
+  <p>
+    Kallakriti is a handmade crochet & craft brand where every piece is thoughtfully
+    crafted with love. From flowers and toys to baby items and money bouquets,
+    we create elegant and customized products for every occasion.
+  </p>
+</div>
+
+<div class="section">
+  <h2>How to Order</h2>
+  <p>1. Browse our collection and select your favorite items</p>
+  <p>2. Click "Order on WhatsApp" to message us directly</p>
+  <p>3. Share your requirements and customization preferences</p>
+  <p>4. Confirm your order and delivery details</p>
+  <p>5. We'll craft your personalized item with care!</p>
 </div>
 
 <!-- CHAT BUTTON -->
 <a class="chat" href="https://wa.me/7002341920?text=Hello Kallakriti, I have an inquiry" target="_blank">
-💬 Chat
+  💬 Chat on WhatsApp
 </a>
 
-<script>
-  
-const phone="7002341920";
+<footer>
+  <p>Contact: +91 7002341920</p>
+  <p>Email: kallakriti.craft@gmail.com</p>
+</footer>
 
-const items=[
-{name:"Crochet Rose",price:299,cat:"flowers",img:"images/rose.jpg"},
-{name:"Sunflower",price:349,cat:"flowers",img:"images/sunflower.jpg"},
-{name:"Crochet Teddy",price:899,cat:"toys",img:"images/teddy.jpg"},
-{name:"Handbag",price:1499,cat:"accessories",img:"images/handbag.jpg"},
-{name:"Baby Booties",price:499,cat:"baby",img:"images/booties.jpg"},
-{name:"Custom Crochet Order",price:"As per design",cat:"custom",img:"images/custom.jpg"},
-{name:"Money Bouquet",price:1999,cat:"money",img:"images/gift.jpg"}
+<script>
+const phone = "7002341920";
+
+const items = [
+  {name: "Crochet Rose Bouquet", price: 299, cat: "flowers", img: "images/rose.jpg", desc: "Beautiful handcrafted roses"},
+  {name: "Sunflower Collection", price: 349, cat: "flowers", img: "images/sunflower.jpg", desc: "Vibrant sunflower arrangements"},
+  {name: "Crochet Teddy Bear", price: 899, cat: "toys", img: "images/teddy.jpg", desc: "Soft and cuddly companion"},
+  {name: "Elegant Handbag", price: 1499, cat: "accessories", img: "images/handbag.jpg", desc: "Stylish crochet handbag"},
+  {name: "Baby Booties Set", price: 499, cat: "baby", img: "images/booties.jpg", desc: "Cozy baby footwear"},
+  {name: "Custom Crochet Order", price: "As per design", cat: "custom", img: "images/custom.jpg", desc: "Personalized creations"},
+  {name: "Money Bouquet", price: 1999, cat: "money", img: "images/gift.jpg", desc: "Creative money gift idea"}
 ];
 
-function show(cat){
-const box=document.getElementById("products");
-box.innerHTML="";
-box.className=(cat==="all")?"products":"products compact";
+let currentCategory = "all";
 
-items.filter(i=>cat==="all"||i.cat===cat).forEach(i=>{
-box.innerHTML+=`
-<div class="card">
-<img src="${i.img}">
-<h3>${i.name}</h3>
-<div class="price">₹${i.price}</div>
-<button class="order"
-onclick="window.open('https://wa.me/${phone}?text=I want to order ${i.name}')">
-Order on WhatsApp
-</button>
-</div>`;
-});
+function showCategory(cat){
+  currentCategory = cat;
+  const box = document.getElementById("products");
+  box.innerHTML = "";
+  
+  // Update button text
+  const categoryBtn = document.querySelector('.category-btn span');
+  const categoryNames = {
+    'all': 'All Products',
+    'flowers': 'Crochet Flowers',
+    'toys': 'Crochet Toys',
+    'accessories': 'Accessories',
+    'baby': 'Baby Items',
+    'custom': 'Custom Orders',
+    'money': 'Money Bouquets'
+  };
+  categoryBtn.textContent = `☰ ${categoryNames[cat]}`;
+  
+  // Filter and display products
+  const filteredItems = cat === "all" ? items : items.filter(i => i.cat === cat);
+  
+  filteredItems.forEach(i => {
+    box.innerHTML += `
+    <div class="card">
+      <img src="${i.img}" alt="${i.name}" onerror="this.src='https://via.placeholder.com/300x180/ffffff/9c7c38?text=Kallakriti'">
+      <h3>${i.name}</h3>
+      <p style="font-size:0.9rem;color:#666;margin:5px 0;">${i.desc}</p>
+      <div class="price">${typeof i.price === 'number' ? '₹' + i.price : i.price}</div>
+      <button class="order" onclick="orderProduct('${i.name}')">
+        Order on WhatsApp
+      </button>
+    </div>`;
+  });
+  
+  closeCategoryDropdown();
 }
-show("all");
+
+function orderProduct(productName){
+  const message = `Hello Kallakriti! I'm interested in ordering: ${productName}`;
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`);
+}
+
+function toggleCategoryDropdown(){
+  const dropdown = document.getElementById('categoryDropdown');
+  const overlay = document.getElementById('overlay');
+  dropdown.classList.toggle('show');
+  overlay.classList.toggle('show');
+}
+
+function closeCategoryDropdown(){
+  const dropdown = document.getElementById('categoryDropdown');
+  const overlay = document.getElementById('overlay');
+  dropdown.classList.remove('show');
+  overlay.classList.remove('show');
+}
+
+// Initialize with all products
+showCategory("all");
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(event) {
+  const dropdown = document.getElementById('categoryDropdown');
+  const categoryBtn = document.querySelector('.category-btn');
+  
+  if (!dropdown.contains(event.target) && !categoryBtn.contains(event.target)) {
+    closeCategoryDropdown();
+  }
+});
 </script>
 
 </body>
