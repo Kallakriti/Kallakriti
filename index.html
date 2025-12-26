@@ -1,17 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kallakriti</title>
+<meta name="robots" content="noindex, nofollow">
+<title>Kallakriti – Crochet & Craft</title>
 
 <style>
-body{margin:0;font-family:Georgia;background:#f5f1ea;color:#243b63;}
-header{background:#1a2a44;color:#f5e6c8;text-align:center;padding:30px;}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;padding:20px;}
-.card{background:#fff;padding:14px;border-radius:16px;box-shadow:0 6px 14px rgba(0,0,0,.15);text-align:center;}
-.card img{width:100%;border-radius:12px;}
-.btn{margin-top:10px;background:#c13584;color:white;border:none;padding:10px;width:100%;border-radius:25px;}
+body{
+  margin:0;
+  font-family:Georgia, serif;
+  background:#f5f1ea;
+  color:#243b63;
+}
+header{
+  background:#1a2a44;
+  color:#f5e6c8;
+  text-align:center;
+  padding:30px 15px;
+}
+.buttons{text-align:center;margin:20px;}
+.buttons button{
+  padding:8px 16px;
+  margin:5px;
+  border:none;
+  border-radius:25px;
+  background:#243b63;
+  color:#f5e6c8;
+  cursor:pointer;
+}
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  padding:20px;
+}
+.products.compact{
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:12px;
+}
+.card{
+  background:#fff;
+  padding:14px;
+  border-radius:16px;
+  box-shadow:0 6px 14px rgba(0,0,0,.15);
+  text-align:center;
+}
+.card img{
+  width:100%;
+  border-radius:12px;
+}
+.price{font-weight:bold;margin:8px 0;}
+.btn{
+  background:#c13584;
+  color:white;
+  border:none;
+  padding:8px;
+  width:100%;
+  border-radius:25px;
+  cursor:pointer;
+}
 </style>
 </head>
 
@@ -21,25 +69,48 @@ header{background:#1a2a44;color:#f5e6c8;text-align:center;padding:30px;}
 <h1>Kallakriti – Crochet & Craft</h1>
 </header>
 
-<div class="products">
-  <div class="card">
-    <img src="https://picsum.photos/300/200?1">
-    <h3>Crochet Rose</h3>
-    <p>₹299</p>
-    <button class="btn" onclick="window.open('https://instagram.com','_blank')">
-      Order on Instagram
-    </button>
-  </div>
-
-  <div class="card">
-    <img src="https://picsum.photos/300/200?2">
-    <h3>Crochet Teddy</h3>
-    <p>₹899</p>
-    <button class="btn" onclick="window.open('https://instagram.com','_blank')">
-      Order on Instagram
-    </button>
-  </div>
+<div class="buttons">
+<button onclick="show('all')">All</button>
+<button onclick="show('flowers')">Flowers</button>
+<button onclick="show('toys')">Toys</button>
+<button onclick="show('accessories')">Accessories</button>
+<button onclick="show('custom')">Custom</button>
 </div>
+
+<div id="products" class="products"></div>
+
+<script>
+const instagram="https://instagram.com/_bansal.rishabh_";
+
+const items=[
+{name:"Crochet Rose",price:299,cat:"flowers",img:"https://picsum.photos/300/200?1"},
+{name:"Sunflower",price:349,cat:"flowers",img:"https://picsum.photos/300/200?2"},
+{name:"Crochet Teddy",price:899,cat:"toys",img:"https://picsum.photos/300/200?3"},
+{name:"Crochet Doll",price:1199,cat:"toys",img:"https://picsum.photos/300/200?4"},
+{name:"Handbag",price:1499,cat:"accessories",img:"https://picsum.photos/300/200?5"},
+{name:"Custom Crochet",price:"As per design",cat:"custom",img:"https://picsum.photos/300/200?6"}
+];
+
+function show(cat){
+const box=document.getElementById("products");
+box.innerHTML="";
+box.className=(cat==="all")?"products":"products compact";
+
+items.filter(i=>cat==="all"||i.cat===cat).forEach(i=>{
+box.innerHTML+=`
+<div class="card">
+<img src="${i.img}">
+<h3>${i.name}</h3>
+<div class="price">₹${i.price}</div>
+<button class="btn" onclick="window.open('${instagram}','_blank')">
+Order on Instagram
+</button>
+</div>`;
+});
+}
+
+show("all");
+</script>
 
 </body>
 </html>
