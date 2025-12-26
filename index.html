@@ -6,6 +6,7 @@
 <title>Kallakriti – Crochet & Craft</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 body{
@@ -218,28 +219,143 @@ header img{
   margin:10px 0;
 }
 
-/* CHAT BUTTON */
-.chat{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#25d366;
-  color:white;
-  padding:12px 18px;
-  border-radius:25px;
-  text-decoration:none;
-  font-size:0.85rem;
-  box-shadow:0 4px 12px rgba(0,0,0,.25);
-  display:flex;
-  align-items:center;
-  gap:6px;
-  z-index:50;
-  transition:all 0.3s ease;
-  font-weight:500;
+/* COMPLAINT BUTTON */
+.complaint-btn {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  background: #e74c3c;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  box-shadow: 0 6px 15px rgba(231, 76, 60, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 50;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
 }
-.chat:hover{
-  transform:scale(1.08);
-  box-shadow:0 6px 16px rgba(0,0,0,.3);
+
+.complaint-btn:hover {
+  background: #c0392b;
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(231, 76, 60, 0.4);
+}
+
+/* WHATSAPP BUTTON */
+.whatsapp-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25d366;
+  color: white;
+  padding: 13px 22px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  box-shadow: 0 6px 15px rgba(37, 211, 102, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 50;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.whatsapp-btn:hover {
+  background: #1da851;
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+}
+
+/* COMPLAINT MODAL */
+.complaint-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.complaint-content {
+  background: white;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+.complaint-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.complaint-header h3 {
+  margin: 0;
+  color: #1f2a44;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.complaint-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+}
+
+.complaint-form input,
+.complaint-form textarea,
+.complaint-form select {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+}
+
+.complaint-form textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+.complaint-submit {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  width: 100%;
+  margin-top: 15px;
+  transition: background 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.complaint-submit:hover {
+  background: #c0392b;
 }
 
 /* FOOTER */
@@ -300,6 +416,20 @@ footer a{
   .section{
     margin:15px;
     padding:20px;
+  }
+  
+  .complaint-btn {
+    bottom: 80px;
+    right: 15px;
+    padding: 11px 18px;
+    font-size: 0.85rem;
+  }
+  
+  .whatsapp-btn {
+    bottom: 15px;
+    right: 15px;
+    padding: 12px 20px;
+    font-size: 0.9rem;
   }
 }
 
@@ -384,14 +514,47 @@ footer a{
   <p>5. We'll craft your personalized item with care!</p>
 </div>
 
-<!-- CHAT BUTTON -->
-<a class="chat" href="https://wa.me/7002341920?text=Hello Kallakriti, I have an inquiry" target="_blank">
-  💬 Chat on WhatsApp
+<!-- COMPLAINT MODAL -->
+<div class="complaint-modal" id="complaintModal">
+  <div class="complaint-content">
+    <div class="complaint-header">
+      <h3><i class="fas fa-exclamation-triangle"></i> Register Complaint</h3>
+      <button class="complaint-close" onclick="closeComplaintModal()">×</button>
+    </div>
+    <form class="complaint-form" id="complaintForm" onsubmit="submitComplaint(event)">
+      <input type="text" id="complaintName" placeholder="Your Name" required>
+      <input type="email" id="complaintEmail" placeholder="Email Address" required>
+      <input type="tel" id="complaintPhone" placeholder="Phone Number" required>
+      <select id="complaintType" required>
+        <option value="">Select Complaint Type</option>
+        <option value="delivery">Delivery Issue</option>
+        <option value="quality">Product Quality</option>
+        <option value="damage">Damaged Product</option>
+        <option value="service">Customer Service</option>
+        <option value="other">Other</option>
+      </select>
+      <textarea id="complaintDetails" placeholder="Please describe your complaint in detail..." required></textarea>
+      <button type="submit" class="complaint-submit">
+        <i class="fas fa-paper-plane"></i> Submit Complaint
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- FLOATING BUTTONS -->
+<button class="complaint-btn" onclick="openComplaintModal()">
+  <i class="fas fa-exclamation-circle"></i> Register Complaint
+</button>
+
+<a href="https://wa.me/7002341920?text=Hello Kallakriti, I have an inquiry" 
+   class="whatsapp-btn" target="_blank">
+  <i class="fab fa-whatsapp"></i> Chat on WhatsApp
 </a>
 
 <footer>
   <p>Contact: +91 7002341920</p>
   <p>Email: kallakriti.craft@gmail.com</p>
+  <p><small>Need help? Register a complaint or chat with us on WhatsApp</small></p>
 </footer>
 
 <script>
@@ -491,9 +654,9 @@ function displayProducts() {
            onerror="this.src='https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=300&fit=crop&crop=center'">
       <h3>${item.name}</h3>
       <div class="card-desc">${item.desc}</div>
-      <div class="price">${typeof item.price === 'number' ? '₹' + i.price : i.price}</div>
+      <div class="price">${typeof item.price === 'number' ? '₹' + item.price : item.price}</div>
       <button class="order" onclick="orderProduct('${item.name}')">
-        Order on WhatsApp
+        <i class="fab fa-whatsapp"></i> Order on WhatsApp
       </button>
     </div>`;
   });
@@ -505,6 +668,45 @@ function orderProduct(productName){
   window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
 }
 
+// COMPLAINT SYSTEM FUNCTIONS
+function openComplaintModal() {
+  document.getElementById('complaintModal').style.display = 'flex';
+}
+
+function closeComplaintModal() {
+  document.getElementById('complaintModal').style.display = 'none';
+  document.getElementById('complaintForm').reset();
+}
+
+function submitComplaint(event) {
+  event.preventDefault();
+  
+  const complaint = {
+    name: document.getElementById('complaintName').value,
+    email: document.getElementById('complaintEmail').value,
+    phone: document.getElementById('complaintPhone').value,
+    type: document.getElementById('complaintType').value,
+    details: document.getElementById('complaintDetails').value,
+    date: new Date().toLocaleString(),
+    id: 'COMP-' + Date.now()
+  };
+  
+  // Save to localStorage
+  let complaints = JSON.parse(localStorage.getItem('kallakritiComplaints') || '[]');
+  complaints.push(complaint);
+  localStorage.setItem('kallakritiComplaints', JSON.stringify(complaints));
+  
+  // Show success message
+  alert('✅ Complaint registered successfully! We will contact you within 24 hours.');
+  
+  // Close modal
+  closeComplaintModal();
+  
+  // Optional: Send WhatsApp notification to admin
+  // const whatsappMsg = `New Complaint Registered:\nName: ${complaint.name}\nType: ${complaint.type}\nPhone: ${complaint.phone}`;
+  // window.open(`https://wa.me/${phone}?text=${encodeURIComponent(whatsappMsg)}`, '_blank');
+}
+
 // Close dropdown when clicking outside
 document.addEventListener('click', function(event) {
   const dropdown = document.getElementById('categoryDropdown');
@@ -513,6 +715,14 @@ document.addEventListener('click', function(event) {
   if (dropdownOpen && !dropdown.contains(event.target) && !categoryBtn.contains(event.target)) {
     dropdownOpen = false;
     dropdown.classList.remove('show');
+  }
+});
+
+// Close modal when clicking outside
+window.addEventListener('click', function(event) {
+  const modal = document.getElementById('complaintModal');
+  if (event.target === modal) {
+    closeComplaintModal();
   }
 });
 
