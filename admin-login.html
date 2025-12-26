@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kallakriti - Admin Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1f2a44, #2f4670);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    width: 90%;
+    max-width: 400px;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo h1 {
+    color: #1f2a44;
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.logo p {
+    color: #666;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #9c7c38;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    background: #9c7c38;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.login-btn:hover {
+    background: #7a612d;
+}
+
+.error-message {
+    background: #ffeaea;
+    color: #d32f2f;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 15px;
+    text-align: center;
+    display: none;
+}
+
+.admin-note {
+    margin-top: 20px;
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.admin-note a {
+    color: #9c7c38;
+    text-decoration: none;
+}
+</style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <h1>Kallakriti</h1>
+            <p>Admin Dashboard</p>
+        </div>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Admin Username</label>
+                <input type="text" id="username" placeholder="Enter username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter password" required>
+            </div>
+            
+            <button type="submit" class="login-btn">Login to Dashboard</button>
+            
+            <div id="errorMessage" class="error-message">
+                Invalid username or password!
+            </div>
+        </form>
+        
+        <div class="admin-note">
+            <p>For security, please log out after completing admin tasks.</p>
+            <p><a href="index.html">← Back to Main Website</a></p>
+        </div>
+    </div>
+
+    <script>
+    // Default admin credentials (you should change these!)
+    const ADMIN_USERNAME = "kallakriti_admin";
+    const ADMIN_PASSWORD = "kallakriti@123";
+    
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        
+        if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+            // Save login session
+            localStorage.setItem('adminLoggedIn', 'true');
+            localStorage.setItem('loginTime', Date.now());
+            
+            // Redirect to admin dashboard
+            window.location.href = "admin-dashboard.html";
+        } else {
+            document.getElementById('errorMessage').style.display = 'block';
+        }
+    });
+    
+    // Check if already logged in
+    if (localStorage.getItem('adminLoggedIn') === 'true') {
+        window.location.href = "admin-dashboard.html";
+    }
+    </script>
+</body>
+</html>
