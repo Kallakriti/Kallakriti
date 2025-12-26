@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kallakriti – Crochet & Craft</title>
 
-<!-- Elegant Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
@@ -22,10 +21,7 @@ header{
   text-align:center;
   padding:30px 15px 20px;
 }
-header img{
-  max-width:90px;
-  margin-bottom:10px;
-}
+header img{max-width:90px;margin-bottom:10px;}
 header h1{
   margin:0;
   font-family:'Playfair Display',serif;
@@ -44,7 +40,6 @@ header p{font-size:14px;margin-top:6px;}
   cursor:pointer;
   font-size:13px;
 }
-.buttons button:hover{background:#1f2a44;}
 
 .products{
   display:grid;
@@ -65,21 +60,20 @@ header p{font-size:14px;margin-top:6px;}
   text-align:center;
 }
 .products.compact .card{padding:10px;}
-
 .card img{width:100%;border-radius:14px;}
-.products.compact h3{font-size:14px;}
 
 .price{font-weight:600;margin:8px 0;}
 
-.wa{
-  background:#9c7c38;
-  color:white;
-  border:none;
-  width:100%;
-  padding:9px;
+.btn{
+  display:block;
+  margin:6px 0;
+  padding:8px;
   border-radius:25px;
-  cursor:pointer;
+  text-decoration:none;
+  font-size:13px;
 }
+.instaBtn{background:#c13584;color:white;}
+.emailBtn{background:#2f4670;color:white;}
 
 .section{
   background:#fff;
@@ -94,7 +88,6 @@ header p{font-size:14px;margin-top:6px;}
   margin-top:0;
 }
 
-/* Order form */
 input,textarea{
   width:100%;
   padding:10px;
@@ -103,9 +96,10 @@ input,textarea{
   border:1px solid #ccc;
   font-family:'Poppins',sans-serif;
 }
+
 .submit{
   background:#2f4670;
-  color:#fff;
+  color:white;
   border:none;
   padding:10px;
   width:100%;
@@ -113,8 +107,7 @@ input,textarea{
   cursor:pointer;
 }
 
-/* Instagram */
-.insta{
+.floating-insta{
   position:fixed;
   bottom:20px;
   right:20px;
@@ -124,7 +117,6 @@ input,textarea{
   border-radius:30px;
   text-decoration:none;
   font-size:14px;
-  box-shadow:0 6px 12px rgba(0,0,0,.3);
 }
 </style>
 </head>
@@ -154,36 +146,33 @@ input,textarea{
 <div class="section">
 <h2>About Kallakriti</h2>
 <p>
-Kallakriti is a handmade crochet & craft brand where every piece is thoughtfully
-crafted with love. From flowers and toys to baby items, gifts and festive décor,
-we create elegant and customized products for every occasion.
+Kallakriti creates elegant handmade crochet & craft products with love.
+Each piece is thoughtfully designed, and custom orders are always welcome.
 </p>
 </div>
 
 <div class="section">
-<h2>Pay via UPI</h2>
+<h2>Place an Order</h2>
 <p style="text-align:center;">
-<strong>UPI ID:</strong> yourupi@bank<br><br>
-<img src="images/qr.png" style="max-width:200px;">
+📩 You can order via <strong>Instagram DM</strong> or <strong>Email</strong>
 </p>
-</div>
-
-<div class="section">
-<h2>Place Order (Without WhatsApp)</h2>
-<form onsubmit="sendOrder();return false;">
+<form onsubmit="sendEmail();return false;">
 <input id="name" placeholder="Your Name" required>
-<input id="phone" placeholder="Phone Number" required>
+<input id="email" placeholder="Your Email" required>
 <textarea id="msg" placeholder="Product & message"></textarea>
-<button class="submit">Send Order on WhatsApp</button>
+<button class="submit">Send Order via Email</button>
 </form>
 </div>
 
-<a class="insta" href="https://instagram.com/_bansal.rishabh_" target="_blank">
-📸 Instagram
+<a class="floating-insta"
+href="https://instagram.com/YOUR_INSTAGRAM_USERNAME"
+target="_blank">
+📸 Order on Instagram
 </a>
 
 <script>
-const phone="7002341920";
+const instagram="https://instagram.com/YOUR_INSTAGRAM_USERNAME";
+const emailTo="yourname@email.com";
 
 const items=[
 {name:"Crochet Rose",price:299,cat:"flowers",img:"images/rose.jpg"},
@@ -198,31 +187,4 @@ const items=[
 ];
 
 function show(cat){
-const box=document.getElementById("products");
-box.innerHTML="";
-box.className=(cat==="all")?"products":"products compact";
-items.filter(i=>cat==="all"||i.cat===cat).forEach(i=>{
-box.innerHTML+=`
-<div class="card">
-<img src="${i.img}">
-<h3>${i.name}</h3>
-<div class="price">₹${i.price}</div>
-<button class="wa"
-onclick="window.open('https://wa.me/${phone}?text=Hello Kallakriti, I want to order ${i.name}')">
-Order on WhatsApp
-</button>
-</div>`;
-});
-}
-show("all");
-
-function sendOrder(){
-const n=document.getElementById("name").value;
-const p=document.getElementById("phone").value;
-const m=document.getElementById("msg").value;
-window.open(`https://wa.me/${phone}?text=Order from Website:%0AName:${n}%0APhone:${p}%0AMessage:${m}`);
-}
-</script>
-
-</body>
-</html>
+const box=document.getElementBy
