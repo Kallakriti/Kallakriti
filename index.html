@@ -147,12 +147,12 @@ const items = [
  }
 ];
 
-function show(cat) {
+function show(rose) {
   const box = document.getElementById("products");
   box.innerHTML = "";
 
   items
-    .filter(i => cat === "all" || i.cat === cat)
+    .filter(i => rose === "all" || i.rose === rose)
     .forEach(i => {
       const card = document.createElement("div");
       card.className = "card";
