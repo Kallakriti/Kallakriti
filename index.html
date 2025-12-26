@@ -6,10 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kallakriti – Crochet & Craft</title>
 
+<!-- Elegant Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
 <style>
 body{
   margin:0;
-  font-family:Georgia,serif;
+  font-family:'Poppins',sans-serif;
   background:#f4efe8;
   color:#1f2a44;
 }
@@ -17,10 +20,18 @@ header{
   background:linear-gradient(135deg,#1f2a44,#2f4670);
   color:#f5e6c8;
   text-align:center;
-  padding:30px 15px;
+  padding:30px 15px 20px;
 }
-header h1{margin:0;letter-spacing:2px;}
-header p{margin-top:8px;font-size:14px;}
+header img{
+  max-width:90px;
+  margin-bottom:10px;
+}
+header h1{
+  margin:0;
+  font-family:'Playfair Display',serif;
+  letter-spacing:2px;
+}
+header p{font-size:14px;margin-top:6px;}
 
 .buttons{text-align:center;margin:20px;}
 .buttons button{
@@ -28,9 +39,10 @@ header p{margin-top:8px;font-size:14px;}
   color:#f5e6c8;
   border:none;
   border-radius:25px;
-  padding:9px 16px;
-  margin:4px;
+  padding:10px 18px;
+  margin:5px;
   cursor:pointer;
+  font-size:13px;
 }
 .buttons button:hover{background:#1f2a44;}
 
@@ -38,7 +50,7 @@ header p{margin-top:8px;font-size:14px;}
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:20px;
-  padding:25px;
+  padding:20px;
 }
 .products.compact{
   grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
@@ -54,40 +66,54 @@ header p{margin-top:8px;font-size:14px;}
 }
 .products.compact .card{padding:10px;}
 
-.card img{
-  width:100%;
-  border-radius:14px;
-}
-
+.card img{width:100%;border-radius:14px;}
 .products.compact h3{font-size:14px;}
-.price{font-weight:bold;margin:8px 0;}
-.products.compact .price{font-size:14px;}
+
+.price{font-weight:600;margin:8px 0;}
 
 .wa{
   background:#9c7c38;
   color:white;
   border:none;
   width:100%;
-  padding:8px;
+  padding:9px;
   border-radius:25px;
   cursor:pointer;
 }
 
-.custom{
-  font-size:13px;
-  font-style:italic;
-  margin-top:6px;
-}
-
-.about{
-  background:#ffffff;
-  margin:30px;
+.section{
+  background:#fff;
+  margin:25px;
   padding:25px;
   border-radius:20px;
   box-shadow:0 6px 14px rgba(0,0,0,.1);
 }
-.about h2{text-align:center;margin-top:0;}
+.section h2{
+  font-family:'Playfair Display',serif;
+  text-align:center;
+  margin-top:0;
+}
 
+/* Order form */
+input,textarea{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border-radius:10px;
+  border:1px solid #ccc;
+  font-family:'Poppins',sans-serif;
+}
+.submit{
+  background:#2f4670;
+  color:#fff;
+  border:none;
+  padding:10px;
+  width:100%;
+  border-radius:25px;
+  cursor:pointer;
+}
+
+/* Instagram */
 .insta{
   position:fixed;
   bottom:20px;
@@ -106,8 +132,9 @@ header p{margin-top:8px;font-size:14px;}
 <body>
 
 <header>
-<h1>Kallakriti – Crochet & Craft</h1>
-<p>Handmade crochet • Custom creations • Crafted with love 🧶</p>
+<img src="images/logo.png" alt="Kallakriti Logo">
+<h1>Kallakriti</h1>
+<p>Handmade Crochet & Craft • Custom Creations</p>
 </header>
 
 <div class="buttons">
@@ -119,48 +146,4 @@ header p{margin-top:8px;font-size:14px;}
 <button onclick="show('baby')">Baby Items</button>
 <button onclick="show('gifts')">Gifts</button>
 <button onclick="show('festive')">Festive</button>
-<button onclick="show('custom')">Custom Orders</button>
-</div>
-
-<div id="products" class="products"></div>
-
-<div class="about">
-<h2>About Kallakriti</h2>
-<p>
-Kallakriti is a handmade crochet & craft brand creating elegant, unique and
-customized pieces with love and care. From flowers and toys to baby items,
-home décor and festive collections — every creation is thoughtfully crafted
-to add warmth and beauty to your life.
-</p>
-<p><strong>Custom orders are always welcome.</strong></p>
-</div>
-
-<a class="insta" href="https://instagram.com/YOUR_INSTAGRAM_USERNAME" target="_blank">
-📸 Instagram
-</a>
-
-<script>
-const phone="7002341920";
-
-const items=[
-{name:"Crochet Rose",price:299,cat:"flowers",img:"images/rose.jpg"},
-{name:"Sunflower",price:349,cat:"flowers",img:"images/sunflower.jpg"},
-{name:"Crochet Teddy",price:899,cat:"toys",img:"images/teddy.jpg"},
-{name:"Crochet Doll",price:1199,cat:"toys",img:"images/doll.jpg"},
-{name:"Handbag",price:1499,cat:"accessories",img:"images/handbag.jpg"},
-{name:"Keychain",price:199,cat:"accessories",img:"images/keychain.jpg"},
-{name:"Wall Hanging",price:1799,cat:"homedecor",img:"images/wall.jpg"},
-{name:"Cushion Cover",price:999,cat:"homedecor",img:"images/cushion.jpg"},
-{name:"Baby Booties",price:499,cat:"baby",img:"images/booties.jpg"},
-{name:"Baby Cap Set",price:699,cat:"baby",img:"images/babycap.jpg"},
-{name:"Gift Hamper",price:1999,cat:"gifts",img:"images/gift.jpg"},
-{name:"Couple Gift Set",price:2499,cat:"gifts",img:"images/couple.jpg"},
-{name:"Festive Toran",price:1299,cat:"festive",img:"images/toran.jpg"},
-{name:"Christmas Decor",price:1599,cat:"festive",img:"images/christmas.jpg"},
-{name:"Custom Crochet Order",price:"As per design",cat:"custom",custom:true,img:"images/custom.jpg"}
-];
-
-function show(cat){
-const box=document.getElementById("products");
-box.innerHTML="";
-box.className=(cat==="all"
+<bu
