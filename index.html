@@ -334,11 +334,11 @@ footer a{
   <div class="header-content">
     <div class="header-left">
       <div class="logo-container">
-        <!-- Logo from GitHub Pages -->
+        <!-- LOGO FIXED WITH YOUR USERNAME "kallakriti" -->
         <img src="https://raw.githubusercontent.com/kallakriti/kallakriti/main/images/logo.png" 
              alt="Kallakriti Logo" 
              class="logo-img"
-             onerror="this.src='https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/logo-placeholder.jpg'">
+             onerror="showFallbackLogo(this)">
         <div class="header-text">
           <h1>Kallakriti</h1>
           <p>Handmade Crochet & Craft • Custom Creations</p>
@@ -397,26 +397,35 @@ footer a{
 <script>
 const phone = "7002341920";
 
-// Update this URL to your actual GitHub Pages logo URL
-const logoUrl = "https://raw.githubusercontent.com/your-username/kallakriti/main/images/logo.png";
+// YOUR LOGO IS NOW SET TO: https://raw.githubusercontent.com/kallakriti/kallakriti/main/images/logo.png
+const logoUrl = "https://raw.githubusercontent.com/kallakriti/kallakriti/main/images/logo.png";
 
 const items = [
-  {name: "Crochet Rose Bouquet", price: 299, cat: "flowers", img: "images/rose.jpg", desc: "Beautiful handcrafted roses"},
-  {name: "Sunflower Collection", price: 349, cat: "flowers", img: "images/sunflower.jpg", desc: "Vibrant sunflower arrangements"},
-  {name: "Crochet Teddy Bear", price: 899, cat: "toys", img: "images/teddy.jpg", desc: "Soft and cuddly companion"},
-  {name: "Elegant Handbag", price: 1499, cat: "accessories", img: "images/handbag.jpg", desc: "Stylish crochet handbag"},
-  {name: "Baby Booties Set", price: 499, cat: "baby", img: "images/booties.jpg", desc: "Cozy baby footwear"},
-  {name: "Custom Crochet Order", price: "As per design", cat: "custom", img: "images/custom.jpg", desc: "Personalized creations"},
-  {name: "Money Bouquet", price: 1999, cat: "money", img: "images/gift.jpg", desc: "Creative money gift idea"},
-  {name: "Lily Flowers Set", price: 399, cat: "flowers", img: "images/lily.jpg", desc: "Elegant lily arrangements"},
-  {name: "Crochet Bunny", price: 749, cat: "toys", img: "images/bunny.jpg", desc: "Adorable crochet bunny"},
-  {name: "Coin Purse", price: 299, cat: "accessories", img: "images/purse.jpg", desc: "Small crochet coin purse"},
-  {name: "Baby Blanket", price: 1299, cat: "baby", img: "images/blanket.jpg", desc: "Soft baby blanket"},
-  {name: "Aniversary Bouquet", price: 1799, cat: "money", img: "images/anniversary.jpg", desc: "Special occasion bouquet"}
+  {name: "Crochet Rose Bouquet", price: 299, cat: "flowers", img: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=300&fit=crop", desc: "Beautiful handcrafted roses"},
+  {name: "Sunflower Collection", price: 349, cat: "flowers", img: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300&h=300&fit=crop", desc: "Vibrant sunflower arrangements"},
+  {name: "Crochet Teddy Bear", price: 899, cat: "toys", img: "https://images.unsplash.com/photo-1594787318287-7c5cee6dce76?w=300&h=300&fit=crop", desc: "Soft and cuddly companion"},
+  {name: "Elegant Handbag", price: 1499, cat: "accessories", img: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=300&h=300&fit=crop", desc: "Stylish crochet handbag"},
+  {name: "Baby Booties Set", price: 499, cat: "baby", img: "https://images.unsplash.com/photo-1539185441755-769473a23570?w=300&h=300&fit=crop", desc: "Cozy baby footwear"},
+  {name: "Custom Crochet Order", price: "As per design", cat: "custom", img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=300&fit=crop", desc: "Personalized creations"},
+  {name: "Money Bouquet", price: 1999, cat: "money", img: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=300&h=300&fit=crop", desc: "Creative money gift idea"},
+  {name: "Lily Flowers Set", price: 399, cat: "flowers", img: "https://images.unsplash.com/photo-1562690868-60bbe7293e94?w=300&h=300&fit=crop", desc: "Elegant lily arrangements"},
+  {name: "Crochet Bunny", price: 749, cat: "toys", img: "https://images.unsplash.com/photo-1589874186480-ecd085096f63?w=300&h=300&fit=crop", desc: "Adorable crochet bunny"},
+  {name: "Coin Purse", price: 299, cat: "accessories", img: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=300&h=300&fit=crop", desc: "Small crochet coin purse"},
+  {name: "Baby Blanket", price: 1299, cat: "baby", img: "https://images.unsplash.com/photo-1584359983106-ef9366a6d5de?w=300&h=300&fit=crop", desc: "Soft baby blanket"},
+  {name: "Anniversary Bouquet", price: 1799, cat: "money", img: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=300&h=300&fit=crop", desc: "Special occasion bouquet"}
 ];
 
 let currentCategory = "all";
 let dropdownOpen = false;
+
+// Function to show fallback logo if main logo fails
+function showFallbackLogo(imgElement) {
+  console.log("Logo not found, showing fallback...");
+  imgElement.src = "https://cdn-icons-png.flaticon.com/512/3095/3095112.png";
+  imgElement.style.backgroundColor = "#9c7c38";
+  imgElement.style.padding = "8px";
+  imgElement.alt = "Kallakriti - Handmade Crafts";
+}
 
 // Function to toggle dropdown
 function toggleCategoryDropdown(event) {
@@ -479,10 +488,10 @@ function displayProducts() {
     box.innerHTML += `
     <div class="card">
       <img src="${item.img}" alt="${item.name}" 
-           onerror="this.src='https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=200&fit=crop&crop=center'">
+           onerror="this.src='https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=300&fit=crop&crop=center'">
       <h3>${item.name}</h3>
       <div class="card-desc">${item.desc}</div>
-      <div class="price">${typeof item.price === 'number' ? '₹' + item.price : item.price}</div>
+      <div class="price">${typeof item.price === 'number' ? '₹' + i.price : i.price}</div>
       <button class="order" onclick="orderProduct('${item.name}')">
         Order on WhatsApp
       </button>
@@ -510,6 +519,23 @@ document.addEventListener('click', function(event) {
 // Initialize page
 displayProducts();
 updateActiveButtons();
+
+// Check if logo exists
+window.addEventListener('load', function() {
+  const logoImg = document.querySelector('.logo-img');
+  if (logoImg) {
+    // Test if logo loads
+    const testLogo = new Image();
+    testLogo.src = logoUrl;
+    testLogo.onload = function() {
+      console.log("Logo loaded successfully from:", logoUrl);
+    };
+    testLogo.onerror = function() {
+      console.log("Logo not found at:", logoUrl);
+      showFallbackLogo(logoImg);
+    };
+  }
+});
 </script>
 
 </body>
