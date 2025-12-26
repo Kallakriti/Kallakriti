@@ -53,48 +53,14 @@ header img{
   opacity:0.9;
 }
 
-/* USER PROFILE */
-.user-profile {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-left: 20px;
-}
-
-.user-btn {
-  background: #9c7c38;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 18px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-family: 'Poppins', sans-serif;
-  transition: all 0.3s ease;
-}
-
-.user-btn:hover {
-  background: #7a612d;
-  transform: scale(1.05);
-}
-
-.user-name {
-  color: #f5e6c8;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
 /* CART ICON */
 .cart-icon {
   position: relative;
-  margin-left: 10px;
+  margin-left: 20px;
 }
 
 .cart-btn {
-  background: #e74c3c;
+  background: #9c7c38;
   color: white;
   border: none;
   width: 45px;
@@ -106,20 +72,14 @@ header img{
   justify-content: center;
   font-size: 1.2rem;
   position: relative;
-  transition: all 0.3s ease;
-}
-
-.cart-btn:hover {
-  background: #c0392b;
-  transform: scale(1.1);
 }
 
 .cart-count {
   position: absolute;
   top: -5px;
   right: -5px;
-  background: #ffeb3b;
-  color: #333;
+  background: #e74c3c;
+  color: white;
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -127,7 +87,6 @@ header img{
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
 }
 
 /* CATEGORY SELECTOR */
@@ -245,31 +204,6 @@ header img{
   color:#9c7c38;
   font-size:1.1rem;
 }
-
-/* BUTTONS ORDER - Add to Cart ABOVE Order Now */
-.cart-add-btn {
-  background: #3498db;
-  color: white;
-  border: none;
-  width: 100%;
-  padding: 9px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  font-size: 0.85rem;
-  margin-top: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.cart-add-btn:hover {
-  background: #2980b9;
-  transform: scale(1.03);
-}
-
 .order-btn{
   background:#9c7c38;
   color:white;
@@ -281,7 +215,7 @@ header img{
   font-weight:500;
   transition:all 0.3s ease;
   font-size:0.85rem;
-  margin-top: 5px;
+  margin-top:auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -290,6 +224,29 @@ header img{
 .order-btn:hover{
   background:#7a612d;
   transform:scale(1.03);
+}
+
+.cart-add-btn {
+  background: #3498db;
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 9px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.cart-add-btn:hover {
+  background: #2980b9;
+  transform: scale(1.03);
 }
 
 /* CART MODAL */
@@ -376,36 +333,6 @@ header img{
   font-weight: 600;
 }
 
-.cart-item-controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 5px;
-}
-
-.quantity-btn {
-  background: #f0f0f0;
-  border: none;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-}
-
-.quantity-btn:hover {
-  background: #ddd;
-}
-
-.cart-item-quantity {
-  font-weight: 600;
-  min-width: 20px;
-  text-align: center;
-}
-
 .cart-item-remove {
   background: #e74c3c;
   color: white;
@@ -417,7 +344,6 @@ header img{
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 10px;
 }
 
 .cart-empty {
@@ -468,103 +394,6 @@ header img{
   align-items: center;
   justify-content: center;
   gap: 10px;
-}
-
-/* LOGIN MODAL */
-.login-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-}
-
-.login-content {
-  background: white;
-  width: 90%;
-  max-width: 400px;
-  border-radius: 15px;
-  padding: 30px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-}
-
-.login-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
-}
-
-.login-header h3 {
-  margin: 0;
-  color: #1f2a44;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.login-close {
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #666;
-}
-
-.login-form input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  font-size: 14px;
-  font-family: 'Poppins', sans-serif;
-  transition: border-color 0.3s;
-}
-
-.login-form input:focus {
-  outline: none;
-  border-color: #9c7c38;
-}
-
-.login-submit {
-  background: #9c7c38;
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 500;
-  width: 100%;
-  margin-top: 15px;
-  transition: background 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.login-submit:hover {
-  background: #7a612d;
-}
-
-.login-switch {
-  text-align: center;
-  margin-top: 20px;
-  color: #666;
-  font-size: 0.9rem;
-}
-
-.login-switch a {
-  color: #9c7c38;
-  cursor: pointer;
-  font-weight: 500;
 }
 
 /* SECTIONS */
@@ -758,18 +587,14 @@ footer a{
     text-align:center;
     gap:8px;
   }
-  .user-profile {
+  .cart-icon {
     margin-left: 0;
     margin-top: 10px;
-  }
-  .cart-icon {
-    margin-left: 10px;
   }
   .category-selector{
     width:100%;
     display:flex;
     justify-content:center;
-    margin-top: 10px;
   }
   .category-btn{
     width:auto;
@@ -811,8 +636,7 @@ footer a{
     font-size: 0.9rem;
   }
   
-  .cart-content,
-  .login-content {
+  .cart-content {
     width: 95%;
     padding: 15px;
   }
@@ -849,7 +673,7 @@ footer a{
   <div class="header-content">
     <div class="header-left">
       <div class="logo-container">
-        <!-- LOGO -->
+        <!-- LOGO FIXED WITH YOUR USERNAME "kallakriti" -->
         <img src="https://raw.githubusercontent.com/kallakriti/kallakriti/main/images/logo.png" 
              alt="Kallakriti Logo" 
              class="logo-img"
@@ -878,14 +702,6 @@ footer a{
         </div>
       </div>
       
-      <!-- USER PROFILE -->
-      <div class="user-profile">
-        <span id="userName" class="user-name" style="display: none;"></span>
-        <button class="user-btn" onclick="openLogin()">
-          <i class="fas fa-user"></i> <span id="userBtnText">Login</span>
-        </button>
-      </div>
-      
       <!-- CART ICON -->
       <div class="cart-icon">
         <button class="cart-btn" onclick="openCart()">
@@ -910,39 +726,11 @@ footer a{
 
 <div class="section">
   <h2>How to Order</h2>
-  <p>1. Login or Sign Up to save your cart</p>
-  <p>2. Browse collection and add items to cart</p>
-  <p>3. Click cart icon to review your selection</p>
-  <p>4. Click "Checkout" to send order via WhatsApp</p>
+  <p>1. Browse our collection and add items to cart</p>
+  <p>2. Click cart icon to review your selection</p>
+  <p>3. Click "Checkout" to send order via WhatsApp</p>
+  <p>4. Share customization preferences</p>
   <p>5. We'll craft your personalized items with care!</p>
-</div>
-
-<!-- LOGIN MODAL -->
-<div class="login-modal" id="loginModal">
-  <div class="login-content">
-    <div class="login-header">
-      <h3><i class="fas fa-user-circle"></i> <span id="loginTitle">Customer Login</span></h3>
-      <button class="login-close" onclick="closeLogin()">×</button>
-    </div>
-    
-    <form class="login-form" id="loginForm" onsubmit="handleLogin(event)">
-      <div id="signupFields" style="display: none;">
-        <input type="text" id="signupName" placeholder="Full Name" required>
-      </div>
-      
-      <input type="tel" id="loginPhone" placeholder="Phone Number" required>
-      <input type="password" id="loginPassword" placeholder="Password" required>
-      
-      <button type="submit" class="login-submit">
-        <i class="fas fa-sign-in-alt"></i> <span id="loginSubmitText">Login</span>
-      </button>
-    </form>
-    
-    <div class="login-switch">
-      <span id="loginSwitchText">New customer?</span>
-      <a id="loginSwitchLink" onclick="toggleLoginMode()">Sign Up</a>
-    </div>
-  </div>
 </div>
 
 <!-- CART MODAL -->
@@ -1013,11 +801,12 @@ footer a{
 <footer>
   <p>Contact: <span id="footerPhone">+91 7002341920</span></p>
   <p>Email: <span id="footerEmail">kallakriti.craft@gmail.com</span></p>
-  <p><small>Login to save your cart across devices</small></p>
+  <p><small>Need help? Register a complaint or chat with us on WhatsApp</small></p>
 </footer>
 
 <script>
 // ==================== LOAD SETTINGS FROM ADMIN ====================
+// Load WhatsApp number from admin settings
 const defaultSettings = {
   whatsappNumber: "7002341920",
   adminEmail: "kallakriti.craft@gmail.com"
@@ -1049,584 +838,374 @@ if (items.length === 0) {
         {id: 7, name: "Money Bouquet", price: 1999, cat: "money", img: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=300&h=300&fit=crop"}
     ];
     
+    // Save to localStorage for admin panel to see
     localStorage.setItem('kallakritiProducts', JSON.stringify(items));
 }
 
-// ==================== CUSTOMER LOGIN SYSTEM ====================
-let currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
-let customers = JSON.parse(localStorage.getItem('kallakritiCustomers') || '[]');
-let isLoginMode = true; // true for login, false for signup
-
-// Initialize user
-function initUser() {
-    if (currentUser) {
-        // Load user's cart
-        loadUserCart();
-        
-        // Update UI
-        document.getElementById('userBtnText').textContent = 'Logout';
-        document.getElementById('userName').textContent = currentUser.name;
-        document.getElementById('userName').style.display = 'inline';
-    } else {
-        document.getElementById('userBtnText').textContent = 'Login';
-        document.getElementById('userName').style.display = 'none';
-    }
-}
-
-// Handle login/signup
-function handleLogin(event) {
-    event.preventDefault();
-    
-    const phone = document.getElementById('loginPhone').value.trim();
-    const password = document.getElementById('loginPassword').value.trim();
-    
-    if (isLoginMode) {
-        // LOGIN
-        const user = customers.find(c => c.phone === phone && c.password === password);
-        
-        if (user) {
-            currentUser = user;
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            
-            // Load user's cart
-            loadUserCart();
-            
-            alert(`Welcome back, ${user.name}!`);
-            closeLogin();
-            initUser();
-            updateCartCount();
-        } else {
-            alert('Invalid phone number or password!');
-        }
-    } else {
-        // SIGNUP
-        const name = document.getElementById('signupName').value.trim();
-        
-        if (!name || !phone || !password) {
-            alert('Please fill all fields!');
-            return;
-        }
-        
-        // Check if user already exists
-        if (customers.find(c => c.phone === phone)) {
-            alert('Phone number already registered! Please login instead.');
-            toggleLoginMode();
-            return;
-        }
-        
-        const newUser = {
-            id: Date.now(),
-            name: name,
-            phone: phone,
-            password: password,
-            joinDate: new Date().toISOString(),
-            cart: []
-        };
-        
-        customers.push(newUser);
-        localStorage.setItem('kallakritiCustomers', JSON.stringify(customers));
-        
-        currentUser = newUser;
-        localStorage.setItem('currentUser', JSON.stringify(newUser));
-        
-        alert(`Welcome to Kallakriti, ${name}! Your account has been created.`);
-        closeLogin();
-        initUser();
-    }
-    
-    // Clear form
-    document.getElementById('loginForm').reset();
-}
-
-// Toggle between login and signup
-function toggleLoginMode() {
-    isLoginMode = !isLoginMode;
-    
-    const signupFields = document.getElementById('signupFields');
-    const loginTitle = document.getElementById('loginTitle');
-    const loginSubmitText = document.getElementById('loginSubmitText');
-    const loginSwitchText = document.getElementById('loginSwitchText');
-    const loginSwitchLink = document.getElementById('loginSwitchLink');
-    
-    if (isLoginMode) {
-        // Switch to login
-        signupFields.style.display = 'none';
-        loginTitle.textContent = 'Customer Login';
-        loginSubmitText.textContent = 'Login';
-        loginSwitchText.textContent = 'New customer?';
-        loginSwitchLink.textContent = 'Sign Up';
-    } else {
-        // Switch to signup
-        signupFields.style.display = 'block';
-        loginTitle.textContent = 'Create Account';
-        loginSubmitText.textContent = 'Sign Up';
-        loginSwitchText.textContent = 'Already have an account?';
-        loginSwitchLink.textContent = 'Login';
-    }
-}
-
-// Load user's cart
-function loadUserCart() {
-    if (currentUser) {
-        const user = customers.find(c => c.id === currentUser.id);
-        if (user && user.cart) {
-            cart = JSON.parse(JSON.stringify(user.cart)); // Deep copy
-            localStorage.setItem('kallakritiCart', JSON.stringify(cart));
-        }
-    }
-}
-
-// Save user's cart
-function saveUserCart() {
-    if (currentUser) {
-        const userIndex = customers.findIndex(c => c.id === currentUser.id);
-        if (userIndex !== -1) {
-            // Deep copy to avoid reference issues
-            customers[userIndex].cart = JSON.parse(JSON.stringify(cart));
-            localStorage.setItem('kallakritiCustomers', JSON.stringify(customers));
-            localStorage.setItem('currentUser', JSON.stringify(customers[userIndex]));
-            currentUser = customers[userIndex];
-        }
-    }
-}
-
-// Logout
-function logout() {
-    if (confirm('Are you sure you want to logout?')) {
-        // Save cart before logout
-        saveUserCart();
-        
-        currentUser = null;
-        localStorage.removeItem('currentUser');
-        
-        // Clear cart for guest
-        cart = [];
-        localStorage.setItem('kallakritiCart', JSON.stringify(cart));
-        
-        initUser();
-        updateCartCount();
-        updateCartDisplay();
-        
-        alert('Logged out successfully!');
-    }
-}
-
-// Open login modal
-function openLogin() {
-    if (currentUser) {
-        logout();
-    } else {
-        document.getElementById('loginModal').style.display = 'flex';
-        document.getElementById('loginPhone').focus();
-    }
-}
-
-function closeLogin() {
-    document.getElementById('loginModal').style.display = 'none';
-    document.getElementById('loginForm').reset();
-}
-
-// ==================== CART SYSTEM - FIXED FOR MULTIPLE ITEMS ====================
+// Cart functionality
 let cart = JSON.parse(localStorage.getItem('kallakritiCart') || '[]');
 
-function addToCart(id, name, price, image) {
-    if (!currentUser) {
-        alert('Please login first to add items to cart!');
-        openLogin();
-        return;
-    }
-    
-    // Check if item already exists in cart
-    const existingItemIndex = cart.findIndex(item => item.id === id);
-    
-    if (existingItemIndex !== -1) {
-        // Item exists, increase quantity
-        cart[existingItemIndex].quantity += 1;
-    } else {
-        // Item doesn't exist, add new item
-        cart.push({
-            id: id,
-            name: name,
-            price: price,
-            image: image,
-            quantity: 1
-        });
-    }
-    
-    saveCart();
-    updateCartCount();
-    showCartNotification(name);
+// Your logo URL
+const logoUrl = "https://raw.githubusercontent.com/kallakriti/kallakriti/main/images/logo.png";
+
+let currentCategory = "all";
+let dropdownOpen = false;
+
+// Function to show fallback logo if main logo fails
+function showFallbackLogo(imgElement) {
+  imgElement.src = "https://cdn-icons-png.flaticon.com/512/3095/3095112.png";
+  imgElement.style.backgroundColor = "#9c7c38";
+  imgElement.style.padding = "8px";
+  imgElement.alt = "Kallakriti - Handmade Crafts";
 }
 
-function updateQuantity(id, change) {
-    const itemIndex = cart.findIndex(item => item.id === id);
-    
-    if (itemIndex !== -1) {
-        cart[itemIndex].quantity += change;
-        
-        if (cart[itemIndex].quantity <= 0) {
-            cart.splice(itemIndex, 1);
-        }
-        
-        saveCart();
-        updateCartCount();
-        updateCartDisplay();
+// Function to toggle dropdown
+function toggleCategoryDropdown(event) {
+  event.stopPropagation();
+  const dropdown = document.getElementById('categoryDropdown');
+  dropdownOpen = !dropdownOpen;
+  dropdown.classList.toggle('show');
+  updateActiveButtons();
+}
+
+// Function to select category
+function selectCategory(cat) {
+  currentCategory = cat;
+  displayProducts();
+  dropdownOpen = false;
+  document.getElementById('categoryDropdown').classList.remove('show');
+  
+  // Update button text
+  const categoryNames = {
+    'all': 'All Products',
+    'flowers': 'Crochet Flowers',
+    'toys': 'Crochet Toys',
+    'accessories': 'Accessories',
+    'baby': 'Baby Items',
+    'custom': 'Custom Orders',
+    'money': 'Money Bouquets'
+  };
+  document.getElementById('currentCategoryText').textContent = `☰ ${categoryNames[cat]}`;
+  updateActiveButtons();
+}
+
+// Function to update active buttons in dropdown
+function updateActiveButtons() {
+  const buttons = document.querySelectorAll('.category-dropdown button');
+  buttons.forEach(button => {
+    const onclickAttr = button.getAttribute('onclick');
+    if (onclickAttr) {
+      const category = onclickAttr.match(/'(\w+)'/)[1];
+      if (category === currentCategory) {
+        button.classList.add('active');
+      } else {
+        button.classList.remove('active');
+      }
     }
+  });
+}
+
+// Function to display products
+function displayProducts() {
+  const box = document.getElementById("products");
+  box.innerHTML = "";
+  
+  // Filter products based on current category
+  const filteredItems = currentCategory === "all" 
+    ? items 
+    : items.filter(item => item.cat === currentCategory);
+  
+  // Display filtered products
+  filteredItems.forEach(item => {
+    box.innerHTML += `
+    <div class="card">
+      <img src="${item.img}" alt="${item.name}" 
+           onerror="this.src='https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=300&fit=crop&crop=center'">
+      <h3>${item.name}</h3>
+      <div class="price">${typeof item.price === 'number' ? '₹' + item.price : item.price}</div>
+      <button class="order-btn" onclick="orderProduct('${item.name}')">
+        <i class="fab fa-whatsapp"></i> Order Now
+      </button>
+      ${typeof item.price === 'number' ? `<button class="cart-add-btn" onclick="addToCart(${item.id}, '${item.name}', ${item.price}, '${item.img}')">
+        <i class="fas fa-cart-plus"></i> Add to Cart
+      </button>` : ''}
+    </div>`;
+  });
+}
+
+// Function to order single product
+function orderProduct(productName){
+  const message = `Hello Kallakriti! I'm interested in ordering: ${productName}`;
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+}
+
+// ==================== CART FUNCTIONS ====================
+function addToCart(id, name, price, image) {
+  const existingItem = cart.find(item => item.id === id);
+  
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({
+      id: id,
+      name: name,
+      price: price,
+      image: image,
+      quantity: 1
+    });
+  }
+  
+  localStorage.setItem('kallakritiCart', JSON.stringify(cart));
+  updateCartCount();
+  showCartNotification(name);
 }
 
 function removeFromCart(id) {
-    const itemIndex = cart.findIndex(item => item.id === id);
-    if (itemIndex !== -1) {
-        cart.splice(itemIndex, 1);
-        saveCart();
-        updateCartCount();
-        updateCartDisplay();
-    }
-}
-
-function saveCart() {
-    localStorage.setItem('kallakritiCart', JSON.stringify(cart));
-    saveUserCart(); // Also save to user's account
+  cart = cart.filter(item => item.id !== id);
+  localStorage.setItem('kallakritiCart', JSON.stringify(cart));
+  updateCartCount();
+  updateCartDisplay();
 }
 
 function updateCartCount() {
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    document.getElementById('cartCount').textContent = totalItems;
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  document.getElementById('cartCount').textContent = totalItems;
 }
 
 function openCart() {
-    if (!currentUser && cart.length > 0) {
-        if (confirm('Please login to save your cart. Login now?')) {
-            openLogin();
-            return;
-        }
-    }
-    
-    document.getElementById('cartModal').style.display = 'flex';
-    updateCartDisplay();
+  document.getElementById('cartModal').style.display = 'flex';
+  updateCartDisplay();
 }
 
 function closeCart() {
-    document.getElementById('cartModal').style.display = 'none';
+  document.getElementById('cartModal').style.display = 'none';
 }
 
 function updateCartDisplay() {
-    const cartItems = document.getElementById('cartItems');
-    const cartTotal = document.getElementById('cartTotal');
+  const cartItems = document.getElementById('cartItems');
+  const cartTotal = document.getElementById('cartTotal');
+  
+  if (cart.length === 0) {
+    cartItems.innerHTML = `
+      <div class="cart-empty">
+        <i class="fas fa-shopping-cart" style="font-size: 50px; color: #ccc; margin-bottom: 20px;"></i>
+        <p>Your cart is empty</p>
+        <p style="font-size: 0.9rem; color: #999;">Add some products to get started!</p>
+      </div>
+    `;
+    cartTotal.textContent = '₹0';
+    return;
+  }
+  
+  let total = 0;
+  cartItems.innerHTML = '';
+  
+  cart.forEach(item => {
+    const itemTotal = item.price * item.quantity;
+    total += itemTotal;
     
-    if (cart.length === 0) {
-        cartItems.innerHTML = `
-            <div class="cart-empty">
-                <i class="fas fa-shopping-cart" style="font-size: 50px; color: #ccc; margin-bottom: 20px;"></i>
-                <p>Your cart is empty</p>
-                <p style="font-size: 0.9rem; color: #999;">Add some products to get started!</p>
-            </div>
-        `;
-        cartTotal.textContent = '₹0';
-        return;
-    }
-    
-    let total = 0;
-    cartItems.innerHTML = '';
-    
-    cart.forEach((item, index) => {
-        const itemTotal = item.price * item.quantity;
-        total += itemTotal;
-        
-        const cartItem = document.createElement('div');
-        cartItem.className = 'cart-item';
-        cartItem.innerHTML = `
-            <img src="${item.image}" alt="${item.name}" class="cart-item-img">
-            <div class="cart-item-details">
-                <div class="cart-item-name">${item.name}</div>
-                <div class="cart-item-price">₹${item.price} × ${item.quantity} = ₹${itemTotal}</div>
-                <div class="cart-item-controls">
-                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
-                    <span class="cart-item-quantity">${item.quantity}</span>
-                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
-                </div>
-            </div>
-            <button class="cart-item-remove" onclick="removeFromCart(${item.id})">
-                <i class="fas fa-times"></i>
-            </button>
-        `;
-        cartItems.appendChild(cartItem);
-    });
-    
-    cartTotal.textContent = `₹${total}`;
+    const cartItem = document.createElement('div');
+    cartItem.className = 'cart-item';
+    cartItem.innerHTML = `
+      <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+      <div class="cart-item-details">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">₹${item.price} x ${item.quantity} = ₹${itemTotal}</div>
+      </div>
+      <button class="cart-item-remove" onclick="removeFromCart(${item.id})">
+        <i class="fas fa-times"></i>
+      </button>
+    `;
+    cartItems.appendChild(cartItem);
+  });
+  
+  cartTotal.textContent = `₹${total}`;
 }
 
 function clearCart() {
-    if (cart.length === 0) return;
-    
-    if (confirm('Are you sure you want to clear your cart?')) {
-        cart = [];
-        saveCart();
-        updateCartCount();
-        updateCartDisplay();
-    }
+  if (cart.length === 0) return;
+  
+  if (confirm('Are you sure you want to clear your cart?')) {
+    cart = [];
+    localStorage.setItem('kallakritiCart', JSON.stringify(cart));
+    updateCartCount();
+    updateCartDisplay();
+  }
 }
 
 function checkout() {
-    if (cart.length === 0) {
-        alert('Your cart is empty! Add some products first.');
-        return;
-    }
-    
-    if (!currentUser) {
-        alert('Please login to checkout!');
-        openLogin();
-        return;
-    }
-    
-    let message = `Hello Kallakriti! I want to order:\n\n`;
-    message += `Customer: ${currentUser.name}\n`;
-    message += `Phone: ${currentUser.phone}\n\n`;
-    message += `Order Items:\n`;
-    
-    let total = 0;
-    cart.forEach((item, index) => {
-        const itemTotal = item.price * item.quantity;
-        total += itemTotal;
-        message += `${index + 1}. ${item.name} (Qty: ${item.quantity}) - ₹${itemTotal}\n`;
-    });
-    
-    message += `\nTotal: ₹${total}\n\n`;
-    message += `Please confirm my order and share payment details.`;
-    
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+  if (cart.length === 0) {
+    alert('Your cart is empty! Add some products first.');
+    return;
+  }
+  
+  let message = "Hello Kallakriti! I want to order:\n\n";
+  let total = 0;
+  
+  cart.forEach((item, index) => {
+    const itemTotal = item.price * item.quantity;
+    total += itemTotal;
+    message += `${index + 1}. ${item.name} (Qty: ${item.quantity}) - ₹${itemTotal}\n`;
+  });
+  
+  message += `\nTotal: ₹${total}\n\n`;
+  message += `Please confirm my order and share payment details.`;
+  
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
 }
 
 function showCartNotification(productName) {
-    const notification = document.createElement('div');
-    notification.style.cssText = `
-        position: fixed;
-        top: 80px;
-        right: 20px;
-        background: #2ecc71;
-        color: white;
-        padding: 12px 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        animation: slideIn 0.3s ease;
-    `;
-    
-    notification.innerHTML = `
-        <i class="fas fa-check-circle"></i>
-        <span>${productName} added to cart!</span>
-    `;
-    
-    document.body.appendChild(notification);
-    
+  // Create notification
+  const notification = document.createElement('div');
+  notification.style.cssText = `
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: #2ecc71;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: slideIn 0.3s ease;
+  `;
+  
+  notification.innerHTML = `
+    <i class="fas fa-check-circle"></i>
+    <span>${productName} added to cart!</span>
+  `;
+  
+  document.body.appendChild(notification);
+  
+  // Remove after 3 seconds
+  setTimeout(() => {
+    notification.style.animation = 'slideOut 0.3s ease';
     setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease';
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
-    }, 3000);
+      document.body.removeChild(notification);
+    }, 300);
+  }, 3000);
 }
 
 // Add CSS for animations
 const style = document.createElement('style');
 style.textContent = `
-    @keyframes slideIn {
-        from {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
     }
-    
-    @keyframes slideOut {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(100%);
-            opacity: 0;
-        }
+    to {
+      transform: translateX(0);
+      opacity: 1;
     }
+  }
+  
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
 `;
 document.head.appendChild(style);
 
-// ==================== PRODUCT DISPLAY ====================
-const logoUrl = "https://raw.githubusercontent.com/kallakriti/kallakriti/main/images/logo.png";
-let currentCategory = "all";
-let dropdownOpen = false;
-
-function showFallbackLogo(imgElement) {
-    imgElement.src = "https://cdn-icons-png.flaticon.com/512/3095/3095112.png";
-    imgElement.style.backgroundColor = "#9c7c38";
-    imgElement.style.padding = "8px";
-    imgElement.alt = "Kallakriti - Handmade Crafts";
-}
-
-function toggleCategoryDropdown(event) {
-    event.stopPropagation();
-    const dropdown = document.getElementById('categoryDropdown');
-    dropdownOpen = !dropdownOpen;
-    dropdown.classList.toggle('show');
-    updateActiveButtons();
-}
-
-function selectCategory(cat) {
-    currentCategory = cat;
-    displayProducts();
-    dropdownOpen = false;
-    document.getElementById('categoryDropdown').classList.remove('show');
-    
-    const categoryNames = {
-        'all': 'All Products',
-        'flowers': 'Crochet Flowers',
-        'toys': 'Crochet Toys',
-        'accessories': 'Accessories',
-        'baby': 'Baby Items',
-        'custom': 'Custom Orders',
-        'money': 'Money Bouquets'
-    };
-    document.getElementById('currentCategoryText').textContent = `☰ ${categoryNames[cat]}`;
-    updateActiveButtons();
-}
-
-function updateActiveButtons() {
-    const buttons = document.querySelectorAll('.category-dropdown button');
-    buttons.forEach(button => {
-        const onclickAttr = button.getAttribute('onclick');
-        if (onclickAttr) {
-            const category = onclickAttr.match(/'(\w+)'/)[1];
-            if (category === currentCategory) {
-                button.classList.add('active');
-            } else {
-                button.classList.remove('active');
-            }
-        }
-    });
-}
-
-function displayProducts() {
-    const box = document.getElementById("products");
-    box.innerHTML = "";
-    
-    const filteredItems = currentCategory === "all" 
-        ? items 
-        : items.filter(item => item.cat === currentCategory);
-    
-    filteredItems.forEach(item => {
-        const escapedName = item.name.replace(/'/g, "\\'");
-        box.innerHTML += `
-        <div class="card">
-            <img src="${item.img}" alt="${item.name}" 
-                 onerror="this.src='https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=300&fit=crop&crop=center'">
-            <h3>${item.name}</h3>
-            <div class="price">${typeof item.price === 'number' ? '₹' + item.price : item.price}</div>
-            ${typeof item.price === 'number' ? `
-            <button class="cart-add-btn" onclick="addToCart(${item.id}, '${escapedName}', ${item.price}, '${item.img}')">
-                <i class="fas fa-cart-plus"></i> Add to Cart
-            </button>
-            ` : ''}
-            <button class="order-btn" onclick="orderProduct('${escapedName}')">
-                <i class="fab fa-whatsapp"></i> Order Now
-            </button>
-        </div>`;
-    });
-}
-
-function orderProduct(productName){
-    const message = `Hello Kallakriti! I'm interested in ordering: ${productName}`;
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
-}
-
 // ==================== COMPLAINT SYSTEM ====================
 function openComplaintModal() {
-    document.getElementById('complaintModal').style.display = 'flex';
+  document.getElementById('complaintModal').style.display = 'flex';
 }
 
 function closeComplaintModal() {
-    document.getElementById('complaintModal').style.display = 'none';
-    document.getElementById('complaintForm').reset();
+  document.getElementById('complaintModal').style.display = 'none';
+  document.getElementById('complaintForm').reset();
 }
 
 function submitComplaint(event) {
-    event.preventDefault();
-    
-    const complaint = {
-        name: document.getElementById('complaintName').value,
-        email: document.getElementById('complaintEmail').value,
-        phone: document.getElementById('complaintPhone').value,
-        type: document.getElementById('complaintType').value,
-        details: document.getElementById('complaintDetails').value,
-        date: new Date().toLocaleString(),
-        id: 'COMP-' + Date.now()
-    };
-    
-    let complaints = JSON.parse(localStorage.getItem('kallakritiComplaints') || '[]');
-    complaints.push(complaint);
-    localStorage.setItem('kallakritiComplaints', JSON.stringify(complaints));
-    
-    alert('✅ Complaint registered successfully! We will contact you within 24 hours.');
-    closeComplaintModal();
+  event.preventDefault();
+  
+  const complaint = {
+    name: document.getElementById('complaintName').value,
+    email: document.getElementById('complaintEmail').value,
+    phone: document.getElementById('complaintPhone').value,
+    type: document.getElementById('complaintType').value,
+    details: document.getElementById('complaintDetails').value,
+    date: new Date().toLocaleString(),
+    id: 'COMP-' + Date.now()
+  };
+  
+  // Save to localStorage
+  let complaints = JSON.parse(localStorage.getItem('kallakritiComplaints') || '[]');
+  complaints.push(complaint);
+  localStorage.setItem('kallakritiComplaints', JSON.stringify(complaints));
+  
+  // Show success message
+  alert('✅ Complaint registered successfully! We will contact you within 24 hours.');
+  
+  // Close modal
+  closeComplaintModal();
 }
 
-// ==================== EVENT LISTENERS ====================
+// Close dropdown when clicking outside
 document.addEventListener('click', function(event) {
-    const dropdown = document.getElementById('categoryDropdown');
-    const categoryBtn = document.querySelector('.category-btn');
-    
-    if (dropdownOpen && !dropdown.contains(event.target) && !categoryBtn.contains(event.target)) {
-        dropdownOpen = false;
-        dropdown.classList.remove('show');
-    }
+  const dropdown = document.getElementById('categoryDropdown');
+  const categoryBtn = document.querySelector('.category-btn');
+  
+  if (dropdownOpen && !dropdown.contains(event.target) && !categoryBtn.contains(event.target)) {
+    dropdownOpen = false;
+    dropdown.classList.remove('show');
+  }
 });
 
+// Close modals when clicking outside
 window.addEventListener('click', function(event) {
-    const cartModal = document.getElementById('cartModal');
-    const complaintModal = document.getElementById('complaintModal');
-    const loginModal = document.getElementById('loginModal');
-    
-    if (event.target === cartModal) closeCart();
-    if (event.target === complaintModal) closeComplaintModal();
-    if (event.target === loginModal) closeLogin();
+  const cartModal = document.getElementById('cartModal');
+  const complaintModal = document.getElementById('complaintModal');
+  
+  if (event.target === cartModal) {
+    closeCart();
+  }
+  if (event.target === complaintModal) {
+    closeComplaintModal();
+  }
 });
 
-// ==================== INITIALIZATION ====================
+// Initialize page
+displayProducts();
+updateActiveButtons();
+updateCartCount();
+
+// Check if logo exists
 window.addEventListener('load', function() {
-    // Initialize user
-    initUser();
-    
-    // Display products
-    displayProducts();
-    updateActiveButtons();
-    updateCartCount();
-    
-    // Check logo
-    const logoImg = document.querySelector('.logo-img');
-    if (logoImg) {
-        const testLogo = new Image();
-        testLogo.src = logoUrl;
-        testLogo.onerror = function() {
-            showFallbackLogo(logoImg);
-        };
+  const logoImg = document.querySelector('.logo-img');
+  if (logoImg) {
+    // Test if logo loads
+    const testLogo = new Image();
+    testLogo.src = logoUrl;
+    testLogo.onload = function() {
+      console.log("Logo loaded successfully from:", logoUrl);
+    };
+    testLogo.onerror = function() {
+      showFallbackLogo(logoImg);
+    };
+  }
+  
+  // Check for settings updates every 5 seconds
+  setInterval(() => {
+    const newSettings = JSON.parse(localStorage.getItem('kallakritiSettings') || JSON.stringify(defaultSettings));
+    if (newSettings.whatsappNumber !== settings.whatsappNumber) {
+      settings = newSettings;
+      phone = settings.whatsappNumber;
+      whatsappLink.href = `https://wa.me/${phone}?text=Hello Kallakriti, I have an inquiry`;
+      document.getElementById('footerPhone').textContent = `+91 ${phone}`;
+      document.getElementById('footerEmail').textContent = settings.adminEmail;
     }
-    
-    // Check for settings updates
-    setInterval(() => {
-        const newSettings = JSON.parse(localStorage.getItem('kallakritiSettings') || JSON.stringify(defaultSettings));
-        if (newSettings.whatsappNumber !== settings.whatsappNumber) {
-            settings = newSettings;
-            phone = settings.whatsappNumber;
-            whatsappLink.href = `https://wa.me/${phone}?text=Hello Kallakriti, I have an inquiry`;
-            document.getElementById('footerPhone').textContent = `+91 ${phone}`;
-            document.getElementById('footerEmail').textContent = settings.adminEmail;
-        }
-    }, 5000);
+  }, 5000);
 });
 </script>
 </body>
