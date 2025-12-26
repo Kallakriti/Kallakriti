@@ -20,6 +20,7 @@ header{
   padding:30px 15px;
 }
 header h1{margin:0;letter-spacing:2px;}
+
 .buttons{text-align:center;margin:20px;}
 .buttons button{
   background:#2f4670;
@@ -57,6 +58,7 @@ header h1{margin:0;letter-spacing:2px;}
   border-radius:14px;
 }
 .products.compact h3{font-size:14px;}
+
 .price{font-weight:bold;margin:8px 0;}
 .products.compact .price{font-size:14px;}
 
@@ -69,10 +71,32 @@ header h1{margin:0;letter-spacing:2px;}
   border-radius:25px;
   cursor:pointer;
 }
+
 .custom{
   font-size:13px;
   font-style:italic;
   margin-top:6px;
+}
+
+.about{
+  background:#ffffff;
+  margin:30px;
+  padding:25px;
+  border-radius:20px;
+  box-shadow:0 6px 14px rgba(0,0,0,.1);
+}
+.about h2{text-align:center;}
+
+.insta{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#c13584;
+  color:white;
+  padding:12px 16px;
+  border-radius:30px;
+  text-decoration:none;
+  font-size:14px;
 }
 </style>
 </head>
@@ -81,6 +105,7 @@ header h1{margin:0;letter-spacing:2px;}
 
 <header>
 <h1>Kallakriti – Crochet & Craft</h1>
+<p>Handmade with love 🧶</p>
 </header>
 
 <div class="buttons">
@@ -97,25 +122,40 @@ header h1{margin:0;letter-spacing:2px;}
 
 <div id="products" class="products"></div>
 
+<div class="about">
+<h2>About Kallakriti</h2>
+<p>
+Kallakriti is a handmade crochet and craft brand that creates unique,
+elegant and customized products with love and care.
+From flowers and toys to home décor and festive collections,
+each piece is crafted to bring warmth and beauty to your space.
+</p>
+<p><strong>Custom orders are always welcome.</strong></p>
+</div>
+
+<a class="insta" href="https://instagram.com/YOUR_INSTAGRAM_USERNAME" target="_blank">
+📸 Instagram
+</a>
+
 <script>
 const phone="7002341920";
 
 const items=[
-{name:"Crochet Rose",price:299,cat:"flowers"},
-{name:"Sunflower",price:349,cat:"flowers"},
-{name:"Crochet Teddy",price:899,cat:"toys"},
-{name:"Crochet Doll",price:1199,cat:"toys"},
-{name:"Handbag",price:1499,cat:"accessories"},
-{name:"Keychain",price:199,cat:"accessories"},
-{name:"Wall Hanging",price:1799,cat:"homedecor"},
-{name:"Cushion Cover",price:999,cat:"homedecor"},
-{name:"Baby Booties",price:499,cat:"baby"},
-{name:"Baby Cap Set",price:699,cat:"baby"},
-{name:"Gift Hamper",price:1999,cat:"gifts"},
-{name:"Couple Gift Set",price:2499,cat:"gifts"},
-{name:"Festive Toran",price:1299,cat:"festive"},
-{name:"Christmas Decor",price:1599,cat:"festive"},
-{name:"Custom Crochet Order",price:"As per design",cat:"custom",custom:true}
+{name:"Crochet Rose",price:299,cat:"flowers",img:"images/rose.jpg"},
+{name:"Sunflower",price:349,cat:"flowers",img:"images/sunflower.jpg"},
+{name:"Crochet Teddy",price:899,cat:"toys",img:"images/teddy.jpg"},
+{name:"Crochet Doll",price:1199,cat:"toys",img:"images/doll.jpg"},
+{name:"Handbag",price:1499,cat:"accessories",img:"images/handbag.jpg"},
+{name:"Keychain",price:199,cat:"accessories",img:"images/keychain.jpg"},
+{name:"Wall Hanging",price:1799,cat:"homedecor",img:"images/wall.jpg"},
+{name:"Cushion Cover",price:999,cat:"homedecor",img:"images/cushion.jpg"},
+{name:"Baby Booties",price:499,cat:"baby",img:"images/booties.jpg"},
+{name:"Baby Cap Set",price:699,cat:"baby",img:"images/babycap.jpg"},
+{name:"Gift Hamper",price:1999,cat:"gifts",img:"images/gift.jpg"},
+{name:"Couple Gift Set",price:2499,cat:"gifts",img:"images/couple.jpg"},
+{name:"Festive Toran",price:1299,cat:"festive",img:"images/toran.jpg"},
+{name:"Christmas Decor",price:1599,cat:"festive",img:"images/christmas.jpg"},
+{name:"Custom Crochet Order",price:"As per design",cat:"custom",custom:true,img:"images/custom.jpg"}
 ];
 
 function show(cat){
@@ -128,11 +168,12 @@ items.filter(i=>cat==="all"||i.cat===cat)
 const card=document.createElement("div");
 card.className="card";
 card.innerHTML=`
-<img src="https://picsum.photos/seed/${encodeURIComponent(i.name)}/400/300">
+<img src="${i.img}">
 <h3>${i.name}</h3>
 <div class="price">₹${i.price}</div>
-${i.custom?'<div class="custom">Message us for custom design</div>':''}
-<button class="wa" onclick="window.open('https://wa.me/${phone}?text=I want to order ${i.name}')">
+${i.custom?'<div class="custom">Custom design & price via WhatsApp</div>':''}
+<button class="wa"
+onclick="window.open('https://wa.me/${phone}?text=Hello Kallakriti, I want to order ${i.name} (${i.price})')">
 Order on WhatsApp
 </button>`;
 box.appendChild(card);
