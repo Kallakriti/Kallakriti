@@ -107,10 +107,42 @@
 const phone = "7002341920";
 
 const items = [
- {name:"Crochet Rose", price:299, cat:"flowers"},
- {name:"Crochet Teddy", price:899, cat:"toys"},
- {name:"Crochet Bag", price:1499, cat:"accessories"},
- {name:"Keychain", price:199, cat:"accessories"}
+ {
+  name: "Crochet Rose",
+  price: 299,
+  cat: "flowers",
+  img: "https://images.unsplash.com/photo-1612197527762-2d56a2f6f45a"
+ },
+ {
+  name: "Crochet Sunflower",
+  price: 349,
+  cat: "flowers",
+  img: "https://images.unsplash.com/photo-1622556498246-755f44ca76a5"
+ },
+ {
+  name: "Crochet Teddy",
+  price: 899,
+  cat: "toys",
+  img: "https://images.unsplash.com/photo-1608848461950-0fe51dfc41cb"
+ },
+ {
+  name: "Crochet Doll",
+  price: 1199,
+  cat: "toys",
+  img: "https://images.unsplash.com/photo-1616627989011-8bfaec6ff2f6"
+ },
+ {
+  name: "Crochet Handbag",
+  price: 1499,
+  cat: "accessories",
+  img: "https://images.unsplash.com/photo-1585386959984-a41552231693"
+ },
+ {
+  name: "Crochet Keychain",
+  price: 199,
+  cat: "accessories",
+  img: "https://images.unsplash.com/photo-1618354691373-d851c5c3a20a"
+ }
 ];
 
 function show(cat){
@@ -119,7 +151,7 @@ function show(cat){
  .forEach(i=>{
   document.getElementById("products").innerHTML += `
   <div class="card">
-    <img src="https://via.placeholder.com/300">
+    <img src="${i.img}">
     <h3>${i.name}</h3>
     <div class="price">₹${i.price}</div>
     <button class="wa"
