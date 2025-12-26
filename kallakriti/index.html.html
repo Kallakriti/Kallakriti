@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kallakriti – Crochet & Craft</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial; background:#fff7f9; margin:0; }
+    header { background:#f8c1cc; padding:20px; text-align:center; }
+    .buttons { text-align:center; margin:15px; }
+    button { padding:10px 15px; margin:5px; border:none; border-radius:5px; }
+    .products { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:15px; padding:20px; }
+    .card { background:white; padding:10px; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,.1); }
+    img { width:100%; border-radius:8px; }
+    .price { font-weight:bold; margin:8px 0; }
+    .wa { background:#25D366; color:white; width:100%; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Kallakriti – Crochet & Craft</h1>
+</header>
+
+<div class="buttons">
+  <button onclick="show('all')">All</button>
+  <button onclick="show('flowers')">Flowers</button>
+  <button onclick="show('toys')">Toys</button>
+  <button onclick="show('accessories')">Accessories</button>
+</div>
+
+<div class="products" id="products"></div>
+
+<script>
+const phone = "917002341920";
+
+const items = [
+ {name:"Crochet Rose", price:299, cat:"flowers"},
+ {name:"Crochet Teddy", price:899, cat:"toys"},
+ {name:"Crochet Bag", price:1499, cat:"accessories"},
+ {name:"Keychain", price:199, cat:"accessories"}
+];
+
+function show(cat){
+ document.getElementById("products").innerHTML = "";
+ items.filter(i=>cat=="all"||i.cat==cat)
+ .forEach(i=>{
+  document.getElementById("products").innerHTML += `
+  <div class="card">
+    <img src="https://via.placeholder.com/300">
+    <h3>${i.name}</h3>
+    <div class="price">₹${i.price}</div>
+    <button class="wa"
+    onclick="window.open('https://wa.me/${phone}?text=I want to order ${i.name} for ₹${i.price}')">
+    Order on WhatsApp
+    </button>
+  </div>`;
+ });
+}
+show("all");
+</script>
+
+</body>
+</html>
