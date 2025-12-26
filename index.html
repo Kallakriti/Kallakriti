@@ -3,96 +3,97 @@
 <head>
   <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
-  <title> KaLLakriti-Crochet & Craft </title>
+  <title>Kallakriti – Crochet & Craft</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
-  body {
-    font-family: "Algerian", serif;
-    background: #f5f1ea;
-    margin: 0;
-    color: #ED7D31;
-  }
+    body {
+      font-family: Georgia, serif;
+      background: #f5f1ea;
+      margin: 0;
+      color: #243b63;
+    }
 
-  header {
-    background: linear-gradient(135deg, #1a2a44, #243b63);
-    padding: 35px 15px;
-    text-align: center;
-    color: #f5e6c8;
-  }
+    header {
+      background: linear-gradient(135deg, #1a2a44, #243b63);
+      padding: 35px 15px;
+      text-align: center;
+      color: #f5e6c8;
+    }
 
-  header h1 {
-    margin: 0;
-    font-size: 30px;
-    letter-spacing: 2px;
-    font-weight: normal;
-  }
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+      letter-spacing: 2px;
+      font-weight: normal;
+    }
 
-  .buttons {
-    text-align: center;
-    margin: 25px 10px;
-  }
+    .buttons {
+      text-align: center;
+      margin: 25px 10px;
+    }
 
-  button {
-    padding: 10px 20px;
-    margin: 6px;
-    border: none;
-    border-radius: 30px;
-    background: #243b63;
-    color: #f5e6c8;
-    font-size: 14px;
-    cursor: pointer;
-  }
+    button {
+      padding: 10px 20px;
+      margin: 6px;
+      border: none;
+      border-radius: 30px;
+      background: #243b63;
+      color: #f5e6c8;
+      font-size: 14px;
+      cursor: pointer;
+    }
 
-  button:hover {
-    background: #1a2a44;
-  }
+    button:hover {
+      background: #1a2a44;
+    }
 
-  .products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    padding: 25px;
-  }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 25px;
+    }
 
-  .card {
-    background: #ffffff;
-    padding: 14px;
-    border-radius: 18px;
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
-    text-align: center;
-  }
+    .card {
+      background: white;
+      padding: 14px;
+      border-radius: 18px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
 
-  img {
-    width: 100%;
-    border-radius: 14px;
-  }
+    img {
+      width: 100%;
+      border-radius: 14px;
+    }
 
-  .price {
-    font-weight: bold;
-    margin: 10px 0;
-    font-size: 16px;
-    color: #243b63;
-  }
+    .price {
+      font-weight: bold;
+      margin: 10px 0;
+      font-size: 16px;
+      color: #243b63;
+    }
 
-  .wa {
-    background: #9c7c38;
-    color: white;
-    width: 100%;
-    margin-top: 10px;
-    border-radius: 30px;
-    font-size: 14px;
-  }
+    .wa {
+      background: #9c7c38;
+      color: white;
+      width: 100%;
+      margin-top: 10px;
+      border-radius: 30px;
+      font-size: 14px;
+    }
 
-  .wa:hover {
-    background: #7f642c;
-  }
-</style>
+    .wa:hover {
+      background: #7f642c;
+    }
+  </style>
 </head>
+
 <body>
 
 <header>
-  <h1>Kallakriti-Crochet & Craft
-</h1>
+  <h1>Kallakriti – Crochet & Craft</h1>
 </header>
 
 <div class="buttons">
@@ -105,72 +106,42 @@
 <div class="products" id="products"></div>
 
 <script>
-const phone = "7002341920";
+  const phone = "7002341920";
 
-const items = [
- {
-  name: "Crochet Rose",
-  price: 299,
-  cat: "flowers",
-  img: "https://picsum.photos/id/1025/400/300"
- },
- {
-  name: "Crochet Sunflower",
-  price: 349,
-  cat: "flowers",
-  img: "https://picsum.photos/id/103/400/300"
- },
- {
-  name: "Crochet Teddy",
-  price: 899,
-  cat: "toys",
-  img: "https://picsum.photos/id/1062/400/300"
- },
- {
-  name: "Crochet Doll",
-  price: 1199,
-  cat: "toys",
-  img: "https://picsum.photos/id/1027/400/300"
- },
- {
-  name: "Crochet Handbag",
-  price: 1499,
-  cat: "accessories",
-  img: "https://picsum.photos/id/1084/400/300"
- },
- {
-  name: "Crochet Keychain",
-  price: 199,
-  cat: "accessories",
-  img: "https://picsum.photos/id/1069/400/300"
- }
-];
+  const items = [
+    { name: "Crochet Rose", price: 299, cat: "flowers" },
+    { name: "Crochet Sunflower", price: 349, cat: "flowers" },
+    { name: "Crochet Teddy", price: 899, cat: "toys" },
+    { name: "Crochet Doll", price: 1199, cat: "toys" },
+    { name: "Crochet Handbag", price: 1499, cat: "accessories" },
+    { name: "Crochet Keychain", price: 199, cat: "accessories" }
+  ];
 
+  function show(cat) {
+    const box = document.getElementById("products");
+    box.innerHTML = "";
 
-function show(cat) {
-  const box = document.getElementById("products");
-  box.innerHTML = "";
+    items
+      .filter(i => cat === "all" || i.cat === cat)
+      .forEach(i => {
+        const card = document.createElement("div");
+        card.className = "card";
 
-  items
-    .filter(i => cat === "all" || i.cat === cat)
-    .forEach(i => {
-      const card = document.createElement("div");
-      card.className = "card";
+        card.innerHTML = `
+          <img src="https://picsum.photos/seed/${encodeURIComponent(i.name)}/400/300">
+          <h3>${i.name}</h3>
+          <div class="price">₹${i.price}</div>
+          <button class="wa"
+            onclick="window.open('https://wa.me/${phone}?text=I want to order ${i.name} for ₹${i.price}')">
+            Order on WhatsApp
+          </button>
+        `;
 
-      card.innerHTML = `
-        <img src="${i.img}?auto=format&fit=crop&w=400" alt="${i.name}">
-        <h3>${i.name}</h3>
-        <div class="price">₹${i.price}</div>
-        <button class="wa"
-          onclick="window.open('https://wa.me/${phone}?text=I want to order ${i.name} for ₹${i.price}')">
-          Order on WhatsApp
-        </button>
-      `;
+        box.appendChild(card);
+      });
+  }
 
-      box.appendChild(card);
-    });
-}
-show("all");
+  show("all");
 </script>
 
 </body>
