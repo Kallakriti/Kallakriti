@@ -146,12 +146,12 @@ const items = [
  }
 ];
 
-function show(rose) {
+function show(cat) {
   const box = document.getElementById("products");
   box.innerHTML = "";
 
   items
-    .filter(i => rose === "all" || i.rose === rose)
+    .filter(i => cat === "all" || i.cat === cat)
     .forEach(i => {
       const card = document.createElement("div");
       card.className = "card";
@@ -169,7 +169,6 @@ function show(rose) {
       box.appendChild(card);
     });
 }
-
 show("all");
 </script>
 
