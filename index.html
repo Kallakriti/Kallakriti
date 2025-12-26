@@ -51,22 +51,25 @@ header img{
 
 /* CATEGORY SELECTOR - TOP LEFT */
 .category-selector{
-  position:absolute;
-  top:15px;
-  left:15px;
-  z-index:10;
+  position:relative;
+  z-index:1000;
 }
 .category-btn{
   background:#9c7c38;
   color:white;
   border:none;
-  padding:8px 15px;
+  padding:10px 20px;
   border-radius:20px;
   cursor:pointer;
-  font-size:0.9rem;
+  font-size:1rem;
   display:flex;
   align-items:center;
   gap:8px;
+  font-family:'Poppins',sans-serif;
+  transition:background 0.3s ease;
+}
+.category-btn:hover{
+  background:#7a612d;
 }
 .category-dropdown{
   position:absolute;
@@ -74,11 +77,13 @@ header img{
   left:0;
   background:white;
   border-radius:10px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.15);
-  padding:10px;
-  min-width:180px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.2);
+  padding:0;
+  min-width:200px;
   display:none;
-  z-index:100;
+  z-index:1001;
+  margin-top:5px;
+  overflow:hidden;
 }
 .category-dropdown.show{
   display:block;
@@ -86,13 +91,16 @@ header img{
 .category-dropdown button{
   display:block;
   width:100%;
-  padding:10px;
+  padding:12px 20px;
   text-align:left;
   background:none;
   border:none;
   border-bottom:1px solid #eee;
   cursor:pointer;
   color:#1f2a44;
+  font-family:'Poppins',sans-serif;
+  font-size:0.95rem;
+  transition:background 0.2s ease;
 }
 .category-dropdown button:last-child{
   border-bottom:none;
@@ -100,47 +108,56 @@ header img{
 .category-dropdown button:hover{
   background:#f4efe8;
 }
+.category-dropdown button.active{
+  background:#9c7c38;
+  color:white;
+}
 
 /* PRODUCTS */
 .products{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-  padding:20px;
+  gap:25px;
+  padding:30px 20px;
   max-width:1200px;
   margin:0 auto;
-}
-.products.compact{
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:12px;
 }
 .card{
   background:#fff;
   border-radius:18px;
-  padding:14px;
-  box-shadow:0 8px 18px rgba(0,0,0,.15);
+  padding:18px;
+  box-shadow:0 8px 20px rgba(0,0,0,.12);
   text-align:center;
-  transition:transform 0.3s ease;
+  transition:transform 0.3s ease, box-shadow 0.3s ease;
 }
 .card:hover{
-  transform:translateY(-5px);
-}
-.products.compact .card{
-  padding:10px;
+  transform:translateY(-7px);
+  box-shadow:0 12px 25px rgba(0,0,0,.18);
 }
 .card img{
   width:100%;
-  height:180px;
+  height:200px;
   object-fit:cover;
-  border-radius:14px;
+  border-radius:12px;
+  margin-bottom:15px;
 }
-.products.compact img{
-  height:120px;
+.card h3{
+  margin:10px 0;
+  font-size:1.1rem;
+  color:#1f2a44;
+  min-height:2.8rem;
+}
+.card-desc{
+  font-size:0.9rem;
+  color:#666;
+  margin:8px 0 12px 0;
+  min-height:2.2rem;
 }
 .price{
   font-weight:600;
-  margin:8px 0;
+  margin:12px 0;
   color:#9c7c38;
+  font-size:1.2rem;
 }
 
 .order{
@@ -148,11 +165,12 @@ header img{
   color:white;
   border:none;
   width:100%;
-  padding:10px;
+  padding:12px;
   border-radius:25px;
   cursor:pointer;
   font-weight:500;
   transition:background 0.3s ease;
+  font-size:1rem;
 }
 .order:hover{
   background:#7a612d;
@@ -161,36 +179,39 @@ header img{
 /* SECTIONS */
 .section{
   background:#fff;
-  margin:25px;
-  padding:25px;
+  margin:30px auto;
+  padding:30px;
   border-radius:20px;
-  box-shadow:0 6px 14px rgba(0,0,0,.1);
+  box-shadow:0 6px 16px rgba(0,0,0,.1);
   max-width:1200px;
-  margin-left:auto;
-  margin-right:auto;
 }
 .section h2{
   font-family:'Playfair Display',serif;
   text-align:center;
   color:#1f2a44;
+  margin-bottom:20px;
 }
 
 /* CHAT BUTTON */
 .chat{
   position:fixed;
-  bottom:20px;
-  right:20px;
+  bottom:25px;
+  right:25px;
   background:#25d366;
   color:white;
-  padding:14px 18px;
+  padding:15px 20px;
   border-radius:30px;
   text-decoration:none;
-  font-size:14px;
-  box-shadow:0 6px 12px rgba(0,0,0,.3);
+  font-size:0.95rem;
+  box-shadow:0 6px 15px rgba(0,0,0,.3);
   display:flex;
   align-items:center;
   gap:8px;
   z-index:50;
+  transition:transform 0.3s ease;
+}
+.chat:hover{
+  transform:scale(1.05);
 }
 
 /* FOOTER */
@@ -198,27 +219,16 @@ footer{
   background:#1f2a44;
   color:#f5e6c8;
   text-align:center;
-  padding:25px;
-  margin-top:30px;
+  padding:30px;
+  margin-top:40px;
+}
+footer p{
+  margin:10px 0;
+  font-size:1rem;
 }
 footer a{
   color:#9c7c38;
   text-decoration:none;
-}
-
-/* OVERLAY FOR DROPDOWN */
-.overlay{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  background:rgba(0,0,0,0.3);
-  display:none;
-  z-index:99;
-}
-.overlay.show{
-  display:block;
 }
 
 /* RESPONSIVE */
@@ -233,15 +243,21 @@ footer a{
     gap:10px;
   }
   .category-selector{
-    position:static;
     margin-top:10px;
   }
   .products{
     grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    padding:20px 15px;
+    gap:15px;
+  }
+  .card{
     padding:15px;
   }
+  .card img{
+    height:160px;
+  }
   .section{
-    margin:15px;
+    margin:20px 15px;
     padding:20px;
   }
 }
@@ -249,9 +265,6 @@ footer a{
 </head>
 
 <body>
-
-<!-- OVERLAY FOR DROPDOWN -->
-<div class="overlay" id="overlay" onclick="closeCategoryDropdown()"></div>
 
 <header>
   <div class="header-content">
@@ -265,17 +278,17 @@ footer a{
     
     <!-- CATEGORY SELECTOR - TOP LEFT -->
     <div class="category-selector">
-      <button class="category-btn" onclick="toggleCategoryDropdown()">
-        <span>☰ Categories</span>
+      <button class="category-btn" onclick="toggleCategoryDropdown(event)">
+        <span id="currentCategoryText">☰ All Products</span>
       </button>
       <div class="category-dropdown" id="categoryDropdown">
-        <button onclick="showCategory('all')">All Products</button>
-        <button onclick="showCategory('flowers')">Crochet Flowers</button>
-        <button onclick="showCategory('toys')">Crochet Toys</button>
-        <button onclick="showCategory('accessories')">Accessories</button>
-        <button onclick="showCategory('baby')">Baby Items</button>
-        <button onclick="showCategory('custom')">Custom Orders</button>
-        <button onclick="showCategory('money')">Money Bouquets</button>
+        <button onclick="selectCategory('all')">All Products</button>
+        <button onclick="selectCategory('flowers')">Crochet Flowers</button>
+        <button onclick="selectCategory('toys')">Crochet Toys</button>
+        <button onclick="selectCategory('accessories')">Accessories</button>
+        <button onclick="selectCategory('baby')">Baby Items</button>
+        <button onclick="selectCategory('custom')">Custom Orders</button>
+        <button onclick="selectCategory('money')">Money Bouquets</button>
       </div>
     </div>
   </div>
@@ -325,14 +338,27 @@ const items = [
 ];
 
 let currentCategory = "all";
+let dropdownOpen = false;
 
-function showCategory(cat){
+// Function to toggle dropdown
+function toggleCategoryDropdown(event) {
+  event.stopPropagation();
+  const dropdown = document.getElementById('categoryDropdown');
+  dropdownOpen = !dropdownOpen;
+  dropdown.classList.toggle('show');
+  
+  // Update active buttons
+  updateActiveButtons();
+}
+
+// Function to select category
+function selectCategory(cat) {
   currentCategory = cat;
-  const box = document.getElementById("products");
-  box.innerHTML = "";
+  displayProducts();
+  dropdownOpen = false;
+  document.getElementById('categoryDropdown').classList.remove('show');
   
   // Update button text
-  const categoryBtn = document.querySelector('.category-btn span');
   const categoryNames = {
     'all': 'All Products',
     'flowers': 'Crochet Flowers',
@@ -342,58 +368,70 @@ function showCategory(cat){
     'custom': 'Custom Orders',
     'money': 'Money Bouquets'
   };
-  categoryBtn.textContent = `☰ ${categoryNames[cat]}`;
+  document.getElementById('currentCategoryText').textContent = `☰ ${categoryNames[cat]}`;
   
-  // Filter and display products
-  const filteredItems = cat === "all" ? items : items.filter(i => i.cat === cat);
+  // Update active buttons
+  updateActiveButtons();
+}
+
+// Function to update active buttons in dropdown
+function updateActiveButtons() {
+  const buttons = document.querySelectorAll('.category-dropdown button');
+  buttons.forEach(button => {
+    const category = button.getAttribute('onclick').match(/'(\w+)'/)[1];
+    if (category === currentCategory) {
+      button.classList.add('active');
+    } else {
+      button.classList.remove('active');
+    }
+  });
+}
+
+// Function to display products
+function displayProducts() {
+  const box = document.getElementById("products");
+  box.innerHTML = "";
   
-  filteredItems.forEach(i => {
+  // Filter products based on current category
+  const filteredItems = currentCategory === "all" 
+    ? items 
+    : items.filter(item => item.cat === currentCategory);
+  
+  // Display filtered products
+  filteredItems.forEach(item => {
     box.innerHTML += `
     <div class="card">
-      <img src="${i.img}" alt="${i.name}" onerror="this.src='https://via.placeholder.com/300x180/ffffff/9c7c38?text=Kallakriti'">
-      <h3>${i.name}</h3>
-      <p style="font-size:0.9rem;color:#666;margin:5px 0;">${i.desc}</p>
-      <div class="price">${typeof i.price === 'number' ? '₹' + i.price : i.price}</div>
-      <button class="order" onclick="orderProduct('${i.name}')">
+      <img src="${item.img}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/300x200/ffffff/9c7c38?text=Kallakriti+${encodeURIComponent(item.name)}'">
+      <h3>${item.name}</h3>
+      <div class="card-desc">${item.desc}</div>
+      <div class="price">${typeof item.price === 'number' ? '₹' + item.price : item.price}</div>
+      <button class="order" onclick="orderProduct('${item.name}')">
         Order on WhatsApp
       </button>
     </div>`;
   });
-  
-  closeCategoryDropdown();
 }
 
+// Function to order product
 function orderProduct(productName){
   const message = `Hello Kallakriti! I'm interested in ordering: ${productName}`;
   window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`);
 }
-
-function toggleCategoryDropdown(){
-  const dropdown = document.getElementById('categoryDropdown');
-  const overlay = document.getElementById('overlay');
-  dropdown.classList.toggle('show');
-  overlay.classList.toggle('show');
-}
-
-function closeCategoryDropdown(){
-  const dropdown = document.getElementById('categoryDropdown');
-  const overlay = document.getElementById('overlay');
-  dropdown.classList.remove('show');
-  overlay.classList.remove('show');
-}
-
-// Initialize with all products
-showCategory("all");
 
 // Close dropdown when clicking outside
 document.addEventListener('click', function(event) {
   const dropdown = document.getElementById('categoryDropdown');
   const categoryBtn = document.querySelector('.category-btn');
   
-  if (!dropdown.contains(event.target) && !categoryBtn.contains(event.target)) {
-    closeCategoryDropdown();
+  if (dropdownOpen && !dropdown.contains(event.target) && !categoryBtn.contains(event.target)) {
+    dropdownOpen = false;
+    dropdown.classList.remove('show');
   }
 });
+
+// Initialize page
+displayProducts();
+updateActiveButtons();
 </script>
 
 </body>
