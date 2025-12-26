@@ -145,22 +145,30 @@ const items = [
  }
 ];
 
-function show(cat){
- document.getElementById("products").innerHTML = "";
- items.filter(i=>cat=="all"||i.cat==cat)
- .forEach(i=>{
-  document.getElementById("products").innerHTML += `
-  <div class="card">
-    <img src="${i.img}">
-    <h3>${i.name}</h3>
-    <div class="price">₹${i.price}</div>
-    <button class="wa"
-    onclick="window.open('https://wa.me/${phone}?text=I want to order ${i.name} for ₹${i.price}')">
-    Order on WhatsApp
-    </button>
-  </div>`;
- });
+function show(cat) {
+  const box = document.getElementById("products");
+  box.innerHTML = "";
+
+  items
+    .filter(i => cat === "all" || i.cat === cat)
+    .forEach(i => {
+      const card = document.createElement("div");
+      card.className = "card";
+
+      card.innerHTML = `
+        <img src="${i.img}?auto=format&fit=crop&w=400" alt="${i.name}">
+        <h3>${i.name}</h3>
+        <div class="price">₹${i.price}</div>
+        <button class="wa"
+          onclick="window.open('https://wa.me/${phone}?text=I want to order ${i.name} for ₹${i.price}')">
+          Order on WhatsApp
+        </button>
+      `;
+
+      box.appendChild(card);
+    });
 }
+
 show("all");
 </script>
 
