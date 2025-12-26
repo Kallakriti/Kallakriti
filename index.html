@@ -1127,7 +1127,7 @@ function handleLogin(event) {
         localStorage.setItem('kallakritiCustomers', JSON.stringify(customers));
         
         currentUser = newUser;
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        localStorage.setItem('currentUser', JSON.stringify(newUser));
         
         alert(`Welcome to Kallakriti, ${name}! Your account has been created.`);
         closeLogin();
@@ -1170,7 +1170,7 @@ function loadUserCart() {
     if (currentUser) {
         const user = customers.find(c => c.id === currentUser.id);
         if (user && user.cart) {
-            cart = user.cart;
+            cart = JSON.parse(JSON.stringify(user.cart)); // Deep copy
             localStorage.setItem('kallakritiCart', JSON.stringify(cart));
         }
     }
@@ -1181,7 +1181,8 @@ function saveUserCart() {
     if (currentUser) {
         const userIndex = customers.findIndex(c => c.id === currentUser.id);
         if (userIndex !== -1) {
-            customers[userIndex].cart = cart;
+            // Deep copy to avoid reference issues
+            customers[userIndex].cart = JSON.parse(JSON.stringify(cart));
             localStorage.setItem('kallakritiCustomers', JSON.stringify(customers));
             localStorage.setItem('currentUser', JSON.stringify(customers[userIndex]));
             currentUser = customers[userIndex];
@@ -1225,7 +1226,7 @@ function closeLogin() {
     document.getElementById('loginForm').reset();
 }
 
-// ==================== CART SYSTEM ====================
+// ==================== CART SYSTEM - FIXED FOR MULTIPLE ITEMS ====================
 let cart = JSON.parse(localStorage.getItem('kallakritiCart') || '[]');
 
 function addToCart(id, name, price, image) {
@@ -1235,11 +1236,14 @@ function addToCart(id, name, price, image) {
         return;
     }
     
-    const existingItem = cart.find(item => item.id === id);
+    // Check if item already exists in cart
+    const existingItemIndex = cart.findIndex(item => item.id === id);
     
-    if (existingItem) {
-        existingItem.quantity += 1;
+    if (existingItemIndex !== -1) {
+        // Item exists, increase quantity
+        cart[existingItemIndex].quantity += 1;
     } else {
+        // Item doesn't exist, add new item
         cart.push({
             id: id,
             name: name,
@@ -1255,13 +1259,13 @@ function addToCart(id, name, price, image) {
 }
 
 function updateQuantity(id, change) {
-    const item = cart.find(item => item.id === id);
+    const itemIndex = cart.findIndex(item => item.id === id);
     
-    if (item) {
-        item.quantity += change;
+    if (itemIndex !== -1) {
+        cart[itemIndex].quantity += change;
         
-        if (item.quantity <= 0) {
-            cart = cart.filter(item => item.id !== id);
+        if (cart[itemIndex].quantity <= 0) {
+            cart.splice(itemIndex, 1);
         }
         
         saveCart();
@@ -1271,10 +1275,13 @@ function updateQuantity(id, change) {
 }
 
 function removeFromCart(id) {
-    cart = cart.filter(item => item.id !== id);
-    saveCart();
-    updateCartCount();
-    updateCartDisplay();
+    const itemIndex = cart.findIndex(item => item.id === id);
+    if (itemIndex !== -1) {
+        cart.splice(itemIndex, 1);
+        saveCart();
+        updateCartCount();
+        updateCartDisplay();
+    }
 }
 
 function saveCart() {
@@ -1322,7 +1329,7 @@ function updateCartDisplay() {
     let total = 0;
     cartItems.innerHTML = '';
     
-    cart.forEach(item => {
+    cart.forEach((item, index) => {
         const itemTotal = item.price * item.quantity;
         total += itemTotal;
         
@@ -1332,7 +1339,7 @@ function updateCartDisplay() {
             <img src="${item.image}" alt="${item.name}" class="cart-item-img">
             <div class="cart-item-details">
                 <div class="cart-item-name">${item.name}</div>
-                <div class="cart-item-price">₹${item.price}</div>
+                <div class="cart-item-price">₹${item.price} × ${item.quantity} = ₹${itemTotal}</div>
                 <div class="cart-item-controls">
                     <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
                     <span class="cart-item-quantity">${item.quantity}</span>
@@ -1513,6 +1520,7 @@ function displayProducts() {
         : items.filter(item => item.cat === currentCategory);
     
     filteredItems.forEach(item => {
+        const escapedName = item.name.replace(/'/g, "\\'");
         box.innerHTML += `
         <div class="card">
             <img src="${item.img}" alt="${item.name}" 
@@ -1520,11 +1528,11 @@ function displayProducts() {
             <h3>${item.name}</h3>
             <div class="price">${typeof item.price === 'number' ? '₹' + item.price : item.price}</div>
             ${typeof item.price === 'number' ? `
-            <button class="cart-add-btn" onclick="addToCart(${item.id}, '${item.name.replace(/'/g, "\\'")}', ${item.price}, '${item.img}')">
+            <button class="cart-add-btn" onclick="addToCart(${item.id}, '${escapedName}', ${item.price}, '${item.img}')">
                 <i class="fas fa-cart-plus"></i> Add to Cart
             </button>
             ` : ''}
-            <button class="order-btn" onclick="orderProduct('${item.name.replace(/'/g, "\\'")}')">
+            <button class="order-btn" onclick="orderProduct('${escapedName}')">
                 <i class="fab fa-whatsapp"></i> Order Now
             </button>
         </div>`;
