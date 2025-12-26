@@ -53,42 +53,6 @@ header img{
   opacity:0.9;
 }
 
-/* CART ICON */
-.cart-icon {
-  position: relative;
-  margin-left: 20px;
-}
-
-.cart-btn {
-  background: #9c7c38;
-  color: white;
-  border: none;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  position: relative;
-}
-
-.cart-count {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background: #e74c3c;
-  color: white;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  font-size: 0.7rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 /* CATEGORY SELECTOR */
 .category-selector{
   position:relative;
@@ -204,7 +168,7 @@ header img{
   color:#9c7c38;
   font-size:1.1rem;
 }
-.order-btn{
+.order{
   background:#9c7c38;
   color:white;
   border:none;
@@ -216,184 +180,10 @@ header img{
   transition:all 0.3s ease;
   font-size:0.85rem;
   margin-top:auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
 }
-.order-btn:hover{
+.order:hover{
   background:#7a612d;
   transform:scale(1.03);
-}
-
-.cart-add-btn {
-  background: #3498db;
-  color: white;
-  border: none;
-  width: 100%;
-  padding: 9px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  font-size: 0.85rem;
-  margin-top: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.cart-add-btn:hover {
-  background: #2980b9;
-  transform: scale(1.03);
-}
-
-/* CART MODAL */
-.cart-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-}
-
-.cart-content {
-  background: white;
-  width: 90%;
-  max-width: 500px;
-  max-height: 80vh;
-  border-radius: 15px;
-  padding: 25px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-  display: flex;
-  flex-direction: column;
-}
-
-.cart-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.cart-header h3 {
-  margin: 0;
-  color: #1f2a44;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.cart-close {
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #666;
-}
-
-.cart-items {
-  flex: 1;
-  overflow-y: auto;
-  margin-bottom: 20px;
-}
-
-.cart-item {
-  display: flex;
-  align-items: center;
-  padding: 15px;
-  border-bottom: 1px solid #eee;
-}
-
-.cart-item-img {
-  width: 60px;
-  height: 60px;
-  border-radius: 8px;
-  object-fit: cover;
-  margin-right: 15px;
-}
-
-.cart-item-details {
-  flex: 1;
-}
-
-.cart-item-name {
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-
-.cart-item-price {
-  color: #9c7c38;
-  font-weight: 600;
-}
-
-.cart-item-remove {
-  background: #e74c3c;
-  color: white;
-  border: none;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cart-empty {
-  text-align: center;
-  padding: 40px;
-  color: #666;
-}
-
-.cart-total {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-  border-top: 2px solid #eee;
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-.cart-actions {
-  display: flex;
-  gap: 10px;
-}
-
-.cart-checkout {
-  background: #2ecc71;
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: 600;
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.cart-clear {
-  background: #e74c3c;
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
 }
 
 /* SECTIONS */
@@ -587,10 +377,6 @@ footer a{
     text-align:center;
     gap:8px;
   }
-  .cart-icon {
-    margin-left: 0;
-    margin-top: 10px;
-  }
   .category-selector{
     width:100%;
     display:flex;
@@ -634,11 +420,6 @@ footer a{
     right: 15px;
     padding: 12px 20px;
     font-size: 0.9rem;
-  }
-  
-  .cart-content {
-    width: 95%;
-    padding: 15px;
   }
 }
 
@@ -685,29 +466,19 @@ footer a{
       </div>
     </div>
     
-    <div style="display: flex; align-items: center; gap: 15px;">
-      <!-- CATEGORY SELECTOR -->
-      <div class="category-selector">
-        <button class="category-btn" onclick="toggleCategoryDropdown(event)">
-          <span id="currentCategoryText">☰ All Products</span>
-        </button>
-        <div class="category-dropdown" id="categoryDropdown">
-          <button onclick="selectCategory('all')">All Products</button>
-          <button onclick="selectCategory('flowers')">Crochet Flowers</button>
-          <button onclick="selectCategory('toys')">Crochet Toys</button>
-          <button onclick="selectCategory('accessories')">Accessories</button>
-          <button onclick="selectCategory('baby')">Baby Items</button>
-          <button onclick="selectCategory('custom')">Custom Orders</button>
-          <button onclick="selectCategory('money')">Money Bouquets</button>
-        </div>
-      </div>
-      
-      <!-- CART ICON -->
-      <div class="cart-icon">
-        <button class="cart-btn" onclick="openCart()">
-          <i class="fas fa-shopping-cart"></i>
-          <span class="cart-count" id="cartCount">0</span>
-        </button>
+    <!-- CATEGORY SELECTOR -->
+    <div class="category-selector">
+      <button class="category-btn" onclick="toggleCategoryDropdown(event)">
+        <span id="currentCategoryText">☰ All Products</span>
+      </button>
+      <div class="category-dropdown" id="categoryDropdown">
+        <button onclick="selectCategory('all')">All Products</button>
+        <button onclick="selectCategory('flowers')">Crochet Flowers</button>
+        <button onclick="selectCategory('toys')">Crochet Toys</button>
+        <button onclick="selectCategory('accessories')">Accessories</button>
+        <button onclick="selectCategory('baby')">Baby Items</button>
+        <button onclick="selectCategory('custom')">Custom Orders</button>
+        <button onclick="selectCategory('money')">Money Bouquets</button>
       </div>
     </div>
   </div>
@@ -726,39 +497,11 @@ footer a{
 
 <div class="section">
   <h2>How to Order</h2>
-  <p>1. Browse our collection and add items to cart</p>
-  <p>2. Click cart icon to review your selection</p>
-  <p>3. Click "Checkout" to send order via WhatsApp</p>
-  <p>4. Share customization preferences</p>
-  <p>5. We'll craft your personalized items with care!</p>
-</div>
-
-<!-- CART MODAL -->
-<div class="cart-modal" id="cartModal">
-  <div class="cart-content">
-    <div class="cart-header">
-      <h3><i class="fas fa-shopping-cart"></i> Your Cart</h3>
-      <button class="cart-close" onclick="closeCart()">×</button>
-    </div>
-    
-    <div class="cart-items" id="cartItems">
-      <!-- Cart items will appear here -->
-    </div>
-    
-    <div class="cart-total">
-      <span>Total:</span>
-      <span id="cartTotal">₹0</span>
-    </div>
-    
-    <div class="cart-actions">
-      <button class="cart-checkout" onclick="checkout()">
-        <i class="fab fa-whatsapp"></i> Checkout on WhatsApp
-      </button>
-      <button class="cart-clear" onclick="clearCart()">
-        <i class="fas fa-trash"></i> Clear Cart
-      </button>
-    </div>
-  </div>
+  <p>1. Browse our collection and select your favorite items</p>
+  <p>2. Click "Order on WhatsApp" to message us directly</p>
+  <p>3. Share your requirements and customization preferences</p>
+  <p>4. Confirm your order and delivery details</p>
+  <p>5. We'll craft your personalized item with care!</p>
 </div>
 
 <!-- COMPLAINT MODAL -->
@@ -793,8 +536,7 @@ footer a{
   <i class="fas fa-exclamation-circle"></i> Register Complaint
 </button>
 
-<a id="whatsappLink" href="#" 
-   class="whatsapp-btn" target="_blank">
+<a href="" class="whatsapp-btn" target="_blank" id="whatsappLink">
   <i class="fab fa-whatsapp"></i> Chat on WhatsApp
 </a>
 
@@ -805,54 +547,64 @@ footer a{
 </footer>
 
 <script>
-// ==================== LOAD SETTINGS FROM ADMIN ====================
-// Load WhatsApp number from admin settings
-const defaultSettings = {
-  whatsappNumber: "7002341920",
-  adminEmail: "kallakriti.craft@gmail.com"
-};
+// ==================== LOAD SETTINGS FROM LOCALSTORAGE ====================
+function loadSettings() {
+    // Load settings from localStorage
+    const settings = JSON.parse(localStorage.getItem('kallakritiSettings') || '{}');
+    
+    // Default values if no settings exist
+    let phoneNumber = settings.whatsappNumber || "7002341920";
+    let email = settings.adminEmail || "kallakriti.craft@gmail.com";
+    
+    // Update WhatsApp link
+    const whatsappLink = document.getElementById('whatsappLink');
+    whatsappLink.href = `https://wa.me/${phoneNumber}?text=Hello Kallakriti, I have an inquiry`;
+    
+    // Update footer contact info
+    document.getElementById('footerPhone').textContent = `+91 ${phoneNumber}`;
+    document.getElementById('footerEmail').textContent = email;
+    
+    return phoneNumber;
+}
 
-let settings = JSON.parse(localStorage.getItem('kallakritiSettings') || JSON.stringify(defaultSettings));
-let phone = settings.whatsappNumber || "7002341920";
+// Load phone number from settings
+const phone = loadSettings();
 
-// Update WhatsApp link
-const whatsappLink = document.getElementById('whatsappLink');
-whatsappLink.href = `https://wa.me/${phone}?text=Hello Kallakriti, I have an inquiry`;
-
-// Update footer contact info
-document.getElementById('footerPhone').textContent = `+91 ${phone}`;
-document.getElementById('footerEmail').textContent = settings.adminEmail || "kallakriti.craft@gmail.com";
+// YOUR LOGO IS NOW SET TO: https://raw.githubusercontent.com/kallakriti/kallakriti/main/images/logo.png
+const logoUrl = "https://raw.githubusercontent.com/kallakriti/kallakriti/main/images/logo.png";
 
 // ==================== LOAD PRODUCTS FROM ADMIN PANEL ====================
+// Load products from localStorage (shared with admin panel)
 let items = JSON.parse(localStorage.getItem('kallakritiProducts') || '[]');
 
 // If no products in localStorage, use these default ones
 if (items.length === 0) {
     items = [
-        {id: 1, name: "Crochet Rose Bouquet", price: 299, cat: "flowers", img: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=300&fit=crop"},
-        {id: 2, name: "Sunflower Collection", price: 349, cat: "flowers", img: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300&h=300&fit=crop"},
-        {id: 3, name: "Crochet Teddy Bear", price: 899, cat: "toys", img: "https://images.unsplash.com/photo-1594787318287-7c5cee6dce76?w=300&h=300&fit=crop"},
-        {id: 4, name: "Elegant Handbag", price: 1499, cat: "accessories", img: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=300&h=300&fit=crop"},
-        {id: 5, name: "Baby Booties Set", price: 499, cat: "baby", img: "https://images.unsplash.com/photo-1539185441755-769473a23570?w=300&h=300&fit=crop"},
-        {id: 6, name: "Custom Crochet Order", price: "As per design", cat: "custom", img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=300&fit=crop"},
-        {id: 7, name: "Money Bouquet", price: 1999, cat: "money", img: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=300&h=300&fit=crop"}
+        {name: "Crochet Rose Bouquet", price: 299, cat: "flowers", img: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=300&fit=crop"},
+        {name: "Sunflower Collection", price: 349, cat: "flowers", img: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300&h=300&fit=crop"},
+        {name: "Crochet Teddy Bear", price: 899, cat: "toys", img: "https://images.unsplash.com/photo-1594787318287-7c5cee6dce76?w=300&h=300&fit=crop"},
+        {name: "Elegant Handbag", price: 1499, cat: "accessories", img: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=300&h=300&fit=crop"},
+        {name: "Baby Booties Set", price: 499, cat: "baby", img: "https://images.unsplash.com/photo-1539185441755-769473a23570?w=300&h=300&fit=crop"},
+        {name: "Custom Crochet Order", price: "As per design", cat: "custom", img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=300&fit=crop"},
+        {name: "Money Bouquet", price: 1999, cat: "money", img: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=300&h=300&fit=crop"},
+        {name: "Lily Flowers Set", price: 399, cat: "flowers", img: "https://images.unsplash.com/photo-1562690868-60bbe7293e94?w=300&h=300&fit=crop"},
+        {name: "Crochet Bunny", price: 749, cat: "toys", img: "https://images.unsplash.com/photo-1589874186480-ecd085096f63?w=300&h=300&fit=crop"},
+        {name: "Coin Purse", price: 299, cat: "accessories", img: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=300&h=300&fit=crop"},
+        {name: "Baby Blanket", price: 1299, cat: "baby", img: "https://images.unsplash.com/photo-1584359983106-ef9366a6d5de?w=300&h=300&fit=crop"},
+        {name: "Anniversary Bouquet", price: 1799, cat: "money", img: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=300&h=300&fit=crop"}
     ];
     
     // Save to localStorage for admin panel to see
     localStorage.setItem('kallakritiProducts', JSON.stringify(items));
 }
-
-// Cart functionality
-let cart = JSON.parse(localStorage.getItem('kallakritiCart') || '[]');
-
-// Your logo URL
-const logoUrl = "https://raw.githubusercontent.com/kallakriti/kallakriti/main/images/logo.png";
+// ==================== LOADING COMPLETE ====================
 
 let currentCategory = "all";
 let dropdownOpen = false;
 
 // Function to show fallback logo if main logo fails
 function showFallbackLogo(imgElement) {
+  console.log("Logo not found, showing fallback...");
   imgElement.src = "https://cdn-icons-png.flaticon.com/512/3095/3095112.png";
   imgElement.style.backgroundColor = "#9c7c38";
   imgElement.style.padding = "8px";
@@ -923,200 +675,20 @@ function displayProducts() {
            onerror="this.src='https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=300&fit=crop&crop=center'">
       <h3>${item.name}</h3>
       <div class="price">${typeof item.price === 'number' ? '₹' + item.price : item.price}</div>
-      <button class="order-btn" onclick="orderProduct('${item.name}')">
-        <i class="fab fa-whatsapp"></i> Order Now
+      <button class="order" onclick="orderProduct('${item.name}')">
+        <i class="fab fa-whatsapp"></i> Order on WhatsApp
       </button>
-      ${typeof item.price === 'number' ? `<button class="cart-add-btn" onclick="addToCart(${item.id}, '${item.name}', ${item.price}, '${item.img}')">
-        <i class="fas fa-cart-plus"></i> Add to Cart
-      </button>` : ''}
     </div>`;
   });
 }
 
-// Function to order single product
+// Function to order product
 function orderProduct(productName){
   const message = `Hello Kallakriti! I'm interested in ordering: ${productName}`;
   window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
 }
 
-// ==================== CART FUNCTIONS ====================
-function addToCart(id, name, price, image) {
-  const existingItem = cart.find(item => item.id === id);
-  
-  if (existingItem) {
-    existingItem.quantity += 1;
-  } else {
-    cart.push({
-      id: id,
-      name: name,
-      price: price,
-      image: image,
-      quantity: 1
-    });
-  }
-  
-  localStorage.setItem('kallakritiCart', JSON.stringify(cart));
-  updateCartCount();
-  showCartNotification(name);
-}
-
-function removeFromCart(id) {
-  cart = cart.filter(item => item.id !== id);
-  localStorage.setItem('kallakritiCart', JSON.stringify(cart));
-  updateCartCount();
-  updateCartDisplay();
-}
-
-function updateCartCount() {
-  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-  document.getElementById('cartCount').textContent = totalItems;
-}
-
-function openCart() {
-  document.getElementById('cartModal').style.display = 'flex';
-  updateCartDisplay();
-}
-
-function closeCart() {
-  document.getElementById('cartModal').style.display = 'none';
-}
-
-function updateCartDisplay() {
-  const cartItems = document.getElementById('cartItems');
-  const cartTotal = document.getElementById('cartTotal');
-  
-  if (cart.length === 0) {
-    cartItems.innerHTML = `
-      <div class="cart-empty">
-        <i class="fas fa-shopping-cart" style="font-size: 50px; color: #ccc; margin-bottom: 20px;"></i>
-        <p>Your cart is empty</p>
-        <p style="font-size: 0.9rem; color: #999;">Add some products to get started!</p>
-      </div>
-    `;
-    cartTotal.textContent = '₹0';
-    return;
-  }
-  
-  let total = 0;
-  cartItems.innerHTML = '';
-  
-  cart.forEach(item => {
-    const itemTotal = item.price * item.quantity;
-    total += itemTotal;
-    
-    const cartItem = document.createElement('div');
-    cartItem.className = 'cart-item';
-    cartItem.innerHTML = `
-      <img src="${item.image}" alt="${item.name}" class="cart-item-img">
-      <div class="cart-item-details">
-        <div class="cart-item-name">${item.name}</div>
-        <div class="cart-item-price">₹${item.price} x ${item.quantity} = ₹${itemTotal}</div>
-      </div>
-      <button class="cart-item-remove" onclick="removeFromCart(${item.id})">
-        <i class="fas fa-times"></i>
-      </button>
-    `;
-    cartItems.appendChild(cartItem);
-  });
-  
-  cartTotal.textContent = `₹${total}`;
-}
-
-function clearCart() {
-  if (cart.length === 0) return;
-  
-  if (confirm('Are you sure you want to clear your cart?')) {
-    cart = [];
-    localStorage.setItem('kallakritiCart', JSON.stringify(cart));
-    updateCartCount();
-    updateCartDisplay();
-  }
-}
-
-function checkout() {
-  if (cart.length === 0) {
-    alert('Your cart is empty! Add some products first.');
-    return;
-  }
-  
-  let message = "Hello Kallakriti! I want to order:\n\n";
-  let total = 0;
-  
-  cart.forEach((item, index) => {
-    const itemTotal = item.price * item.quantity;
-    total += itemTotal;
-    message += `${index + 1}. ${item.name} (Qty: ${item.quantity}) - ₹${itemTotal}\n`;
-  });
-  
-  message += `\nTotal: ₹${total}\n\n`;
-  message += `Please confirm my order and share payment details.`;
-  
-  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
-}
-
-function showCartNotification(productName) {
-  // Create notification
-  const notification = document.createElement('div');
-  notification.style.cssText = `
-    position: fixed;
-    top: 80px;
-    right: 20px;
-    background: #2ecc71;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    animation: slideIn 0.3s ease;
-  `;
-  
-  notification.innerHTML = `
-    <i class="fas fa-check-circle"></i>
-    <span>${productName} added to cart!</span>
-  `;
-  
-  document.body.appendChild(notification);
-  
-  // Remove after 3 seconds
-  setTimeout(() => {
-    notification.style.animation = 'slideOut 0.3s ease';
-    setTimeout(() => {
-      document.body.removeChild(notification);
-    }, 300);
-  }, 3000);
-}
-
-// Add CSS for animations
-const style = document.createElement('style');
-style.textContent = `
-  @keyframes slideIn {
-    from {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-  
-  @keyframes slideOut {
-    from {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    to {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-  }
-`;
-document.head.appendChild(style);
-
-// ==================== COMPLAINT SYSTEM ====================
+// COMPLAINT SYSTEM FUNCTIONS
 function openComplaintModal() {
   document.getElementById('complaintModal').style.display = 'flex';
 }
@@ -1162,15 +734,10 @@ document.addEventListener('click', function(event) {
   }
 });
 
-// Close modals when clicking outside
+// Close modal when clicking outside
 window.addEventListener('click', function(event) {
-  const cartModal = document.getElementById('cartModal');
-  const complaintModal = document.getElementById('complaintModal');
-  
-  if (event.target === cartModal) {
-    closeCart();
-  }
-  if (event.target === complaintModal) {
+  const modal = document.getElementById('complaintModal');
+  if (event.target === modal) {
     closeComplaintModal();
   }
 });
@@ -1178,7 +745,6 @@ window.addEventListener('click', function(event) {
 // Initialize page
 displayProducts();
 updateActiveButtons();
-updateCartCount();
 
 // Check if logo exists
 window.addEventListener('load', function() {
@@ -1191,20 +757,14 @@ window.addEventListener('load', function() {
       console.log("Logo loaded successfully from:", logoUrl);
     };
     testLogo.onerror = function() {
+      console.log("Logo not found at:", logoUrl);
       showFallbackLogo(logoImg);
     };
   }
   
-  // Check for settings updates every 5 seconds
+  // Reload settings every 5 seconds to check for updates from admin
   setInterval(() => {
-    const newSettings = JSON.parse(localStorage.getItem('kallakritiSettings') || JSON.stringify(defaultSettings));
-    if (newSettings.whatsappNumber !== settings.whatsappNumber) {
-      settings = newSettings;
-      phone = settings.whatsappNumber;
-      whatsappLink.href = `https://wa.me/${phone}?text=Hello Kallakriti, I have an inquiry`;
-      document.getElementById('footerPhone').textContent = `+91 ${phone}`;
-      document.getElementById('footerEmail').textContent = settings.adminEmail;
-    }
+    loadSettings();
   }, 5000);
 });
 </script>
