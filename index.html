@@ -1,17 +1,4 @@
 <!DOCTYPE html>
-// Load products from localStorage (shared with admin panel)
-let websiteProducts = JSON.parse(localStorage.getItem('kallakritiProducts') || '[]');
-
-// If no products in localStorage, use default ones
-if (websiteProducts.length === 0) {
-    // Your existing default products array
-    websiteProducts = [...]; // Your existing products array
-    
-    // Save to localStorage
-    localStorage.setItem('kallakritiProducts', JSON.stringify(websiteProducts));
-}
-
-// Then use websiteProducts instead of your hardcoded items array
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -576,20 +563,31 @@ const phone = "7002341920";
 // YOUR LOGO IS NOW SET TO: https://raw.githubusercontent.com/kallakriti/kallakriti/main/images/logo.png
 const logoUrl = "https://raw.githubusercontent.com/kallakriti/kallakriti/main/images/logo.png";
 
-const items = [
-  {name: "Crochet Rose Bouquet", price: 299, cat: "flowers", img: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=300&fit=crop", desc: "Beautiful handcrafted roses"},
-  {name: "Sunflower Collection", price: 349, cat: "flowers", img: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300&h=300&fit=crop", desc: "Vibrant sunflower arrangements"},
-  {name: "Crochet Teddy Bear", price: 899, cat: "toys", img: "https://images.unsplash.com/photo-1594787318287-7c5cee6dce76?w=300&h=300&fit=crop", desc: "Soft and cuddly companion"},
-  {name: "Elegant Handbag", price: 1499, cat: "accessories", img: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=300&h=300&fit=crop", desc: "Stylish crochet handbag"},
-  {name: "Baby Booties Set", price: 499, cat: "baby", img: "https://images.unsplash.com/photo-1539185441755-769473a23570?w=300&h=300&fit=crop", desc: "Cozy baby footwear"},
-  {name: "Custom Crochet Order", price: "As per design", cat: "custom", img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=300&fit=crop", desc: "Personalized creations"},
-  {name: "Money Bouquet", price: 1999, cat: "money", img: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=300&h=300&fit=crop", desc: "Creative money gift idea"},
-  {name: "Lily Flowers Set", price: 399, cat: "flowers", img: "https://images.unsplash.com/photo-1562690868-60bbe7293e94?w=300&h=300&fit=crop", desc: "Elegant lily arrangements"},
-  {name: "Crochet Bunny", price: 749, cat: "toys", img: "https://images.unsplash.com/photo-1589874186480-ecd085096f63?w=300&h=300&fit=crop", desc: "Adorable crochet bunny"},
-  {name: "Coin Purse", price: 299, cat: "accessories", img: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=300&h=300&fit=crop", desc: "Small crochet coin purse"},
-  {name: "Baby Blanket", price: 1299, cat: "baby", img: "https://images.unsplash.com/photo-1584359983106-ef9366a6d5de?w=300&h=300&fit=crop", desc: "Soft baby blanket"},
-  {name: "Anniversary Bouquet", price: 1799, cat: "money", img: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=300&h=300&fit=crop", desc: "Special occasion bouquet"}
-];
+// ============= IMPORTANT: STEP 2 CODE STARTS HERE =============
+// Load products from localStorage (shared with admin panel)
+let items = JSON.parse(localStorage.getItem('kallakritiProducts') || '[]');
+
+// If no products in localStorage, use these default ones
+if (items.length === 0) {
+    items = [
+        {name: "Crochet Rose Bouquet", price: 299, cat: "flowers", img: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=300&fit=crop", desc: "Beautiful handcrafted roses"},
+        {name: "Sunflower Collection", price: 349, cat: "flowers", img: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300&h=300&fit=crop", desc: "Vibrant sunflower arrangements"},
+        {name: "Crochet Teddy Bear", price: 899, cat: "toys", img: "https://images.unsplash.com/photo-1594787318287-7c5cee6dce76?w=300&h=300&fit=crop", desc: "Soft and cuddly companion"},
+        {name: "Elegant Handbag", price: 1499, cat: "accessories", img: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=300&h=300&fit=crop", desc: "Stylish crochet handbag"},
+        {name: "Baby Booties Set", price: 499, cat: "baby", img: "https://images.unsplash.com/photo-1539185441755-769473a23570?w=300&h=300&fit=crop", desc: "Cozy baby footwear"},
+        {name: "Custom Crochet Order", price: "As per design", cat: "custom", img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=300&fit=crop", desc: "Personalized creations"},
+        {name: "Money Bouquet", price: 1999, cat: "money", img: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=300&h=300&fit=crop", desc: "Creative money gift idea"},
+        {name: "Lily Flowers Set", price: 399, cat: "flowers", img: "https://images.unsplash.com/photo-1562690868-60bbe7293e94?w=300&h=300&fit=crop", desc: "Elegant lily arrangements"},
+        {name: "Crochet Bunny", price: 749, cat: "toys", img: "https://images.unsplash.com/photo-1589874186480-ecd085096f63?w=300&h=300&fit=crop", desc: "Adorable crochet bunny"},
+        {name: "Coin Purse", price: 299, cat: "accessories", img: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=300&h=300&fit=crop", desc: "Small crochet coin purse"},
+        {name: "Baby Blanket", price: 1299, cat: "baby", img: "https://images.unsplash.com/photo-1584359983106-ef9366a6d5de?w=300&h=300&fit=crop", desc: "Soft baby blanket"},
+        {name: "Anniversary Bouquet", price: 1799, cat: "money", img: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=300&h=300&fit=crop", desc: "Special occasion bouquet"}
+    ];
+    
+    // Save to localStorage for admin panel to see
+    localStorage.setItem('kallakritiProducts', JSON.stringify(items));
+}
+// ============= STEP 2 CODE ENDS HERE =============
 
 let currentCategory = "all";
 let dropdownOpen = false;
@@ -714,10 +712,6 @@ function submitComplaint(event) {
   
   // Close modal
   closeComplaintModal();
-  
-  // Optional: Send WhatsApp notification to admin
-  // const whatsappMsg = `New Complaint Registered:\nName: ${complaint.name}\nType: ${complaint.type}\nPhone: ${complaint.phone}`;
-  // window.open(`https://wa.me/${phone}?text=${encodeURIComponent(whatsappMsg)}`, '_blank');
 }
 
 // Close dropdown when clicking outside
