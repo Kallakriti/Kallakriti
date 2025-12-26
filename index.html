@@ -1,3 +1,16 @@
+// Load products from localStorage (shared with admin panel)
+let websiteProducts = JSON.parse(localStorage.getItem('kallakritiProducts') || '[]');
+
+// If no products in localStorage, use default ones
+if (websiteProducts.length === 0) {
+    // Your existing default products array
+    websiteProducts = [...]; // Your existing products array
+    
+    // Save to localStorage
+    localStorage.setItem('kallakritiProducts', JSON.stringify(websiteProducts));
+}
+
+// Then use websiteProducts instead of your hardcoded items array
 <!DOCTYPE html>
 <html lang="en">
 <head>
